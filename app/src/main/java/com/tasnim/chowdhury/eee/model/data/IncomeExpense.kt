@@ -1,4 +1,4 @@
-package com.tasnim.chowdhury.eee
+package com.tasnim.chowdhury.eee.model.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,9 +1,10 @@
-package com.tasnim.chowdhury.eee
+package com.tasnim.chowdhury.eee.model
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.tasnim.chowdhury.eee.model.data.IncomeExpense
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
@@ -26,7 +27,7 @@ abstract class IncomeExpenseDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     IncomeExpenseDatabase::class.java,
-                    "word_database"
+                    "income_expense_database"
                 ).build()
                 INSTANCE = instance
                 // return instance
