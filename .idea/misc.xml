@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/EEE/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/EEE/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/EEE/app/src/main/res/layout/fragment_insert_i_e.xml" value="0.2125" />
+        <entry key="..\:/EEE/app/src/main/res/layout/fragment_main.xml" value="0.2125" />
       </map>
     </option>
   </component>

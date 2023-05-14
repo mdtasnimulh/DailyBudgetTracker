@@ -22,4 +22,9 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.mainHostFragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }
