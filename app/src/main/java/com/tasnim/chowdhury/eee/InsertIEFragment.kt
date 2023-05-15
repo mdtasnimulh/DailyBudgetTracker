@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.tasnim.chowdhury.eee.databinding.FragmentInsertIEBinding
 import com.tasnim.chowdhury.eee.model.data.IncomeExpense
@@ -49,24 +50,17 @@ class InsertIEFragment : Fragment() {
         val category = binding.category.text.toString()
         val paymentMethod = binding.paymentMethod.text.toString()
 
-        if (inputCheck(title, type, time, date, amount.toLong())){
+        if (binding.title.text.isNullOrEmpty() || binding.type.text.isNullOrEmpty() || binding.amount.text.isNullOrEmpty()){
+            Toast.makeText(requireContext(), "Please fill all the required field.", Toast.LENGTH_SHORT).show()
+            binding.title.requestFocus()
+        }else{
             val incomeExpense = IncomeExpense(title, type, note, time, amount.toLong(), category, date, paymentMethod)
 
             viewModel.insertIncomeExpense(incomeExpense)
-            findNavController().navigate(R.id.action_insertIEFragment_to_mainFragment)
+            findNavController().popBackStack()
 
             Toast.makeText(requireContext(), "Successfully Added Income/Expense.", Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(requireContext(), "Please fill all the required field.", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun inputCheck(title: String, type: String, time: String, date: String, amount: Long): Boolean{
-        return !(TextUtils.isEmpty(title) &&
-                TextUtils.isEmpty(type) &&
-                TextUtils.isEmpty(time) &&
-                TextUtils.isEmpty(date) &&
-                TextUtils.isEmpty(amount.toString()))
     }
 
 }
