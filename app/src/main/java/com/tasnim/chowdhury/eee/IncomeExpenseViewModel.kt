@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class IncomeExpenseViewModel(application: Application): AndroidViewModel(application) {
 
-    private val getAllIncomeExpense: LiveData<List<IncomeExpense>>
+    val getAllIncomeExpense: LiveData<List<IncomeExpense>>
     private val repository: IncomeExpenseRepository
 
     init {
