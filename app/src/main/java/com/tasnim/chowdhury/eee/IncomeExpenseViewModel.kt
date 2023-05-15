@@ -13,18 +13,6 @@ import kotlinx.coroutines.launch
 
 class IncomeExpenseViewModel(application: Application): AndroidViewModel(application) {
 
-    /*fun insert(incomeExpense: IncomeExpense) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(incomeExpense)
-    }
-
-    fun update(incomeExpense: IncomeExpense) = viewModelScope.launch(Dispatchers.IO) {
-        repository.update(incomeExpense)
-    }
-
-    fun delete(incomeExpense: IncomeExpense) = viewModelScope.launch(Dispatchers.IO) {
-        repository.delete(incomeExpense)
-    }*/
-
     private val getAllIncomeExpense: LiveData<List<IncomeExpense>>
     private val repository: IncomeExpenseRepository
 
