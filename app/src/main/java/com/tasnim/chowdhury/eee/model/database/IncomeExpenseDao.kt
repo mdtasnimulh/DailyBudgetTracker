@@ -7,22 +7,22 @@ import com.tasnim.chowdhury.eee.model.data.IncomeExpense
 @Dao
 interface IncomeExpenseDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertIncomeExpense(incomeExpense: IncomeExpense)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateIncomeExpense(incomeExpense: IncomeExpense)
 
     @Delete
     suspend fun deleteRecords(incomeExpense: IncomeExpense)
 
-    @Query("Select * from income_expense_table order by id ASC")
+    @Query("SELECT * FROM income_expense_table ORDER BY iEId DESC")
     fun getAllIncomeExpense(): LiveData<List<IncomeExpense>>
 
-    @Query("Select * from income_expense_table where iEType = 'Income'")
-    fun getAllIncome(): LiveData<List<IncomeExpense>>
+    /*@Query("Select * from income_expense_table where iEType = 'Income'")
+    fun getAllIncome(): List<IncomeExpense>
 
     @Query("Select * from income_expense_table where iEType = 'Expense'")
-    fun getAllExpense(): LiveData<List<IncomeExpense>>
+    fun getAllExpense(): List<IncomeExpense>*/
 
 }

@@ -2,12 +2,13 @@ package com.tasnim.chowdhury.eee.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
 import com.tasnim.chowdhury.eee.model.data.IncomeExpense
+import com.tasnim.chowdhury.eee.ui.MainFragmentDirections
 
 class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExpenseAdapter.IncomeExpenseViewHolder>() {
 
@@ -19,6 +20,11 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExp
             binding.titleTv.text = incomeExpense.iETitle
             binding.typeTv.text = incomeExpense.iEType
             binding.amountTv.text = incomeExpense.iEAmount.toString()
+
+            binding.mainRvLayout.setOnClickListener {
+                val action = MainFragmentDirections.actionMainFragmentToIncomeExpenseUpdateFragment(incomeExpense)
+                binding.mainRvLayout.findNavController().navigate(action)
+            }
         }
     }
 

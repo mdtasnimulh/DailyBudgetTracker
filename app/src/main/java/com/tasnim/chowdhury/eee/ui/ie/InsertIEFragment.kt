@@ -50,7 +50,7 @@ class InsertIEFragment : Fragment() {
             Toast.makeText(requireContext(), "Please fill all the required field.", Toast.LENGTH_SHORT).show()
             binding.title.requestFocus()
         }else{
-            val incomeExpense = IncomeExpense(title, type, note, time, amount.toLong(), category, date, paymentMethod)
+            val incomeExpense = IncomeExpense(0, title, type, note, time, amount.toLong(), category, date, paymentMethod)
 
             viewModel.insertIncomeExpense(incomeExpense)
             findNavController().popBackStack()

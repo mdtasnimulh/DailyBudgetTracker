@@ -1,12 +1,18 @@
 package com.tasnim.chowdhury.eee.model.data
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "income_expense_table")
-data class IncomeExpense (
+@Parcelize
+data class IncomeExpense(
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "iEId")
+    val iEId: Int,
 
     @ColumnInfo(name = "iETitle")
     val iETitle: String? = "",
@@ -32,8 +38,4 @@ data class IncomeExpense (
     @ColumnInfo(name = "paymentMethod")
     val paymentMethod: String? = ""
 
-    )
-{
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null
-}
+): Parcelable

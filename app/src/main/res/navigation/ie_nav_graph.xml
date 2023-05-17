@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_insertIEFragment"
             app:destination="@id/insertIEFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_incomeExpenseUpdateFragment"
+            app:destination="@id/incomeExpenseUpdateFragment" />
     </fragment>
     <fragment
         android:id="@+id/insertIEFragment"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_insertIEFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/incomeExpenseUpdateFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.ie.IncomeExpenseUpdateFragment"
+        android:label="Update Income Expense"
+        tools:layout="@layout/fragment_income_expense_update" >
+        <action
+            android:id="@+id/action_incomeExpenseUpdateFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="currentItem"
+            app:argType="com.tasnim.chowdhury.eee.model.data.IncomeExpense" />
     </fragment>
 </navigation>

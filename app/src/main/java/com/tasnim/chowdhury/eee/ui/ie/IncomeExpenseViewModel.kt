@@ -13,16 +13,16 @@ import kotlinx.coroutines.launch
 class IncomeExpenseViewModel(application: Application): AndroidViewModel(application) {
 
     val getAllIncomeExpense: LiveData<List<IncomeExpense>>
-    val getAllIncome: LiveData<List<IncomeExpense>>
-    val getAllExpense: LiveData<List<IncomeExpense>>
+    //val getAllIncome: LiveData<List<IncomeExpense>>
+    //val getAllExpense: LiveData<List<IncomeExpense>>
     private val repository: IncomeExpenseRepository
 
     init {
         val incomeExpenseDao = IncomeExpenseDatabase.getDatabase(application).getIncomeExpenseDao()
         repository = IncomeExpenseRepository(incomeExpenseDao)
         getAllIncomeExpense = repository.getAllIncomeExpense
-        getAllIncome = repository.getAllIncome
-        getAllExpense = repository.getAllExpense
+        //getAllIncome = repository.getAllIncome
+        //getAllExpense = repository.getAllExpense
     }
 
     fun insertIncomeExpense(incomeExpense: IncomeExpense){
