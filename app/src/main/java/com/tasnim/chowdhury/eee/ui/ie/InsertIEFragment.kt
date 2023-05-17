@@ -1,19 +1,15 @@
-package com.tasnim.chowdhury.eee
+package com.tasnim.chowdhury.eee.ui.ie
 
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.tasnim.chowdhury.eee.databinding.FragmentInsertIEBinding
 import com.tasnim.chowdhury.eee.model.data.IncomeExpense
-import java.time.temporal.TemporalAmount
 
 class InsertIEFragment : Fragment() {
 

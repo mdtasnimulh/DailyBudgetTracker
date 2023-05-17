@@ -1,4 +1,4 @@
-package com.tasnim.chowdhury.eee.model
+package com.tasnim.chowdhury.eee.model.database
 
 import android.content.Context
 import androidx.room.Database

@@ -2,7 +2,7 @@ package com.tasnim.chowdhury.eee.model.repository
 
 import androidx.lifecycle.LiveData
 import com.tasnim.chowdhury.eee.model.data.IncomeExpense
-import com.tasnim.chowdhury.eee.model.IncomeExpenseDao
+import com.tasnim.chowdhury.eee.model.database.IncomeExpenseDao
 
 class IncomeExpenseRepository(private val incomeExpenseDao: IncomeExpenseDao) {
 

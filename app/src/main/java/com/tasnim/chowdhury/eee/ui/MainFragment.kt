@@ -1,15 +1,16 @@
-package com.tasnim.chowdhury.eee
+package com.tasnim.chowdhury.eee.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tasnim.chowdhury.eee.ui.ie.IncomeExpenseViewModel
+import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.adapter.IncomeExpenseAdapter
 import com.tasnim.chowdhury.eee.databinding.FragmentMainBinding
 

@@ -1,11 +1,10 @@
-package com.tasnim.chowdhury.eee
+package com.tasnim.chowdhury.eee.ui.ie
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tasnim.chowdhury.eee.model.IncomeExpenseDatabase
+import com.tasnim.chowdhury.eee.model.database.IncomeExpenseDatabase
 import com.tasnim.chowdhury.eee.model.data.IncomeExpense
 import com.tasnim.chowdhury.eee.model.repository.IncomeExpenseRepository
 import kotlinx.coroutines.Dispatchers
