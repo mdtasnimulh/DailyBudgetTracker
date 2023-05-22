@@ -42,6 +42,11 @@ class MainFragment : Fragment() {
 
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
             adapter.addIncomeExpense(incomeExpense)
+            if (incomeExpense.isEmpty()){
+                binding.noDataFound.visibility = View.VISIBLE
+            }else{
+                binding.noDataFound.visibility = View.GONE
+            }
         }
 
         binding.addFloatButton.setOnClickListener {
