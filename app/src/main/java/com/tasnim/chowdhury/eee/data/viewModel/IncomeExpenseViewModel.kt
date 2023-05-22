@@ -1,12 +1,12 @@
-package com.tasnim.chowdhury.eee.ui.ie
+package com.tasnim.chowdhury.eee.data.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.tasnim.chowdhury.eee.model.database.IncomeExpenseDatabase
-import com.tasnim.chowdhury.eee.model.data.IncomeExpense
-import com.tasnim.chowdhury.eee.model.repository.IncomeExpenseRepository
+import com.tasnim.chowdhury.eee.data.data.IncomeExpenseDatabase
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.data.repository.IncomeExpenseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -37,11 +37,16 @@ class IncomeExpenseViewModel(application: Application): AndroidViewModel(applica
         }
     }
 
-    fun deleteAllIncomeExpense(incomeExpense: IncomeExpense){
+    fun deleteIncomeExpense(incomeExpense: IncomeExpense){
         viewModelScope.launch(Dispatchers.IO) {
             repository.delete(incomeExpense)
         }
     }
 
+    fun deleteAllIncomeExpense(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllRecords()
+        }
+    }
 
 }

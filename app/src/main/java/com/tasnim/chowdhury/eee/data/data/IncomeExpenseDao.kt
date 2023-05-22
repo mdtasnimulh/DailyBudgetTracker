@@ -1,8 +1,8 @@
-package com.tasnim.chowdhury.eee.model.database
+package com.tasnim.chowdhury.eee.data.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.tasnim.chowdhury.eee.model.data.IncomeExpense
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 
 @Dao
 interface IncomeExpenseDao {
@@ -15,6 +15,9 @@ interface IncomeExpenseDao {
 
     @Delete
     suspend fun deleteRecords(incomeExpense: IncomeExpense)
+
+    @Query("DELETE FROM income_expense_table")
+    suspend fun deleteAllRecords()
 
     @Query("SELECT * FROM income_expense_table ORDER BY iEId DESC")
     fun getAllIncomeExpense(): LiveData<List<IncomeExpense>>

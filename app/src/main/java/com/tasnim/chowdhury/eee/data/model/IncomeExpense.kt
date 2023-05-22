@@ -1,4 +1,4 @@
-package com.tasnim.chowdhury.eee.model.data
+package com.tasnim.chowdhury.eee.data.model
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

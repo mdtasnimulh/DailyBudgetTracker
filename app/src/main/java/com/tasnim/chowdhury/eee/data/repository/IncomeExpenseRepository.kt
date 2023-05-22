@@ -1,8 +1,8 @@
-package com.tasnim.chowdhury.eee.model.repository
+package com.tasnim.chowdhury.eee.data.repository
 
 import androidx.lifecycle.LiveData
-import com.tasnim.chowdhury.eee.model.data.IncomeExpense
-import com.tasnim.chowdhury.eee.model.database.IncomeExpenseDao
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.data.data.IncomeExpenseDao
 
 class IncomeExpenseRepository(private val incomeExpenseDao: IncomeExpenseDao) {
 
@@ -16,6 +16,10 @@ class IncomeExpenseRepository(private val incomeExpenseDao: IncomeExpenseDao) {
 
     suspend fun delete(incomeExpense: IncomeExpense){
         incomeExpenseDao.deleteRecords(incomeExpense)
+    }
+
+    suspend fun deleteAllRecords(){
+        incomeExpenseDao.deleteAllRecords()
     }
 
     val getAllIncomeExpense: LiveData<List<IncomeExpense>> = incomeExpenseDao.getAllIncomeExpense()

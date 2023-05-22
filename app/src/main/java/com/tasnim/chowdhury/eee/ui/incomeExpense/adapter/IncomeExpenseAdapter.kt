@@ -1,4 +1,4 @@
-package com.tasnim.chowdhury.eee.adapter
+package com.tasnim.chowdhury.eee.ui.incomeExpense.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
-import com.tasnim.chowdhury.eee.model.data.IncomeExpense
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.ui.MainFragmentDirections
 
 class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExpenseAdapter.IncomeExpenseViewHolder>() {

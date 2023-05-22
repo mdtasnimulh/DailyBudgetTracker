@@ -1,5 +1,6 @@
-package com.tasnim.chowdhury.eee.ui.ie
+package com.tasnim.chowdhury.eee.ui.incomeExpense.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentIncomeExpenseUpdateBinding
-import com.tasnim.chowdhury.eee.model.data.IncomeExpense
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 
 class IncomeExpenseUpdateFragment : Fragment() {
 
@@ -40,6 +42,25 @@ class IncomeExpenseUpdateFragment : Fragment() {
         binding.updateButton.setOnClickListener {
             updateIncomeExpense()
         }
+
+        binding.deleteRecord.setOnClickListener {
+            deleteRecord()
+        }
+    }
+
+    private fun deleteRecord() {
+        val deleteDialog = AlertDialog.Builder(requireContext())
+        deleteDialog.setPositiveButton("Yes"){_, _ ->
+            viewModel.deleteIncomeExpense(args.currentItem)
+            Toast.makeText(requireContext(), "Successfully Deleted ${args.currentItem.iETitle}", Toast.LENGTH_SHORT).show()
+            findNavController().popBackStack()
+        }
+        deleteDialog.setNegativeButton("No"){_, _ ->
+
+        }
+        deleteDialog.setTitle("Delete ${args.currentItem.iETitle}")
+        deleteDialog.setMessage("Are you sure you want to delete ${args.currentItem.iETitle}?")
+        deleteDialog.create().show()
     }
 
     private fun setUpData() {

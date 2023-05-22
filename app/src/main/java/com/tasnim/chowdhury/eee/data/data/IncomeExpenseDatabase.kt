@@ -1,10 +1,10 @@
-package com.tasnim.chowdhury.eee.model.database
+package com.tasnim.chowdhury.eee.data.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.tasnim.chowdhury.eee.model.data.IncomeExpense
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
