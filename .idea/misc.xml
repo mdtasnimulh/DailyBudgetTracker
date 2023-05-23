@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/EEE/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/EEE/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/EEE/app/src/main/res/layout/fragment_budget.xml" value="0.2125" />
         <entry key="..\:/EEE/app/src/main/res/layout/fragment_income_expense_update.xml" value="0.4166666666666667" />
         <entry key="..\:/EEE/app/src/main/res/layout/fragment_insert_i_e.xml" value="0.2125" />
         <entry key="..\:/EEE/app/src/main/res/layout/fragment_main.xml" value="0.2125" />
+        <entry key="..\:/EEE/app/src/main/res/layout/fragment_more.xml" value="0.1984375" />
+        <entry key="..\:/EEE/app/src/main/res/layout/fragment_state.xml" value="0.1984375" />
         <entry key="..\:/EEE/app/src/main/res/layout/main_rv_layout.xml" value="0.21145833333333333" />
+        <entry key="..\:/EEE/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2125" />
       </map>
     </option>
   </component>

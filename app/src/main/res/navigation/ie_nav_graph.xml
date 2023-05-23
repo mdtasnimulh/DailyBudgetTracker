@@ -38,4 +38,19 @@
             android:name="currentItem"
             app:argType="com.tasnim.chowdhury.eee.data.model.IncomeExpense" />
     </fragment>
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.BudgetFragment"
+        android:label="fragment_budget"
+        tools:layout="@layout/fragment_budget" />
+    <fragment
+        android:id="@+id/stateViewFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.StateFragment"
+        android:label="fragment_state"
+        tools:layout="@layout/fragment_state" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
 </navigation>
