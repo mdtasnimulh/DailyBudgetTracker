@@ -84,4 +84,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.2.1'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.6.0'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx:21.1.0'
+
+    //-----chip bottom navigation bar
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
 }

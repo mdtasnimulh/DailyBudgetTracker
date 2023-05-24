@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/EEE/app/src/main/res/drawable/ic_delete_red.xml" value="0.134" />
+        <entry key="..\:/EEE/app/src/main/res/drawable/icon_selector.xml" value="0.134" />
         <entry key="..\:/EEE/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/EEE/app/src/main/res/layout/fragment_budget.xml" value="0.2125" />
         <entry key="..\:/EEE/app/src/main/res/layout/fragment_income_expense_update.xml" value="0.4166666666666667" />

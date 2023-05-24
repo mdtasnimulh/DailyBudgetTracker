@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/mainFragment"
+        android:icon="@drawable/icon_selector"
         android:title="Home"
-        android:icon="@drawable/ic_delete" />
+        app:cnb_iconColor="#FF6E22"
+        app:cnb_textColor="#FFFFFF"
+        app:cnb_backgroundColor="#FFBAA4"
+        app:cnb_iconTintMode="src_in"/>
 
     <item
         android:id="@+id/budgetFragment"
+        android:icon="@drawable/icon_selector"
         android:title="Budget"
-        android:icon="@drawable/ic_delete" />
+        app:cnb_iconTintMode="src_in"/>
 
     <item
         android:id="@+id/stateViewFragment"
+        android:icon="@drawable/icon_selector"
         android:title="State"
-        android:icon="@drawable/ic_delete" />
+        app:cnb_iconTintMode="src_in"/>
 
     <item
         android:id="@+id/moreFragment"
+        android:icon="@drawable/icon_selector"
         android:title="More"
-        android:icon="@drawable/ic_delete" />
+        app:cnb_iconTintMode="src_in" />
 
 </menu>

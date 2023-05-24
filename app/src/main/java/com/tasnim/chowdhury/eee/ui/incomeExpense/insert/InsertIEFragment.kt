@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
@@ -35,6 +36,13 @@ class InsertIEFragment : Fragment() {
         binding.insertButton.setOnClickListener {
             insertIncomeExpense()
         }
+
+        val callBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().navigateUp()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
     }
 
     private fun insertIncomeExpense() {

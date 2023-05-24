@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentIncomeExpenseUpdateBinding
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
@@ -46,6 +46,13 @@ class IncomeExpenseUpdateFragment : Fragment() {
         binding.deleteRecord.setOnClickListener {
             deleteRecord()
         }
+
+        val callBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().navigateUp()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
     }
 
     private fun deleteRecord() {
