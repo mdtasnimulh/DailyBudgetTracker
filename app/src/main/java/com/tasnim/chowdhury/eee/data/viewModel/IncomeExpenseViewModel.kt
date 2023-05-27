@@ -3,6 +3,7 @@ package com.tasnim.chowdhury.eee.data.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.tasnim.chowdhury.eee.data.data.IncomeExpenseDatabase
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
@@ -47,6 +48,10 @@ class IncomeExpenseViewModel(application: Application): AndroidViewModel(applica
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllRecords()
         }
+    }
+
+    fun searchDatabase(searchQuery: String): LiveData<List<IncomeExpense>>{
+        return repository.searchDatabase(searchQuery).asLiveData()
     }
 
 }

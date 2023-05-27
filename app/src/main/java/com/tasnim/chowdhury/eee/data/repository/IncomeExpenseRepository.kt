@@ -3,6 +3,7 @@ package com.tasnim.chowdhury.eee.data.repository
 import androidx.lifecycle.LiveData
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.data.IncomeExpenseDao
+import kotlinx.coroutines.flow.Flow
 
 class IncomeExpenseRepository(private val incomeExpenseDao: IncomeExpenseDao) {
 
@@ -20,6 +21,10 @@ class IncomeExpenseRepository(private val incomeExpenseDao: IncomeExpenseDao) {
 
     suspend fun deleteAllRecords(){
         incomeExpenseDao.deleteAllRecords()
+    }
+
+    fun searchDatabase(searchQuery: String): Flow<List<IncomeExpense>>{
+        return incomeExpenseDao.searchDatabase(searchQuery)
     }
 
     val getAllIncomeExpense: LiveData<List<IncomeExpense>> = incomeExpenseDao.getAllIncomeExpense()

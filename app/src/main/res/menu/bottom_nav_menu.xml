@@ -5,7 +5,7 @@
     <item
         android:id="@+id/mainFragment"
         android:icon="@drawable/icon_selector"
-        android:title="Home"
+        android:title="@string/home"
         app:cnb_iconColor="#FF6E22"
         app:cnb_textColor="#FFFFFF"
         app:cnb_backgroundColor="#FFBAA4"
@@ -14,19 +14,19 @@
     <item
         android:id="@+id/budgetFragment"
         android:icon="@drawable/icon_selector"
-        android:title="Budget"
+        android:title="@string/budget"
         app:cnb_iconTintMode="src_in"/>
 
     <item
         android:id="@+id/stateViewFragment"
         android:icon="@drawable/icon_selector"
-        android:title="State"
+        android:title="@string/state"
         app:cnb_iconTintMode="src_in"/>
 
     <item
         android:id="@+id/moreFragment"
         android:icon="@drawable/icon_selector"
-        android:title="More"
+        android:title="@string/more"
         app:cnb_iconTintMode="src_in" />
 
 </menu>

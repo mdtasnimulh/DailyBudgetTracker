@@ -2,21 +2,26 @@ package com.tasnim.chowdhury.eee.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.util.query
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter
 import com.tasnim.chowdhury.eee.databinding.FragmentMainBinding
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(){
 
     private lateinit var binding: FragmentMainBinding
 
@@ -56,6 +61,36 @@ class MainFragment : Fragment() {
         binding.deleteAllRecord.setOnClickListener {
             deleteAllRecords()
         }
+
+        val searchView = binding.searchView
+        val search = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        search.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH || event?.keyCode == KeyEvent.KEYCODE_SEARCH){
+                val query = searchView.query.toString()
+                searchDatabase(query)
+                searchView.clearFocus()
+                true
+            }else{
+                false
+            }
+        }
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(searchQuery: String?): Boolean {
+                if (searchQuery != null){
+                    searchDatabase(searchQuery)
+                }
+                return true
+            }
+
+            override fun onQueryTextSubmit(searchQuery: String?): Boolean {
+                if (searchQuery != null){
+                    searchDatabase(searchQuery)
+                }
+                return true
+            }
+        })
     }
 
     private fun deleteAllRecords() {
@@ -78,6 +113,18 @@ class MainFragment : Fragment() {
         binding.mainRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.mainRv.setHasFixedSize(false)
         binding.mainRv.itemAnimator = DefaultItemAnimator()
+    }
+
+    private fun searchDatabase(query: String){
+        val searchQuery = "%$query%"
+
+        viewModel.searchDatabase(searchQuery).observe(
+            this
+        ) { list ->
+            list.let {
+                adapter.addIncomeExpense(it)
+            }
+        }
     }
 
 }
