@@ -13,6 +13,7 @@
     <color name="cherryRed">#FA1E25</color>
     <color name="roseRed">#FF033E</color>
     <color name="backgroundRed">#FFC5C7</color>
+    <color name="backgroundRed2">#FFADAF</color>
 
     //-----custom color's gray
     <color name="graphiteGray">#36454F</color>
@@ -24,6 +25,7 @@
     <color name="leafGreen">#00A619</color>
     <color name="neonGreen">#31D618</color>
     <color name="backgroundGreen">#CFFFD7</color>
+    <color name="backgroundGreen2">#AFFFBD</color>
 
     //-----custom color's yellow and orange
     <color name="amberOrange">#FFA400</color>
@@ -31,6 +33,7 @@
     <color name="schoolBusOrange">#FA4616</color>
     <color name="orange">#FC4C02</color>
     <color name="backgroundYellow">#FFF3C9</color>
+    <color name="backgroundYellow2">#FFEDAE</color>
 
     //-----custom color's blue
     <color name="navyBlue">#004481</color>
@@ -39,6 +42,7 @@
     <color name="lightBlue">#0050B5</color>
     <color name="shuttleBlue">#00469C</color>
     <color name="backgroundBlue">#C1DCFF</color>
+    <color name="backgroundBlue2">#ACD0FF</color>
 
     //-----custom color's purple
     <color name="lightPurple">#8031A7</color>
