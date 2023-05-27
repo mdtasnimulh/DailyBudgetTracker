@@ -65,4 +65,6 @@
     <color name="rainbowBlue">#0000ff</color>
     <color name="rainbowIndigo">#4b0082</color>
     <color name="rainbowViolet">#ee82ee</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color">#0050B5</color>
 </resources>
