@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bottomNavigationView.setItemSelected(R.id.mainFragment, true)
+        binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_green)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainHostFragment) as NavHostFragment
         val navController = navHostFragment.findNavController()
@@ -28,21 +29,25 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { menu ->
             when(menu){
                 R.id.mainFragment -> {
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_green)
                     home = true
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.mainFragment)
                 }
                 R.id.budgetFragment -> {
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_yellow)
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.budgetFragment)
                 }
                 R.id.stateViewFragment -> {
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_red)
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.stateViewFragment)
                 }
                 R.id.moreFragment -> {
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_blue)
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.moreFragment)
@@ -68,6 +73,7 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.mainFragment)
                     home = true
                     binding.bottomNavigationView.setItemSelected(R.id.mainFragment, true)
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_green)
                 }
             }
         })

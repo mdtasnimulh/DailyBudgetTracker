@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.util.query
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter
@@ -103,7 +102,7 @@ class MainFragment : Fragment(){
         deleteAllDialog.setNegativeButton("No"){_, _ ->
 
         }
-        deleteAllDialog.setTitle("Delete All Income/Expense")
+        deleteAllDialog.setTitle("Delete All Income/Expense!")
         deleteAllDialog.setMessage("Are you sure you want to delete everything you record?")
         deleteAllDialog.create().show()
     }
@@ -119,7 +118,7 @@ class MainFragment : Fragment(){
         val searchQuery = "%$query%"
 
         viewModel.searchDatabase(searchQuery).observe(
-            this
+            viewLifecycleOwner
         ) { list ->
             list.let {
                 adapter.addIncomeExpense(it)

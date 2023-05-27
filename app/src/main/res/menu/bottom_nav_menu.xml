@@ -4,29 +4,38 @@
 
     <item
         android:id="@+id/mainFragment"
-        android:icon="@drawable/icon_selector"
+        android:icon="@drawable/ic_home_black_filled"
         android:title="@string/home"
-        app:cnb_iconColor="#FF6E22"
-        app:cnb_textColor="#FFFFFF"
-        app:cnb_backgroundColor="#FFBAA4"
-        app:cnb_iconTintMode="src_in"/>
+        app:cnb_iconTintMode="src_in"
+        app:cnb_iconColor="@color/leafGreen"
+        app:cnb_backgroundColor="@color/backgroundGreen"
+        app:cnb_textColor="@color/leafGreen"/>
 
     <item
         android:id="@+id/budgetFragment"
-        android:icon="@drawable/icon_selector"
+        android:icon="@drawable/ic_budget_black_filled"
         android:title="@string/budget"
-        app:cnb_iconTintMode="src_in"/>
+        app:cnb_iconTintMode="src_in"
+        app:cnb_iconColor="@color/bananaYellow"
+        app:cnb_backgroundColor="@color/backgroundYellow"
+        app:cnb_textColor="@color/bananaYellow"/>
 
     <item
         android:id="@+id/stateViewFragment"
-        android:icon="@drawable/icon_selector"
+        android:icon="@drawable/ic_chart_black_filled"
         android:title="@string/state"
-        app:cnb_iconTintMode="src_in"/>
+        app:cnb_iconTintMode="src_in"
+        app:cnb_iconColor="@color/cherryRed"
+        app:cnb_backgroundColor="@color/backgroundRed"
+        app:cnb_textColor="@color/cherryRed"/>
 
     <item
         android:id="@+id/moreFragment"
-        android:icon="@drawable/icon_selector"
+        android:icon="@drawable/ic_more_black_filled"
         android:title="@string/more"
-        app:cnb_iconTintMode="src_in" />
+        app:cnb_iconTintMode="src_in"
+        app:cnb_iconColor="@color/lightBlue"
+        app:cnb_backgroundColor="@color/backgroundBlue"
+        app:cnb_textColor="@color/lightBlue"/>
 
 </menu>
