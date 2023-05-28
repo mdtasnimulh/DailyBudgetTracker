@@ -26,10 +26,10 @@ interface IncomeExpenseDao {
     @Query("SELECT * FROM income_expense_table WHERE iETitle LIKE :searchQuery OR iECategory LIKE :searchQuery")
     fun searchDatabase(searchQuery: String): Flow<List<IncomeExpense>>
 
-    /*@Query("Select * from income_expense_table where iEType = 'Income'")
-    fun getAllIncome(): List<IncomeExpense>
+    @Query("Select * from income_expense_table where iEType = 'Income'")
+    fun getAllIncome(): LiveData<List<IncomeExpense>>
 
     @Query("Select * from income_expense_table where iEType = 'Expense'")
-    fun getAllExpense(): List<IncomeExpense>*/
+    fun getAllExpense(): LiveData<List<IncomeExpense>>
 
 }

@@ -1,10 +1,12 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense.insert
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
@@ -13,11 +15,18 @@ import com.google.android.material.textfield.TextInputLayout
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentInsertIEBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class InsertIEFragment : Fragment() {
 
     private lateinit var binding: FragmentInsertIEBinding
     private lateinit var viewModel: IncomeExpenseViewModel
+
+    var year: Int = 0
+    var month: Int = 0
+    var dayOfMonth: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +54,9 @@ class InsertIEFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
 
+        /*binding.date.setOnClickListener {
+            pickDate()
+        }*/
 
     }
 
@@ -69,6 +81,10 @@ class InsertIEFragment : Fragment() {
 
             Toast.makeText(requireContext(), "Successfully Added Income/Expense.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun pickDate(){
+
     }
 
 }
