@@ -2,6 +2,7 @@ package com.tasnim.chowdhury.eee.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.R
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter
 import com.tasnim.chowdhury.eee.databinding.FragmentMainBinding
 
@@ -26,6 +28,8 @@ class MainFragment : Fragment(){
 
     private lateinit var adapter: IncomeExpenseAdapter
     private lateinit var viewModel: IncomeExpenseViewModel
+
+    private var incomeExpenseList: List<IncomeExpense> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +54,19 @@ class MainFragment : Fragment(){
                 binding.noDataFound.visibility = View.VISIBLE
             }else{
                 binding.noDataFound.visibility = View.GONE
+                val totalAmount = incomeExpense.sumOf { it.iEAmount ?: 0.00 }
+                val totalIncomeAmount = incomeExpense
+                    .filter { it.iEType == "Income" }
+                    .sumOf { it.iEAmount ?: 0.00 }
+                val totalExpenseAmount = incomeExpense
+                    .filter { it.iEType == "Expense" }
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val availableAmount = totalIncomeAmount - totalExpenseAmount
+
+                binding.totalAmount.text = "Available: ${availableAmount}"
+                binding.totalIncomeAmount.text = "Income: $totalIncomeAmount"
+                binding.totalExpenseAmount.text = "Expense: $totalExpenseAmount"
             }
         }
 

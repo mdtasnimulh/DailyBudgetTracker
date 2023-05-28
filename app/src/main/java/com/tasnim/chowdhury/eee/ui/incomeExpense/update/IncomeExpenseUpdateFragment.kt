@@ -95,7 +95,7 @@ class IncomeExpenseUpdateFragment : Fragment() {
             Toast.makeText(requireContext(), "Update Failed! Please fill all the required field.", Toast.LENGTH_SHORT).show()
             binding.updateTitle.requestFocus()
         }else{
-            val updateIncomeExpense = IncomeExpense(args.currentItem.iEId, title, type, note, time, amount.toLong(), category, date, paymentMethod)
+            val updateIncomeExpense = IncomeExpense(args.currentItem.iEId, title, type, note, time, amount.toDouble(), category, date, paymentMethod)
 
             viewModel.updateIncomeExpense(updateIncomeExpense)
             findNavController().popBackStack()

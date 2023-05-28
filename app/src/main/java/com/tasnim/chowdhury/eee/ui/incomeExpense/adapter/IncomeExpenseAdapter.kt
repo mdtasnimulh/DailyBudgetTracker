@@ -19,12 +19,12 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExp
 
     private var incomeExpenseList: List<IncomeExpense> = listOf()
 
-    class IncomeExpenseViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
+   inner class IncomeExpenseViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(incomeExpense: IncomeExpense, position: Int){
             val amountPlus = "+${incomeExpense.iEAmount.toString()} Taka"
             val amountMinus = "-${incomeExpense.iEAmount.toString()} Taka"
             val amount = "${incomeExpense.iEAmount.toString()} Taka"
-            binding.iconImgV.setImageResource(R.drawable.ic_launcher_background)
+            binding.iconImgV.setImageResource(R.drawable.ic_chart)
             binding.titleTv.text = incomeExpense.iETitle
             binding.dateTv.text = incomeExpense.iEDate
 
@@ -33,14 +33,18 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExp
                 binding.mainRvLayout.findNavController().navigate(action)
             }
 
-            if (incomeExpense.iEType == "Income"){
-                binding.amountTv.text = amountPlus
-                binding.amountTv.setTextColor(Color.parseColor("#31D618"))
-            }else if (incomeExpense.iEType == "Expense"){
-                binding.amountTv.text = amountMinus
-                binding.amountTv.setTextColor(Color.parseColor("#FA1E25"))
-            }else{
-                binding.amountTv.text = amount
+            when (incomeExpense.iEType) {
+                "Income" -> {
+                    binding.amountTv.text = amountPlus
+                    binding.amountTv.setTextColor(Color.parseColor("#31D618"))
+                }
+                "Expense" -> {
+                    binding.amountTv.text = amountMinus
+                    binding.amountTv.setTextColor(Color.parseColor("#FA1E25"))
+                }
+                else -> {
+                    binding.amountTv.text = amount
+                }
             }
 
         }

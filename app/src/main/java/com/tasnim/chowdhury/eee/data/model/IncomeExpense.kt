@@ -27,7 +27,7 @@ data class IncomeExpense(
     val iETimeStamp: String? = "",
 
     @ColumnInfo(name = "iEAmount")
-    val iEAmount: Long?,
+    val iEAmount: Double?,
 
     @ColumnInfo(name = "iECategory")
     val iECategory: String? = "",
