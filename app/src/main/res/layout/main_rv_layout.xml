@@ -18,7 +18,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_chart" />
+            app:srcCompat="@drawable/ic_chart" />
 
         <TextView
             android:id="@+id/titleTv"
@@ -27,6 +27,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="TextView"
+            android:fontFamily="@font/acme_regular"
             app:layout_constraintEnd_toStartOf="@+id/amountTv"
             app:layout_constraintStart_toEndOf="@+id/iconImgV"
             app:layout_constraintTop_toTopOf="@+id/iconImgV" />
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="TextView"
+            android:fontFamily="@font/roboto_condensed_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="05 Jun 2023"
+            android:fontFamily="@font/roboto_condensed_regular"
             app:layout_constraintEnd_toEndOf="@+id/titleTv"
             app:layout_constraintStart_toStartOf="@+id/titleTv"
             app:layout_constraintTop_toBottomOf="@+id/titleTv" />
