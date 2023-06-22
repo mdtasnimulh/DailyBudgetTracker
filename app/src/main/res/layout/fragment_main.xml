@@ -16,13 +16,15 @@
             android:contentDescription="@string/no_records_found"
             android:src="@drawable/no_data_found"
             android:visibility="gone"
+            tools:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/mainRv"
-            app:layout_constraintStart_toStartOf="@+id/mainRv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addFloatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,7 +103,7 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toStartOf="@+id/deleteAllRecord"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
