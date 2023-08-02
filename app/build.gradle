@@ -9,6 +9,7 @@ plugins {
 
 android {
     compileSdk 33
+    namespace "com.tasnim.chowdhury.eee"
 
     defaultConfig {
         applicationId "com.tasnim.chowdhury.eee"
@@ -37,7 +38,6 @@ android {
     dataBinding {
         enabled true
     }
-    namespace 'com.tasnim.chowdhury.eee'
 }
 
 dependencies {
@@ -61,7 +61,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.6.1"
 
     //-----jetbrains kotlin extension
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.10"
@@ -83,7 +83,7 @@ dependencies {
 
     //-----firebase
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.0'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx:21.1.0'
 
     //-----chip bottom navigation bar
