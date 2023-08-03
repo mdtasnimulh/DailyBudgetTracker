@@ -19,6 +19,8 @@
     <string name="expense">Expense</string>
     <string name="spending">Spending</string>
     <string name="this_month">This Month</string>
+    <string name="recent_transaction">Recent Transaction</string>
+    <string name="see_more">See More</string>
 
     <string-array name="date_filter">
         <item>This Month</item>

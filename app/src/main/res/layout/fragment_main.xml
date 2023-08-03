@@ -373,6 +373,45 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recentTransactionCl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeChartCl">
+
+            <TextView
+                android:id="@+id/recentTransactionTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="4dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="@string/recent_transaction"
+                android:textColor="@color/final_primary_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recentTransactionSeeMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_more"
+                android:fontFamily="@font/roboto_mono_light"
+                android:textColor="@color/final_primary_black"
+                android:textSize="12sp"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recentTransactionTv"
+                app:layout_constraintBottom_toBottomOf="@+id/recentTransactionTv"
+                app:drawableEndCompat="@drawable/ic_arrow_forward_mini" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
