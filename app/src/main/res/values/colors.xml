@@ -67,4 +67,15 @@
     <color name="rainbowViolet">#ee82ee</color>
 
     <color name="mtrl_textinput_default_box_stroke_color">#0050B5</color>
+    
+    <color name="final_primary_orange">#F58B39</color>
+    <color name="final_primary_white">#F9F9F9</color>
+    <color name="final_primary_black">#292929</color>
+    <color name="final_secondary_green">#00A86B</color>
+    <color name="final_secondary_red">#FD3C53</color>
+    <color name="final_other_red">#FF6464</color>
+    <color name="final_other_blue">#64E6FF</color>
+    <color name="final_other_yellow">#FFF177</color>
+    <color name="final_other_purple">#8A77FF</color>
+    <color name="final_other_green">#7CEA87</color>
 </resources>

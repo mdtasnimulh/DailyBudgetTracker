@@ -88,4 +88,7 @@ dependencies {
 
     //-----chip bottom navigation bar
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+
+    //-----mp android chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

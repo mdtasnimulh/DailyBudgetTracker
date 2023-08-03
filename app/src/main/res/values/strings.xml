@@ -10,4 +10,19 @@
     <string name="no_records_found">No Records Found</string>
     <string name="delete_icon">Delete Icon</string>
     <string name="title">Title</string>
+    <string name="notification_icon_content_description_home_page">Home Page Notification Icon</string>
+    <string name="all_accounts">All Accounts</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="demo_value_total">BDT.15,000</string>
+    <string name="home_income_card_logo">home income card logo</string>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
+    <string name="spending">Spending</string>
+    <string name="this_month">This Month</string>
+
+    <string-array name="date_filter">
+        <item>This Month</item>
+        <item>This Week</item>
+        <item>Today</item>
+    </string-array>
 </resources>

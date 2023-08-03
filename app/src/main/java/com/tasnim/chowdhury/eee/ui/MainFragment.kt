@@ -2,20 +2,18 @@ package com.tasnim.chowdhury.eee.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.SearchView
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
@@ -44,6 +42,8 @@ class MainFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupPieChart()
+
         adapter = IncomeExpenseAdapter(requireContext())
         setupAdapter()
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
@@ -51,7 +51,7 @@ class MainFragment : Fragment(){
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
             adapter.addIncomeExpense(incomeExpense)
             if (incomeExpense.isEmpty()){
-                binding.noDataFound.visibility = View.VISIBLE
+                binding.noDataFound.visibility = View.GONE
             }else{
                 binding.noDataFound.visibility = View.GONE
                 val totalAmount = incomeExpense.sumOf { it.iEAmount ?: 0.00 }
@@ -64,9 +64,9 @@ class MainFragment : Fragment(){
 
                 val availableAmount = totalIncomeAmount - totalExpenseAmount
 
-                binding.totalAmount.text = "Available: ${availableAmount}"
+                /*binding.totalAmount.text = "Available: ${availableAmount}"
                 binding.totalIncomeAmount.text = "Income: $totalIncomeAmount"
-                binding.totalExpenseAmount.text = "Expense: $totalExpenseAmount"
+                binding.totalExpenseAmount.text = "Expense: $totalExpenseAmount"*/
             }
         }
 
@@ -74,11 +74,11 @@ class MainFragment : Fragment(){
             findNavController().navigate(R.id.action_mainFragment_to_insertIEFragment)
         }
 
-        binding.deleteAllRecord.setOnClickListener {
+        /*binding.deleteAllRecord.setOnClickListener {
             deleteAllRecords()
-        }
+        }*/
 
-        val searchView = binding.searchView
+        /*val searchView = binding.searchView
         val search = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
         search.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH || event?.keyCode == KeyEvent.KEYCODE_SEARCH){
@@ -89,9 +89,9 @@ class MainFragment : Fragment(){
             }else{
                 false
             }
-        }
+        }*/
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(searchQuery: String?): Boolean {
                 if (searchQuery != null){
@@ -106,7 +106,52 @@ class MainFragment : Fragment(){
                 }
                 return true
             }
-        })
+        })*/
+    }
+
+    private fun setupPieChart() {
+        val list: ArrayList<PieEntry> = ArrayList()
+
+        list.add(PieEntry(150f, "One"))
+        list.add(PieEntry(230f, "Two"))
+        list.add(PieEntry(400f, "Three"))
+        list.add(PieEntry(400f, "Four"))
+        list.add(PieEntry(600f, "Five"))
+        list.add(PieEntry(1500f, "Six"))
+
+        val pieDataSet = PieDataSet(list, "List")
+        pieDataSet.colors = getColorList()
+        pieDataSet.valueTextSize = 12f
+        pieDataSet.valueTextColor = R.color.final_primary_black
+
+        val pieData = PieData(pieDataSet)
+        binding.homePieChart.data = pieData
+        binding.homePieChart.description.text = "Pie Chart"
+        binding.homePieChart.centerText = "List"
+        binding.homePieChart.animateY(1500)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setUpDateFilter()
+    }
+
+    private fun getColorList(): List<Int> {
+        return listOf(
+            ContextCompat.getColor(requireContext(), R.color.final_other_blue),
+            ContextCompat.getColor(requireContext(), R.color.final_other_green),
+            ContextCompat.getColor(requireContext(), R.color.final_other_purple),
+            ContextCompat.getColor(requireContext(), R.color.final_primary_orange),
+            ContextCompat.getColor(requireContext(), R.color.final_other_yellow),
+            ContextCompat.getColor(requireContext(), R.color.final_other_red),
+        )
+    }
+
+    private fun setUpDateFilter() {
+        val filterItem = resources.getStringArray(R.array.date_filter)
+        val dateFilterAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown, filterItem)
+        binding.dateFilter.adapter = dateFilterAdapter
     }
 
     private fun deleteAllRecords() {
@@ -125,10 +170,10 @@ class MainFragment : Fragment(){
     }
 
     private fun setupAdapter() {
-        binding.mainRv.adapter = adapter
+        /*binding.mainRv.adapter = adapter
         binding.mainRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.mainRv.setHasFixedSize(false)
-        binding.mainRv.itemAnimator = DefaultItemAnimator()
+        binding.mainRv.itemAnimator = DefaultItemAnimator()*/
     }
 
     private fun searchDatabase(query: String){

@@ -1,0 +1,9 @@
+<TextView android:id="@+id/dateFilterDropdown"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:text="@string/this_month"
+    android:textColor="@color/final_primary_black"
+    android:textSize="14sp"
+    android:fontFamily="@font/roboto_mono_medium"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
