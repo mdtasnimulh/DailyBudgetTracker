@@ -66,8 +66,15 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExp
         return incomeExpenseList.size
     }
 
+    // returning all records here
     fun addIncomeExpense(incomeExpense: List<IncomeExpense>){
         this.incomeExpenseList = incomeExpense
+        notifyDataSetChanged()
+    }
+
+    // adding last 5 records for home fragment, returning only 5 item here
+    fun addLimitedIncomeExpense(incomeExpense: List<IncomeExpense>) {
+        this.incomeExpenseList = incomeExpense.take(7) // Limit to the first 7 items
         notifyDataSetChanged()
     }
 

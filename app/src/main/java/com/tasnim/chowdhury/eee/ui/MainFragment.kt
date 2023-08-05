@@ -53,7 +53,7 @@ class MainFragment : Fragment(){
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
-            adapter.addIncomeExpense(incomeExpense)
+            adapter.addLimitedIncomeExpense(incomeExpense)
             if (incomeExpense.isEmpty()){
                 binding.noDataFound.visibility = View.VISIBLE
             }else{
@@ -68,9 +68,9 @@ class MainFragment : Fragment(){
 
                 val availableAmount = totalIncomeAmount - totalExpenseAmount
 
-                binding.homeTotalBalanceValueTv.text = "BDT.${availableAmount}"
-                binding.IncomeValueTv.text = "Bdt.$totalIncomeAmount"
-                binding.expenseValueTv.text = "Bdt.$totalExpenseAmount"
+                binding.homeTotalBalanceValueTv.text = "BDT ${availableAmount}"
+                binding.IncomeValueTv.text = "Bdt $totalIncomeAmount"
+                binding.expenseValueTv.text = "Bdt $totalExpenseAmount"
 
                 income = totalIncomeAmount.toFloat()
                 expense = totalExpenseAmount.toFloat()

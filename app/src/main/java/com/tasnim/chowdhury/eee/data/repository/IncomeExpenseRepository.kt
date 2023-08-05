@@ -33,4 +33,8 @@ class IncomeExpenseRepository(private val incomeExpenseDao: IncomeExpenseDao) {
 
     val getAllExpense: LiveData<List<IncomeExpense>> = incomeExpenseDao.getAllExpense()
 
+    fun getFirstFiveIncomeExpense(): LiveData<List<IncomeExpense>> {
+        return incomeExpenseDao.getFirstFiveIncomeExpense()
+    }
+
 }

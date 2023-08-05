@@ -32,4 +32,7 @@ interface IncomeExpenseDao {
     @Query("Select * from income_expense_table where iEType = 'Expense'")
     fun getAllExpense(): LiveData<List<IncomeExpense>>
 
+    @Query("SELECT * FROM income_expense_table ORDER BY iEId DESC LIMIT 5")
+    fun getFirstFiveIncomeExpense(): LiveData<List<IncomeExpense>>
+
 }

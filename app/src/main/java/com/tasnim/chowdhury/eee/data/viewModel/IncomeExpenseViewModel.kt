@@ -18,12 +18,15 @@ class IncomeExpenseViewModel(application: Application): AndroidViewModel(applica
     val getAllExpense: LiveData<List<IncomeExpense>>
     private val repository: IncomeExpenseRepository
 
+    val getFirstFiveIncomeExpense: LiveData<List<IncomeExpense>>
+
     init {
         val incomeExpenseDao = IncomeExpenseDatabase.getDatabase(application).getIncomeExpenseDao()
         repository = IncomeExpenseRepository(incomeExpenseDao)
         getAllIncomeExpense = repository.getAllIncomeExpense
         getAllIncome = repository.getAllIncome
         getAllExpense = repository.getAllExpense
+        getFirstFiveIncomeExpense = repository.getFirstFiveIncomeExpense()
     }
 
     fun insertIncomeExpense(incomeExpense: IncomeExpense){
