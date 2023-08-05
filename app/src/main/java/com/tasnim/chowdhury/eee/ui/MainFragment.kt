@@ -2,6 +2,7 @@ package com.tasnim.chowdhury.eee.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -29,6 +32,9 @@ class MainFragment : Fragment(){
 
     private var incomeExpenseList: List<IncomeExpense> = listOf()
 
+    private var income: Float = 0.0F
+    private var expense: Float = 0.0F
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,8 +48,6 @@ class MainFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupPieChart()
-
         adapter = IncomeExpenseAdapter(requireContext())
         setupAdapter()
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
@@ -51,7 +55,7 @@ class MainFragment : Fragment(){
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
             adapter.addIncomeExpense(incomeExpense)
             if (incomeExpense.isEmpty()){
-                binding.noDataFound.visibility = View.GONE
+                binding.noDataFound.visibility = View.VISIBLE
             }else{
                 binding.noDataFound.visibility = View.GONE
                 val totalAmount = incomeExpense.sumOf { it.iEAmount ?: 0.00 }
@@ -64,9 +68,16 @@ class MainFragment : Fragment(){
 
                 val availableAmount = totalIncomeAmount - totalExpenseAmount
 
-                /*binding.totalAmount.text = "Available: ${availableAmount}"
-                binding.totalIncomeAmount.text = "Income: $totalIncomeAmount"
-                binding.totalExpenseAmount.text = "Expense: $totalExpenseAmount"*/
+                binding.homeTotalBalanceValueTv.text = "BDT.${availableAmount}"
+                binding.IncomeValueTv.text = "Bdt.$totalIncomeAmount"
+                binding.expenseValueTv.text = "Bdt.$totalExpenseAmount"
+
+                income = totalIncomeAmount.toFloat()
+                expense = totalExpenseAmount.toFloat()
+
+                Log.d("chkchk", "$income $expense")
+
+                setupPieChart()
             }
         }
 
@@ -112,21 +123,20 @@ class MainFragment : Fragment(){
     private fun setupPieChart() {
         val list: ArrayList<PieEntry> = ArrayList()
 
-        list.add(PieEntry(150f, "One"))
-        list.add(PieEntry(230f, "Two"))
-        list.add(PieEntry(400f, "Three"))
-        list.add(PieEntry(400f, "Four"))
-        list.add(PieEntry(600f, "Five"))
-        list.add(PieEntry(1500f, "Six"))
 
-        val pieDataSet = PieDataSet(list, "List")
+        list.add(PieEntry(income, "Income"))
+        list.add(PieEntry(expense, "Expense"))
+
+        Log.d("chkData", "$income $expense")
+
+        val pieDataSet = PieDataSet(list, "Balance")
         pieDataSet.colors = getColorList()
         pieDataSet.valueTextSize = 12f
         pieDataSet.valueTextColor = R.color.final_primary_black
 
         val pieData = PieData(pieDataSet)
         binding.homePieChart.data = pieData
-        binding.homePieChart.description.text = "Pie Chart"
+        binding.homePieChart.description.text = "Income/Expense Chart"
         binding.homePieChart.centerText = "List"
         binding.homePieChart.animateY(1500)
     }
@@ -139,12 +149,12 @@ class MainFragment : Fragment(){
 
     private fun getColorList(): List<Int> {
         return listOf(
-            ContextCompat.getColor(requireContext(), R.color.final_other_blue),
+            ContextCompat.getColor(requireContext(), R.color.final_secondary_green),
+            ContextCompat.getColor(requireContext(), R.color.final_other_red),
+            /*ContextCompat.getColor(requireContext(), R.color.final_other_blue),
             ContextCompat.getColor(requireContext(), R.color.final_other_green),
             ContextCompat.getColor(requireContext(), R.color.final_other_purple),
-            ContextCompat.getColor(requireContext(), R.color.final_primary_orange),
-            ContextCompat.getColor(requireContext(), R.color.final_other_yellow),
-            ContextCompat.getColor(requireContext(), R.color.final_other_red),
+            ContextCompat.getColor(requireContext(), R.color.final_primary_orange),*/
         )
     }
 
@@ -170,10 +180,10 @@ class MainFragment : Fragment(){
     }
 
     private fun setupAdapter() {
-        /*binding.mainRv.adapter = adapter
+        binding.mainRv.adapter = adapter
         binding.mainRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.mainRv.setHasFixedSize(false)
-        binding.mainRv.itemAnimator = DefaultItemAnimator()*/
+        binding.mainRv.itemAnimator = DefaultItemAnimator()
     }
 
     private fun searchDatabase(query: String){
