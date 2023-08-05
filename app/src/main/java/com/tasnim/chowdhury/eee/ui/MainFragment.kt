@@ -138,7 +138,7 @@ class MainFragment : Fragment(){
         binding.homePieChart.data = pieData
         binding.homePieChart.description.text = "Income/Expense Chart"
         binding.homePieChart.centerText = "List"
-        binding.homePieChart.animateY(1500)
+        binding.homePieChart.animateY(800)
     }
 
     override fun onResume() {

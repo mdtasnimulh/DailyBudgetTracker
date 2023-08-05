@@ -252,95 +252,45 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
                     android:id="@+id/timeTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Time"
-                    android:textColorHint="@color/navyBlue"
-                    app:boxBackgroundColor="#FAFCFF"
-                    app:boxCornerRadiusBottomEnd="15dp"
-                    app:boxCornerRadiusBottomStart="15dp"
-                    app:boxCornerRadiusTopEnd="15dp"
-                    app:boxCornerRadiusTopStart="15dp"
-                    app:boxStrokeColor="@color/navyBlue"
-                    app:boxStrokeErrorColor="@color/cherryRed"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconDrawable="@drawable/ic_clear"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/navyBlue"
-                    app:hintTextColor="@color/navyBlue"
+                    android:layout_height="60dp"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    android:inputType="time"
+                    android:hint="time"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/navyBlue"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodTil"
-                    app:startIconDrawable="@drawable/ic_title"
-                    app:startIconTint="@color/navyBlue">
+                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodTil" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/time"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:cursorVisible="true"
-                        android:imeActionLabel="Done"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:paddingVertical="10dp"
-                        android:textColor="@color/navyBlue"
-                        android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
                     android:id="@+id/dateTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Date"
-                    android:textColorHint="@color/navyBlue"
-                    app:boxBackgroundColor="#FAFCFF"
-                    app:boxCornerRadiusBottomEnd="15dp"
-                    app:boxCornerRadiusBottomStart="15dp"
-                    app:boxCornerRadiusTopEnd="15dp"
-                    app:boxCornerRadiusTopStart="15dp"
-                    app:boxStrokeColor="@color/navyBlue"
-                    app:boxStrokeErrorColor="@color/cherryRed"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconDrawable="@drawable/ic_clear"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/navyBlue"
-                    app:errorEnabled="true"
-                    app:errorIconDrawable="@drawable/ic_error"
-                    app:errorIconTint="@color/cherryRed"
-                    app:helperText="Required Field*"
-                    app:helperTextEnabled="true"
-                    app:helperTextTextColor="@color/shuttleBlue"
-                    app:hintTextColor="@color/navyBlue"
+                    android:layout_height="60dp"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:hint="date"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    android:inputType="date"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/navyBlue"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/timeTil"
-                    app:startIconDrawable="@drawable/ic_title"
-                    app:startIconTint="@color/navyBlue">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/date"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:cursorVisible="true"
-                        android:imeActionLabel="Done"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:paddingVertical="10dp"
-                        android:textColor="@color/navyBlue"
-                        android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/timeTil" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/amountTil"
