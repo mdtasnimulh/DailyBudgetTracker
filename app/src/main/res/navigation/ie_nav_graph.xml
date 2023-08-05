@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_incomeExpenseUpdateFragment"
             app:destination="@id/incomeExpenseUpdateFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_recordDetailsFragment2"
+            app:destination="@id/recordDetailsFragment2" />
     </fragment>
     <fragment
         android:id="@+id/insertIEFragment"
@@ -53,4 +56,12 @@
         android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.MoreFragment"
         android:label="fragment_more"
         tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/recordDetailsFragment2"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.details.RecordDetailsFragment"
+        android:label="RecordDetailsFragment" >
+        <action
+            android:id="@+id/action_recordDetailsFragment2_to_incomeExpenseUpdateFragment"
+            app:destination="@id/incomeExpenseUpdateFragment" />
+    </fragment>
 </navigation>
