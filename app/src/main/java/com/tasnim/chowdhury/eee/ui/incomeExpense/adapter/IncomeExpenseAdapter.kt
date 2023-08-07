@@ -29,8 +29,8 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExp
             binding.dateTv.text = incomeExpense.iEDate
 
             binding.mainRvLayout.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToIncomeExpenseUpdateFragment(incomeExpense)
-                binding.mainRvLayout.findNavController().navigate(action)
+                val action = MainFragmentDirections.actionMainFragmentToRecordDetailsFragment(incomeExpense)
+                it.findNavController().navigate(action)
             }
 
             when (incomeExpense.iEType) {

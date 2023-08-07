@@ -11,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentIncomeExpenseUpdateBinding
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
@@ -98,7 +99,7 @@ class IncomeExpenseUpdateFragment : Fragment() {
             val updateIncomeExpense = IncomeExpense(args.currentItem.iEId, title, type, note, time, amount.toDouble(), category, date, paymentMethod)
 
             viewModel.updateIncomeExpense(updateIncomeExpense)
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_incomeExpenseUpdateFragment_to_mainFragment)
 
             Toast.makeText(requireContext(), "Updated Income/Expense.", Toast.LENGTH_SHORT).show()
         }

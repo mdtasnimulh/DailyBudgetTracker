@@ -21,6 +21,8 @@
     <string name="this_month">This Month</string>
     <string name="recent_transaction">Recent Transaction</string>
     <string name="see_more">See More</string>
+    <string name="demo_amount">BDT 1000.00</string>
+    <string name="transaction_details">Transaction Details</string>
 
     <string-array name="date_filter">
         <item>This Month</item>
