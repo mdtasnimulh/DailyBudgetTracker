@@ -64,7 +64,9 @@ class IncomeExpenseUpdateFragment : Fragment() {
             findNavController().popBackStack()
         }
         deleteDialog.setNegativeButton("No"){_, _ ->
-
+            deleteDialog.setOnDismissListener {
+                it.dismiss()
+            }
         }
         deleteDialog.setTitle("Delete ${args.currentItem.iETitle}")
         deleteDialog.setMessage("Are you sure you want to delete ${args.currentItem.iETitle}?")

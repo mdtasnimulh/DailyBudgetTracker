@@ -38,7 +38,7 @@
 
                 <TextView
                     android:id="@+id/homeAllAccountsTv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:drawablePadding="6dp"
@@ -49,12 +49,12 @@
                     android:textAlignment="center"
                     android:textColor="@color/offWhite"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/toolBarBackIcon"
-                    app:layout_constraintEnd_toStartOf="@id/toolBarEditIcon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/toolBarBackIcon"
-                    app:layout_constraintTop_toTopOf="@+id/toolBarBackIcon" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <!--<androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/toolBarDeleteIcon"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -76,7 +76,7 @@
                     android:tint="@color/final_secondary_green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/toolBarDeleteIcon"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,31 +96,271 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/recordTopCl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_red"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/recordAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto_mono_bold"
+                        android:text="@string/demo_amount"
+                        android:textColor="@color/final_primary_black"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/recordTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="48dp"
+                        android:fontFamily="@font/roboto_mono_medium"
+                        android:textColor="@color/graphiteGray"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:text="This is dummy Income record details text. This text is not available to any other."
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recordAmount" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/recordCategoryIcon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="-30dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="2dp"
+                    android:scaleType="fitXY"
+                    android:elevation="6dp"
+                    app:layout_constraintEnd_toEndOf="@+id/recordTopCl"
+                    app:layout_constraintStart_toStartOf="@+id/recordTopCl"
+                    app:layout_constraintTop_toBottomOf="@+id/recordTopCl"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    app:srcCompat="@drawable/demo_image"
+                    app:strokeColor="@color/final_primary_white"
+                    app:strokeWidth="5dp" />
+
+                <LinearLayout
+                    android:id="@+id/recordLl1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="@+id/recordTopCl"
+                    app:layout_constraintStart_toStartOf="@+id/recordTopCl"
+                    app:layout_constraintTop_toBottomOf="@+id/recordCategoryIcon">
+
+                    <TextView
+                        android:id="@+id/recordPaymentType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/payment_type_card_tv_bg"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/roboto_mono_medium"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        android:text="Card"
+                        android:textColor="@color/final_primary_black"
+                        android:textSize="14sp"
+                        app:drawableStartCompat="@drawable/ic_budget_black_filled_mini"
+                        app:drawableTint="@color/final_primary_black" />
+
+                    <TextView
+                        android:id="@+id/recordCatType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/payment_type_card_tv_bg_cat"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/roboto_mono_medium"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        android:text="Food"
+                        android:textColor="@color/final_primary_black"
+                        android:textSize="14sp"
+                        app:drawableStartCompat="@drawable/ic_budget_black_filled_mini"
+                        app:drawableTint="@color/amberOrange" />
+
+                </LinearLayout>
+
                 <TextView
-                    android:id="@+id/recordAmount"
+                    android:id="@+id/recordDescriptionTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/transaction_details_2"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_mono_bold"
+                    android:textColor="@color/navyBlue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recordLl1"/>
+
+                <TextView
+                    android:id="@+id/recordNoteTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/roboto_mono_bold"
-                    android:text="@string/demo_amount"
+                    android:layout_marginStart="16dp"
+                    android:text="Note: "
+                    android:textSize="12sp"
                     android:textColor="@color/final_primary_black"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:fontFamily="@font/roboto_mono_semi_bold"
+                    app:layout_constraintTop_toBottomOf="@+id/recordDescriptionTv"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
-                    android:id="@+id/recordTitle"
+                    android:id="@+id/recordNote"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters."
+                    android:textSize="12sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_light"
+                    app:layout_constraintTop_toBottomOf="@+id/recordNoteTv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/recordDateTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Transaction Date: "
+                    android:textSize="12sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_semi_bold"
+                    app:layout_constraintTop_toBottomOf="@+id/recordNote"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/recordDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_mono_light"
+                    android:text="Aug 25, 2023"
+                    android:textColor="@color/final_primary_black"
+                    android:textSize="12sp"
+                    android:layout_marginStart="12dp"
+                    app:layout_constraintTop_toTopOf="@+id/recordDateTv"
+                    app:layout_constraintBottom_toBottomOf="@+id/recordDateTv"
+                    app:layout_constraintStart_toEndOf="@+id/recordDateTv" />
+
+                <TextView
+                    android:id="@+id/recordTimeTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Transaction Time: "
+                    android:textSize="12sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_semi_bold"
+                    app:layout_constraintTop_toBottomOf="@+id/recordDate"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/recordTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_mono_light"
+                    android:text="06:00 PM"
+                    android:textColor="@color/final_primary_black"
+                    android:textSize="12sp"
+                    android:layout_marginStart="12dp"
+                    app:layout_constraintTop_toTopOf="@+id/recordTimeTv"
+                    app:layout_constraintBottom_toBottomOf="@+id/recordTimeTv"
+                    app:layout_constraintStart_toEndOf="@+id/recordTimeTv" />
+
+                <TextView
+                    android:id="@+id/recordType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Transaction Type"
+                    android:textSize="12sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_semi_bold"
+                    app:layout_constraintTop_toBottomOf="@+id/recordTime"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/recordTransactionType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/transaction_type_green"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp"
+                    android:text="Income"
+                    android:textColor="#12A518"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recordType"
+                    app:drawableStartCompat="@drawable/ic_type_green" />
+
+                <LinearLayout
+                    android:id="@+id/recordButtonLl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="24dp"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_mono_light"
-                    android:textColor="@color/graphiteGray"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recordAmount" />
+                    app:layout_constraintTop_toBottomOf="@+id/recordTransactionType">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/recordEditButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_mono_bold"
+                        android:text="Edit"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        app:backgroundTint="@color/amberOrange"
+                        app:cornerRadius="50dp"
+                        app:icon="@drawable/ic_edit_mini"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/recordDeleteButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_mono_bold"
+                        android:text="Delete"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        app:backgroundTint="@color/final_secondary_red"
+                        app:cornerRadius="50dp"
+                        app:icon="@drawable/ic_delete_mini"/>
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
