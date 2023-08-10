@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_recordDetailsFragment"
             app:destination="@id/recordDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_allTransactionFragment"
+            app:destination="@id/allTransactionFragment" />
     </fragment>
     <fragment
         android:id="@+id/insertIEFragment"
@@ -67,5 +70,13 @@
             android:name="recordDetails"
             app:argType="com.tasnim.chowdhury.eee.data.model.IncomeExpense"
             app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTransactionFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.details.AllTransactionFragment"
+        android:label="AllTransactionFragment" >
+        <action
+            android:id="@+id/action_allTransactionFragment_to_recordDetailsFragment"
+            app:destination="@id/recordDetailsFragment" />
     </fragment>
 </navigation>

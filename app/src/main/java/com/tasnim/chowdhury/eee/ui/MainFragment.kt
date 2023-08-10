@@ -48,7 +48,7 @@ class MainFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = IncomeExpenseAdapter(requireContext())
+        adapter = IncomeExpenseAdapter(requireContext(), this)
         setupAdapter()
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
@@ -85,9 +85,9 @@ class MainFragment : Fragment(){
             findNavController().navigate(R.id.action_mainFragment_to_insertIEFragment)
         }
 
-        /*binding.deleteAllRecord.setOnClickListener {
-            deleteAllRecords()
-        }*/
+        binding.recentTransactionSeeMore.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_allTransactionFragment)
+        }
 
         /*val searchView = binding.searchView
         val search = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
@@ -162,21 +162,6 @@ class MainFragment : Fragment(){
         val filterItem = resources.getStringArray(R.array.date_filter)
         val dateFilterAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown, filterItem)
         binding.dateFilter.adapter = dateFilterAdapter
-    }
-
-    private fun deleteAllRecords() {
-        val deleteAllDialog = AlertDialog.Builder(requireContext())
-        deleteAllDialog.setPositiveButton("Yes"){_, _ ->
-            viewModel.deleteAllIncomeExpense()
-            Toast.makeText(requireContext(), "Successfully Deleted Everything!", Toast.LENGTH_SHORT).show()
-            findNavController().popBackStack()
-        }
-        deleteAllDialog.setNegativeButton("No"){_, _ ->
-
-        }
-        deleteAllDialog.setTitle("Delete All Income/Expense!")
-        deleteAllDialog.setMessage("Are you sure you want to delete everything you record?")
-        deleteAllDialog.create().show()
     }
 
     private fun setupAdapter() {

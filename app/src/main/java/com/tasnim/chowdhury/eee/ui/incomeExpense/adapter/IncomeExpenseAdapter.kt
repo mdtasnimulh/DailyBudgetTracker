@@ -7,15 +7,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.ui.MainFragment
 import com.tasnim.chowdhury.eee.ui.MainFragmentDirections
+import com.tasnim.chowdhury.eee.ui.incomeExpense.details.AllTransactionFragmentDirections
 import kotlin.coroutines.coroutineContext
 
-class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExpenseAdapter.IncomeExpenseViewHolder>() {
+class IncomeExpenseAdapter(val context: Context, val sourceFragment: Fragment): RecyclerView.Adapter<IncomeExpenseAdapter.IncomeExpenseViewHolder>() {
 
     private var incomeExpenseList: List<IncomeExpense> = listOf()
 
@@ -29,8 +32,13 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<IncomeExp
             binding.dateTv.text = incomeExpense.iEDate
 
             binding.mainRvLayout.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToRecordDetailsFragment(incomeExpense)
-                it.findNavController().navigate(action)
+                if (sourceFragment is MainFragment){
+                    val action = MainFragmentDirections.actionMainFragmentToRecordDetailsFragment(incomeExpense)
+                    it.findNavController().navigate(action)
+                }else{
+                    val action = AllTransactionFragmentDirections.actionAllTransactionFragmentToRecordDetailsFragment(incomeExpense)
+                    it.findNavController().navigate(action)
+                }
             }
 
             when (incomeExpense.iEType) {

@@ -24,6 +24,8 @@
     <string name="demo_amount">1000.00 BDT</string>
     <string name="transaction_details">Transaction Details</string>
     <string name="transaction_details_2">Transaction Details:</string>
+    <string name="all_transaction">All Transaction</string>
+    <string name="all">All</string>
 
     <string-array name="date_filter">
         <item>This Month</item>

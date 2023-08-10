@@ -128,31 +128,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="#FFFFFF" />
 
-        <!--<ImageView
-            android:id="@+id/deleteAllRecord"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:clickable="true"
-            android:contentDescription="@string/delete_icon"
-            android:focusable="true"
-            android:padding="2dp"
-            android:src="@drawable/ic_delete"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="#FF392B" />
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/deleteAllRecord"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>-->
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/homeNestedSv"
             android:layout_width="match_parent"
