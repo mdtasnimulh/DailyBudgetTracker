@@ -41,6 +41,10 @@ class RecordDetailsFragment : Fragment() {
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         setupClicks()
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         val callBack = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {

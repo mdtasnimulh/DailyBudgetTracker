@@ -43,6 +43,11 @@ class AllTransactionFragment : Fragment() {
 
         setupClicks()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         val callBack = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 findNavController().navigateUp()

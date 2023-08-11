@@ -2,10 +2,12 @@ package com.tasnim.chowdhury.eee.ui.incomeExpense.insert
 
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
@@ -15,6 +17,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentInsertIEBinding
@@ -27,7 +30,7 @@ import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
-class InsertIEFragment : Fragment() {
+class InsertIEFragment : Fragment(), CalculatorResultListener {
 
     private lateinit var binding: FragmentInsertIEBinding
     private lateinit var viewModel: IncomeExpenseViewModel
@@ -50,6 +53,24 @@ class InsertIEFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
+        setupClicks()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setupTypeAdapter()
+        handleBackPressed()
+    }
+
+    private fun setupTypeAdapter() {
+        val type = resources.getStringArray(R.array.transaction_type)
+        val typeAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown, type)
+        binding.type.setAdapter(typeAdapter)
+    }
+
+    private fun setupClicks(){
         binding.timeTil.setOnClickListener {
             openTimePickerDialog()
         }
@@ -63,16 +84,9 @@ class InsertIEFragment : Fragment() {
 
         binding.amount.setOnClickListener {
             val dialogFragment = CalculatorDialogFragment()
+            dialogFragment.setCalculatorResultListener(this)
             dialogFragment.show(childFragmentManager, TAG)
         }
-
-        val callBack = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                findNavController().navigateUp()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
-
     }
 
     private fun openDatePickerDialog() {
@@ -168,6 +182,20 @@ class InsertIEFragment : Fragment() {
 
             Toast.makeText(requireContext(), "Successfully Added Income/Expense.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun handleBackPressed(){
+        val callBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().navigateUp()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
+    }
+
+    override fun onCalculatorResultCalculated(result: String) {
+        Log.d("chkData", result)
+        binding.amount.setText(result)
     }
 
 }

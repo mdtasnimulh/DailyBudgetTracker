@@ -47,6 +47,10 @@ class IncomeExpenseUpdateFragment : Fragment() {
         binding.deleteRecord.setOnClickListener {
             deleteRecord()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         val callBack = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {

@@ -1,11 +1,8 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentCalculatorDialogBinding
+import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.CalculatorResultListener
 import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.ArithmeticException
@@ -26,6 +24,11 @@ class CalculatorDialogFragment : DialogFragment() {
     var lastDigit = false
     var isError = false
     var lastDot = false
+
+    private var listener: CalculatorResultListener? = null
+    fun setCalculatorResultListener(listener: CalculatorResultListener) {
+        this.listener = listener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,8 +86,12 @@ class CalculatorDialogFragment : DialogFragment() {
         binding.buttonEqual.setOnClickListener { onEqualClick() }
 
         binding.buttonOk.setOnClickListener {
-            dialog?.dismiss()
-            Toast.makeText(requireContext(), "Calculator Closed.", Toast.LENGTH_SHORT).show()
+            if (binding.calculateResult.text.toString().isEmpty()){
+                Toast.makeText(requireContext(), "Please Enter Any Amount", Toast.LENGTH_SHORT).show()
+            }else {
+                listener?.onCalculatorResultCalculated(binding.calculateResult.text.toString())
+                dialog?.dismiss()
+            }
         }
 
     }
@@ -103,11 +110,15 @@ class CalculatorDialogFragment : DialogFragment() {
     }
 
     private fun onDigitClick(view: View){
+        val buttonText = (view as Button).text.toString()
+
         if (isError){
-            binding.calculateInput.text = (view as Button).text
+            binding.calculateInput.text = buttonText
             isError = false
         }else{
-            binding.calculateInput.append((view as Button).text)
+            if (binding.calculateInput.text.isNotEmpty() || buttonText != "."){
+                binding.calculateInput.append(buttonText)
+            }
         }
         lastDigit = true
         onEqual()
@@ -136,7 +147,7 @@ class CalculatorDialogFragment : DialogFragment() {
     }
 
     private fun onEqual(){
-        if (lastDigit && !isError){
+        if (lastDigit && !isError && binding.calculateInput.text.isNotEmpty()){
             val txt = binding.calculateInput.text.toString()
             expression = ExpressionBuilder(txt).build()
             try {
