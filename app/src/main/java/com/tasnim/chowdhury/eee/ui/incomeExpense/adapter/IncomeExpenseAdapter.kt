@@ -1,44 +1,44 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense.adapter
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
+import com.tasnim.chowdhury.eee.data.model.HeaderItem
 import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
-import com.tasnim.chowdhury.eee.ui.MainFragment
-import com.tasnim.chowdhury.eee.ui.MainFragmentDirections
+import com.tasnim.chowdhury.eee.databinding.RvHeaderLayoutBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.details.AllTransactionFragmentDirections
-import kotlin.coroutines.coroutineContext
 
-class IncomeExpenseAdapter(val context: Context, val sourceFragment: Fragment): RecyclerView.Adapter<IncomeExpenseAdapter.IncomeExpenseViewHolder>() {
+class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var incomeExpenseList: List<IncomeExpense> = listOf()
+    private val ITEM_TYPE_HEADER = 0
+    private val ITEM_TYPE_ITEM = 1
 
-   inner class IncomeExpenseViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
+    private var groupedData: List<Any> = listOf()
+
+    inner class HeaderViewHolder(private val binding: RvHeaderLayoutBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(date: String){
+            binding.headerText.text = date
+        }
+    }
+
+    inner class IncomeExpenseViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(incomeExpense: IncomeExpense, position: Int){
-            val amountPlus = "+${incomeExpense.iEAmount.toString()} Taka"
-            val amountMinus = "-${incomeExpense.iEAmount.toString()} Taka"
-            val amount = "${incomeExpense.iEAmount.toString()} Taka"
+            val amountPlus = "+${incomeExpense.iEAmount.toString()} ৳"
+            val amountMinus = "-${incomeExpense.iEAmount.toString()} ৳"
+            val amount = "${incomeExpense.iEAmount.toString()} ৳"
             binding.iconImgV.setImageResource(R.drawable.ic_chart)
             binding.titleTv.text = incomeExpense.iETitle
             binding.dateTv.text = incomeExpense.iEDate
 
             binding.mainRvLayout.setOnClickListener {
-                if (sourceFragment is MainFragment){
-                    val action = MainFragmentDirections.actionMainFragmentToRecordDetailsFragment(incomeExpense)
-                    it.findNavController().navigate(action)
-                }else{
-                    val action = AllTransactionFragmentDirections.actionAllTransactionFragmentToRecordDetailsFragment(incomeExpense)
-                    it.findNavController().navigate(action)
-                }
+                val action = AllTransactionFragmentDirections.actionAllTransactionFragmentToRecordDetailsFragment(incomeExpense)
+                it.findNavController().navigate(action)
             }
 
             when (incomeExpense.iEType) {
@@ -58,31 +58,55 @@ class IncomeExpenseAdapter(val context: Context, val sourceFragment: Fragment): 
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IncomeExpenseViewHolder {
-        return IncomeExpenseViewHolder(
-            MainRvLayoutBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when(viewType){
+            ITEM_TYPE_HEADER -> {
+                HeaderViewHolder(
+                    RvHeaderLayoutBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                    )
+                )
+            }
+            ITEM_TYPE_ITEM -> {
+                IncomeExpenseViewHolder(
+                    MainRvLayoutBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                    )
+                )
+            }
+            else -> {
+                throw IllegalAccessException("Unknown Viewtype: $viewType")
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: IncomeExpenseViewHolder, position: Int) {
-        holder.bind(incomeExpenseList[position], position)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder){
+            is HeaderViewHolder -> {
+                val headerItem = groupedData[position] as HeaderItem
+                holder.bind(headerItem.date)
+            }
+            is IncomeExpenseViewHolder -> {
+                val incomeExpense = groupedData[position] as IncomeExpense
+                holder.bind(incomeExpense, position)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
-        return incomeExpenseList.size
+        return groupedData.size
     }
 
-    // returning all records here
-    fun addIncomeExpense(incomeExpense: List<IncomeExpense>){
-        this.incomeExpenseList = incomeExpense
-        notifyDataSetChanged()
+    override fun getItemViewType(position: Int): Int {
+        return if (groupedData[position] is HeaderItem){
+            ITEM_TYPE_HEADER
+        }else{
+            ITEM_TYPE_ITEM
+        }
     }
 
-    // adding last 5 records for home fragment, returning only 5 item here
-    fun addLimitedIncomeExpense(incomeExpense: List<IncomeExpense>) {
-        this.incomeExpenseList = incomeExpense.take(7) // Limit to the first 7 items
+    fun setGroupedData(data: List<Any>) {
+        groupedData = data
         notifyDataSetChanged()
     }
 

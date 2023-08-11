@@ -1,6 +1,5 @@
 package com.tasnim.chowdhury.eee.ui
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -20,20 +18,21 @@ import com.github.mikephil.charting.data.PieEntry
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
-import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter
 import com.tasnim.chowdhury.eee.databinding.FragmentMainBinding
+import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.MainFragmentAdapter
 
 class MainFragment : Fragment(){
 
     private lateinit var binding: FragmentMainBinding
 
-    private lateinit var adapter: IncomeExpenseAdapter
+    private lateinit var adapter: MainFragmentAdapter
     private lateinit var viewModel: IncomeExpenseViewModel
 
     private var incomeExpenseList: List<IncomeExpense> = listOf()
 
     private var income: Float = 0.0F
     private var expense: Float = 0.0F
+    private val noData: String = "৳ 0.00"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +47,7 @@ class MainFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = IncomeExpenseAdapter(requireContext(), this)
+        adapter = MainFragmentAdapter(requireContext())
         setupAdapter()
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
@@ -56,6 +55,10 @@ class MainFragment : Fragment(){
             adapter.addLimitedIncomeExpense(incomeExpense)
             if (incomeExpense.isEmpty()){
                 binding.noDataFound.visibility = View.VISIBLE
+
+                binding.homeTotalBalanceValueTv.text = noData
+                binding.IncomeValueTv.text = noData
+                binding.expenseValueTv.text = noData
             }else{
                 binding.noDataFound.visibility = View.GONE
                 val totalAmount = incomeExpense.sumOf { it.iEAmount ?: 0.00 }
@@ -68,9 +71,9 @@ class MainFragment : Fragment(){
 
                 val availableAmount = totalIncomeAmount - totalExpenseAmount
 
-                binding.homeTotalBalanceValueTv.text = "BDT ${availableAmount}"
-                binding.IncomeValueTv.text = "Bdt $totalIncomeAmount"
-                binding.expenseValueTv.text = "Bdt $totalExpenseAmount"
+                binding.homeTotalBalanceValueTv.text = "৳ ${availableAmount}"
+                binding.IncomeValueTv.text = "৳ $totalIncomeAmount"
+                binding.expenseValueTv.text = "৳ $totalExpenseAmount"
 
                 income = totalIncomeAmount.toFloat()
                 expense = totalExpenseAmount.toFloat()

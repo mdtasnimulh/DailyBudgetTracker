@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
     namespace "com.tasnim.chowdhury.eee"
 
     defaultConfig {
         applicationId "com.tasnim.chowdhury.eee"
         minSdk 28
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -70,8 +70,8 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     //----navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.0"
 
     //-----google maps
     implementation "com.google.android.gms:play-services-maps:18.1.0"

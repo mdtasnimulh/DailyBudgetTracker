@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.tasnim.chowdhury.eee.R
+import com.tasnim.chowdhury.eee.data.model.HeaderItem
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentAllTransactionBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter
@@ -53,18 +53,24 @@ class AllTransactionFragment : Fragment() {
 
     private fun initData() {
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
-
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
-
-            adapter.addIncomeExpense(incomeExpense)
-
-            if (incomeExpense.isEmpty()){
+            val sortedIncomeExpense = incomeExpense.sortedByDescending { it.iEDate }
+            val groupedData: MutableList<Any> = mutableListOf()
+            var currentDate: String? = null
+            for (item in sortedIncomeExpense) {
+                if (item.iEDate != currentDate) {
+                    groupedData.add(HeaderItem(item.iEDate!!))
+                    currentDate = item.iEDate
+                }
+                groupedData.add(item)
+            }
+            adapter.setGroupedData(groupedData)
+            if (incomeExpense.isEmpty()) {
                 binding.noDataFound.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.noDataFound.visibility = View.GONE
             }
         }
-
         setupTabBar()
     }
 
@@ -88,11 +94,20 @@ class AllTransactionFragment : Fragment() {
                 when(tab?.position){
                     0 -> {
                         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
-                            adapter.addIncomeExpense(incomeExpense)
-
-                            if (incomeExpense.isEmpty()){
+                            val sortedIncomeExpense = incomeExpense.sortedByDescending { it.iEDate }
+                            val groupedData: MutableList<Any> = mutableListOf()
+                            var currentDate: String? = null
+                            for (item in sortedIncomeExpense) {
+                                if (item.iEDate != currentDate) {
+                                    groupedData.add(HeaderItem(item.iEDate!!))
+                                    currentDate = item.iEDate
+                                }
+                                groupedData.add(item)
+                            }
+                            adapter.setGroupedData(groupedData)
+                            if (incomeExpense.isEmpty()) {
                                 binding.noDataFound.visibility = View.VISIBLE
-                            }else{
+                            } else {
                                 binding.noDataFound.visibility = View.GONE
                             }
                         }
@@ -100,11 +115,20 @@ class AllTransactionFragment : Fragment() {
                     1 -> {
                         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
                             val incomeList = incomeExpense.filter { it.iEType == "Income" }
-                            adapter.addIncomeExpense(incomeList)
-
-                            if (incomeExpense.isEmpty()){
+                            val sortedIncomeExpense = incomeList.sortedByDescending { it.iEDate }
+                            val groupedData: MutableList<Any> = mutableListOf()
+                            var currentDate: String? = null
+                            for (item in sortedIncomeExpense) {
+                                if (item.iEDate != currentDate) {
+                                    groupedData.add(HeaderItem(item.iEDate!!))
+                                    currentDate = item.iEDate
+                                }
+                                groupedData.add(item)
+                            }
+                            adapter.setGroupedData(groupedData)
+                            if (incomeExpense.isEmpty()) {
                                 binding.noDataFound.visibility = View.VISIBLE
-                            }else{
+                            } else {
                                 binding.noDataFound.visibility = View.GONE
                             }
                         }
@@ -112,11 +136,20 @@ class AllTransactionFragment : Fragment() {
                     2 -> {
                         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
                             val expenseList = incomeExpense.filter { it.iEType == "Expense" }
-                            adapter.addIncomeExpense(expenseList)
-
-                            if (incomeExpense.isEmpty()){
+                            val sortedIncomeExpense = expenseList.sortedByDescending { it.iEDate }
+                            val groupedData: MutableList<Any> = mutableListOf()
+                            var currentDate: String? = null
+                            for (item in sortedIncomeExpense) {
+                                if (item.iEDate != currentDate) {
+                                    groupedData.add(HeaderItem(item.iEDate!!))
+                                    currentDate = item.iEDate
+                                }
+                                groupedData.add(item)
+                            }
+                            adapter.setGroupedData(groupedData)
+                            if (incomeExpense.isEmpty()) {
                                 binding.noDataFound.visibility = View.VISIBLE
-                            }else{
+                            } else {
                                 binding.noDataFound.visibility = View.GONE
                             }
                         }
@@ -144,7 +177,7 @@ class AllTransactionFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = IncomeExpenseAdapter(requireContext(), this)
+        adapter = IncomeExpenseAdapter(requireContext())
 
         binding.allTransactionRv.adapter = adapter
         binding.allTransactionRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
