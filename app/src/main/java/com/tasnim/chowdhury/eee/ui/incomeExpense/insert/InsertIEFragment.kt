@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
@@ -17,6 +18,8 @@ import com.google.android.material.timepicker.TimeFormat
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentInsertIEBinding
+import com.tasnim.chowdhury.eee.ui.incomeExpense.CalculatorDialogFragment
+import com.tasnim.chowdhury.eee.ui.incomeExpense.CalculatorDialogFragment.Companion.TAG
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -56,6 +59,11 @@ class InsertIEFragment : Fragment() {
 
         binding.insertButton.setOnClickListener {
             insertIncomeExpense()
+        }
+
+        binding.amount.setOnClickListener {
+            val dialogFragment = CalculatorDialogFragment()
+            dialogFragment.show(childFragmentManager, TAG)
         }
 
         val callBack = object : OnBackPressedCallback(true){

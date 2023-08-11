@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calculatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FEFFF2"
+        tools:context=".ui.incomeExpense.CalculatorDialogFragment">
+
+        <TextView
+            android:id="@+id/calculateAmountTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="@string/amount"
+            android:textColor="@color/navyBlue"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/calculateAmountInputValue"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/custom_calculator_bg"
+            android:backgroundTint="#FFE083"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="0"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/final_primary_black"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@+id/calculateAmountTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/calculateAmountCalculatedValue"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/custom_calculator_bg"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="0"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/final_primary_black"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@+id/calculateAmountInputValue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <GridLayout
+            android:id="@+id/calculatorGridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="6dp"
+            android:background="#FEFFF2"
+            android:columnCount="4"
+            android:rowCount="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calculateAmountCalculatedValue">
+
+            <Button
+                android:id="@+id/buttonClear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:backgroundTint="#E42222"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="C"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonPercentage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="%"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:backgroundTint="#DC4848"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="---"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonDivision"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="/"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="7"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="8"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button59"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="9"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonMultiply"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="*"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="4"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="5"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="6"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonSubtraction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="-"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="1"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="2"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="3"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonAddition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="+"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="0"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonDot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="."
+                android:textColor="@color/offWhite"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonEqual"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:backgroundTint="#FD9615"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="="
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonOk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                android:backgroundTint="#326A1A"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:text="Ok"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+
+        </GridLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
