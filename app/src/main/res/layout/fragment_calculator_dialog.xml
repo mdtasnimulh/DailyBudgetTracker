@@ -22,8 +22,9 @@
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:id="@+id/calculateAmountInputValue"
+            android:id="@+id/calculateInput"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginTop="8dp"
@@ -31,7 +32,7 @@
             android:background="@drawable/custom_calculator_bg"
             android:backgroundTint="#FFE083"
             android:fontFamily="@font/roboto_mono_bold"
-            android:text="0"
+            android:text=""
             android:textAlignment="center"
             android:gravity="center"
             android:textColor="@color/final_primary_black"
@@ -41,19 +42,19 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/calculateAmountCalculatedValue"
+            android:id="@+id/calculateResult"
             android:layout_width="0dp"
             android:layout_height="65dp"
             android:layout_marginTop="8dp"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/custom_calculator_bg"
             android:fontFamily="@font/roboto_mono_bold"
-            android:text="0"
+            android:text=""
             android:textAlignment="center"
             android:gravity="center"
             android:textColor="@color/final_primary_black"
             android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@+id/calculateAmountInputValue"
+            app:layout_constraintTop_toBottomOf="@+id/calculateInput"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -70,9 +71,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calculateAmountCalculatedValue">
+            app:layout_constraintTop_toBottomOf="@+id/calculateResult">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonClear"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -85,10 +86,29 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="1dp"
+                app:icon="@drawable/ic_back_space"
+                app:iconGravity="textEnd"
+                app:iconTint="@color/offWhite"
+                app:iconSize="20dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:backgroundTint="#DC4848"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:textColor="@color/offWhite"
+                android:textSize="16sp" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonPercentage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FD9615"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="1dp"
@@ -97,23 +117,11 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/buttonDelete"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="1dp"
-                android:backgroundTint="#DC4848"
-                android:fontFamily="@font/roboto_mono_medium"
-                android:text="---"
-                android:textColor="@color/offWhite"
-                android:textSize="16sp" />
-
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonDivision"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FD9615"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="1dp"
@@ -122,7 +130,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -134,7 +142,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -146,8 +154,8 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/button59"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
@@ -158,10 +166,11 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonMultiply"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FD9615"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="1dp"
@@ -170,7 +179,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -182,7 +191,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -194,7 +203,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -206,10 +215,11 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonSubtraction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FD9615"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="1dp"
@@ -218,7 +228,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -230,7 +240,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -242,7 +252,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -254,10 +264,11 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonAddition"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FD9615"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="1dp"
@@ -266,7 +277,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -278,7 +289,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonDot"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -290,7 +301,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="20sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonEqual"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -303,7 +314,7 @@
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonOk"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -313,6 +324,7 @@
                 android:backgroundTint="#326A1A"
                 android:fontFamily="@font/roboto_mono_medium"
                 android:text="Ok"
+                android:textAllCaps="false"
                 android:textColor="@color/offWhite"
                 android:textSize="16sp" />
 
