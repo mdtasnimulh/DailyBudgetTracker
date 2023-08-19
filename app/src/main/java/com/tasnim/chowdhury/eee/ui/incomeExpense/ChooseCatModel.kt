@@ -1,5 +1,6 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
+import android.graphics.drawable.BitmapDrawable
 import androidx.room.ColumnInfo
 
 data class ChooseCatModel (
@@ -11,4 +12,10 @@ data class ChooseCatModel (
 
     @ColumnInfo(name = "color")
     val color: String?,
+
+    @ColumnInfo(name = "catParent")
+    val catParent: String?,
+
+    @ColumnInfo(name = "catIcon")
+    val catIcon: Int?,
 )

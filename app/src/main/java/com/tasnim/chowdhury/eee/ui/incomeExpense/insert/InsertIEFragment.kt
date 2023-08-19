@@ -90,7 +90,7 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
 
         binding.category.setOnClickListener {
             val dialog = CategoryChooseDialogFragment()
-            dialog.setCategoryTitleToInsertFragment(this)
+            dialog.setCategoryTitleListener(this)
             dialog.show(childFragmentManager, TAG)
         }
     }
@@ -204,8 +204,7 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         binding.amount.setText(result)
     }
 
-    override fun setCategoryForInsertFragment(catTitle: String) {
-        binding.category.setText(catTitle)
+    override fun onCategoryClicked(categoryTitle: String) {
+        binding.category.setText(categoryTitle)
     }
-
 }

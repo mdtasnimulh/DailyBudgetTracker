@@ -1,61 +1,106 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.tasnim.chowdhury.eee.data.model.HeaderItem
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.databinding.ChooseCatNameLayoutBinding
 import com.tasnim.chowdhury.eee.databinding.ChooseCatRvLayoutBinding
+import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
+import com.tasnim.chowdhury.eee.databinding.RvHeaderLayoutBinding
+import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter
+import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.IncomeExpenseListener
 
-class CategoryChooseAdapter(val context: Context): RecyclerView.Adapter<CategoryChooseAdapter.CategoryChooseViewHolder>() {
+class CategoryChooseAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var catList: List<ChooseCatModel> = listOf(
-        ChooseCatModel(1, "Food", "#FFFFFF"),
-        ChooseCatModel(2, "Transportation", "#AABBCC"),
-        ChooseCatModel(3, "Housing", "#FFDDDD"),
-        ChooseCatModel(4, "Utilities", "#E6E6E6"),
-        ChooseCatModel(5, "Groceries", "#D1E5A9"),
-        ChooseCatModel(6, "Dining Out", "#FAD02E"),
-        ChooseCatModel(7, "Healthcare", "#FF9AA2"),
-        ChooseCatModel(8, "Entertainment", "#C7CEEA"),
-        ChooseCatModel(9, "Shopping", "#F5A623"),
-        ChooseCatModel(10, "Debt Payments", "#FFCB77"),
-        ChooseCatModel(11, "Savings", "#98D7C2"),
-        ChooseCatModel(12, "Investments", "#B2CCFF"),
-        ChooseCatModel(13, "Gifts/Donations", "#FF85A1"),
-        ChooseCatModel(14, "Travel", "#D0E6E3"),
-        ChooseCatModel(15, "Education", "#9DD9D2"),
-        ChooseCatModel(16, "Insurance", "#7F8C8D"),
-        ChooseCatModel(17, "Childcare", "#F3B6C2"),
-        ChooseCatModel(18, "Pets", "#FFD700"),
-        ChooseCatModel(19, "Taxes", "#C0C0C0"),
-        ChooseCatModel(20, "Subscriptions", "#A4DDED"),
-        ChooseCatModel(21, "Fitness", "#E29D9D"),
-        ChooseCatModel(22, "Beauty", "#FFB6C1"),
-        ChooseCatModel(23, "Home Improvement", "#7EC850"),
-        ChooseCatModel(24, "Charity", "#FF5733"),
-        ChooseCatModel(25, "Other", "#CCCCCC")
-    )
+    companion object{
+        const val ITEM_TYPE_HEADER = 0
+        const val ITEM_TYPE_ITEM = 1
+    }
 
-    inner class CategoryChooseViewHolder(val binding: ChooseCatRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(chooseCategory: ChooseCatModel, position: Int) {
-            binding.catId1Title.text = chooseCategory.title
+    private var catList: List<ChooseCatModel> = listOf()
+    private var groupedData: List<Any> = listOf()
+    var categoryClickListener: IncomeExpenseListener? = null
+
+
+    inner class HeaderViewHolder(private val binding: ChooseCatNameLayoutBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(date: String){
+            binding.headerText.text = date
+
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryChooseViewHolder {
-        return CategoryChooseViewHolder(
-            ChooseCatRvLayoutBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
+    inner class ChooseCategoryViewHolder(val binding: ChooseCatRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(chooseCategory: ChooseCatModel, position: Int) {
+            Log.d("chkCategory", "$chooseCategory")
+            binding.catId1Title.text = chooseCategory.title
+
+            binding.catId1.setOnClickListener {
+                categoryClickListener?.onCategoryClicked(chooseCategory.title!!)
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when(viewType){
+            ITEM_TYPE_HEADER -> {
+                HeaderViewHolder(
+                    ChooseCatNameLayoutBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                    )
+                )
+            }
+            ITEM_TYPE_ITEM -> {
+                ChooseCategoryViewHolder(
+                    ChooseCatRvLayoutBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                    )
+                )
+            }
+            else -> {
+                throw IllegalAccessException("Unknown Viewtype: $viewType")
+            }
+        }
     }
 
     override fun getItemCount(): Int {
-        return catList.size
+        return groupedData.size
     }
 
-    override fun onBindViewHolder(holder: CategoryChooseViewHolder, position: Int) {
-        holder.bind(catList[position], position)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder){
+            is CategoryChooseAdapter.HeaderViewHolder -> {
+                val headerItem = groupedData[position] as HeaderItem
+                holder.bind(headerItem.date)
+            }
+            is CategoryChooseAdapter.ChooseCategoryViewHolder -> {
+                val category = groupedData[position] as ChooseCatModel
+                holder.bind(category, position)
+            }
+        }
+    }
+
+    /*fun setCategory(category: List<ChooseCatModel>){
+        Log.d("chkCategory", "$category")
+        catList = category
+        notifyDataSetChanged()
+    }*/
+
+    override fun getItemViewType(position: Int): Int {
+        return if (groupedData[position] is HeaderItem){
+            ITEM_TYPE_HEADER
+        }else{
+            ITEM_TYPE_ITEM
+        }
+    }
+
+    fun setGroupedData(data: List<Any>) {
+        groupedData = data
+        notifyDataSetChanged()
     }
 
 }
