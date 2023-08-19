@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.incomeExpense.CategoryChooseDialogFragment">
+
+        <TextView
+            android:id="@+id/chooseCatTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:background="@color/customBrown"
+            android:gravity="center"
+            android:text="@string/choose_your_category"
+            android:textColor="@color/offWhite"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_mono_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/catChooseLl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="10dp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/chooseCatTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/catId1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:padding="1dp"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId1Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId1Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Housing"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId2Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId2Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Utilities"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId3"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId3Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId3Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Transportation"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catChooseLl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="10dp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/catChooseLl1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/catId4"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId4Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId4Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Groceries"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId5"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId5Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId5Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Dining Out"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId6"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:padding="1dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId6Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId6Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Healthcare"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catChooseLl3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="10dp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/catChooseLl2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/catId7"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId7Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId7Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Entertainment"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId8"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId8Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId8Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Shopping"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId9"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId9Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId9Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Debt Payments"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catChooseLl4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="10dp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/catChooseLl3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/catId10"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId10Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId10Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Savings"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId11"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId11Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId11Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Investments"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId12"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId12Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId12Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Gifts"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catChooseLl5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="10dp"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/catChooseLl4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/catId13"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="1dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId13Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId13Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Travel"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId14"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:padding="1dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId14Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId14Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Education"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catId15"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:padding="1dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:background="@drawable/ic_cat_transparent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/catId15Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_budget"/>
+
+                <TextView
+                    android:id="@+id/catId15Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:text="Other"
+                    android:textSize="11sp"
+                    android:textColor="@color/customBrown"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_mono_regular"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonNext"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="64dp"
+            android:paddingVertical="8dp"
+            android:gravity="center"
+            android:background="@drawable/ic_expense_bg_new"
+            android:fontFamily="@font/roboto_mono_medium"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@color/offWhite"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:focusable="true"
+            app:rippleColor="#80FFE6C7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/catChooseLl5"
+            app:layout_constraintStart_toStartOf="@+id/catChooseLl5"
+            app:layout_constraintTop_toBottomOf="@+id/catChooseLl5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

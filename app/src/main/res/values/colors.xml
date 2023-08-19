@@ -58,6 +58,8 @@
     //-----custom color's rainbow or default natural
     <color name="customWhite">#FFFFFF</color>
     <color name="customBlack">#000000</color>
+    <color name="customBlack2">#1A1A1A</color>
+    <color name="customBrown">#391301</color>
     <color name="rainbowRed">#ff0000</color>
     <color name="rainbowOrange">#ffa500</color>
     <color name="rainbowYellow">#ffff00</color>

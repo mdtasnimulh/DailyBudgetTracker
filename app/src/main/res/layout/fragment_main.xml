@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/home_income_card_bg">
+                        android:background="@drawable/ic_income_bg_new">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/homeIncomeCardCl"
@@ -237,7 +237,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/home_expense_card_bg">
+                        android:background="@drawable/ic_expense_bg_new">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/homeExpenseCardCl"

@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
@@ -23,6 +22,7 @@ import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentInsertIEBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.CalculatorDialogFragment
 import com.tasnim.chowdhury.eee.ui.incomeExpense.CalculatorDialogFragment.Companion.TAG
+import com.tasnim.chowdhury.eee.ui.incomeExpense.CategoryChooseDialogFragment
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -30,7 +30,7 @@ import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
-class InsertIEFragment : Fragment(), CalculatorResultListener {
+class InsertIEFragment : Fragment(), IncomeExpenseListener {
 
     private lateinit var binding: FragmentInsertIEBinding
     private lateinit var viewModel: IncomeExpenseViewModel
@@ -86,6 +86,12 @@ class InsertIEFragment : Fragment(), CalculatorResultListener {
             val dialogFragment = CalculatorDialogFragment()
             dialogFragment.setCalculatorResultListener(this)
             dialogFragment.show(childFragmentManager, TAG)
+        }
+
+        binding.category.setOnClickListener {
+            val dialog = CategoryChooseDialogFragment()
+            dialog.setCategoryTitleToInsertFragment(this)
+            dialog.show(childFragmentManager, TAG)
         }
     }
 
@@ -196,6 +202,10 @@ class InsertIEFragment : Fragment(), CalculatorResultListener {
     override fun onCalculatorResultCalculated(result: String) {
         Log.d("chkData", result)
         binding.amount.setText(result)
+    }
+
+    override fun setCategoryForInsertFragment(catTitle: String) {
+        binding.category.setText(catTitle)
     }
 
 }

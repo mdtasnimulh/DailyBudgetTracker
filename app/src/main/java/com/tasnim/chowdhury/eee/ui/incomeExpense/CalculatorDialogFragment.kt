@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentCalculatorDialogBinding
-import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.CalculatorResultListener
+import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.IncomeExpenseListener
 import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.ArithmeticException
@@ -25,8 +25,8 @@ class CalculatorDialogFragment : DialogFragment() {
     var isError = false
     var lastDot = false
 
-    private var listener: CalculatorResultListener? = null
-    fun setCalculatorResultListener(listener: CalculatorResultListener) {
+    private var listener: IncomeExpenseListener? = null
+    fun setCalculatorResultListener(listener: IncomeExpenseListener) {
         this.listener = listener
     }
 
