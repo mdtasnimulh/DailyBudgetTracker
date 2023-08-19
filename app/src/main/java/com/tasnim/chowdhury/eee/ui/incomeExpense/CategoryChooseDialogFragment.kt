@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentCategoryChooseDialogBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.IncomeExpenseListener
@@ -15,6 +17,8 @@ class CategoryChooseDialogFragment : DialogFragment() {
 
     private lateinit var binding: FragmentCategoryChooseDialogBinding
     private var listener: IncomeExpenseListener? = null
+
+    private lateinit var adapter: CategoryChooseAdapter
 
     fun setCategoryTitleToInsertFragment(listener: IncomeExpenseListener){
         this.listener = listener
@@ -49,6 +53,16 @@ class CategoryChooseDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupClicks()
+        setupAdapter()
+    }
+
+    private fun setupAdapter() {
+        adapter = CategoryChooseAdapter(requireContext())
+        binding.chooseCatRv.adapter = adapter
+        binding.chooseCatRv.setHasFixedSize(false)
+        binding.chooseCatRv.itemAnimator = DefaultItemAnimator()
+        val layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.chooseCatRv.layoutManager = layoutManager
     }
 
     private fun setupClicks() {
