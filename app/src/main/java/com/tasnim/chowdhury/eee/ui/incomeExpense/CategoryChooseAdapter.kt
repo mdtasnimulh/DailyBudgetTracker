@@ -1,6 +1,9 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.provider.CalendarContract.Colors
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -38,6 +41,7 @@ class CategoryChooseAdapter(val context: Context): RecyclerView.Adapter<Recycler
         fun bind(chooseCategory: ChooseCatModel, position: Int) {
             Log.d("chkCategory", "$chooseCategory")
             binding.catId1Title.text = chooseCategory.title
+            binding.catId1.backgroundTintList = ColorStateList.valueOf(Color.parseColor(chooseCategory.color))
 
             binding.catId1.setOnClickListener {
                 categoryClickListener?.onCategoryClicked(chooseCategory.title!!)

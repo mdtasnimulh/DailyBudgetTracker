@@ -147,11 +147,11 @@
                     android:id="@+id/homeTotalBalanceValueTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto_mono_bold"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/roboto_mono_medium"
                     android:text="@string/demo_value_total"
                     android:textColor="@color/final_primary_black"
-                    android:textSize="20sp"
+                    android:textSize="32sp"
                     app:layout_constraintEnd_toEndOf="@+id/totalBalanceTv"
                     app:layout_constraintStart_toStartOf="@+id/totalBalanceTv"
                     app:layout_constraintTop_toBottomOf="@+id/totalBalanceTv" />
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/ic_income_bg_new">
+                        android:background="@drawable/ic_income_new_g">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/homeIncomeCardCl"
@@ -237,7 +237,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/ic_expense_bg_new">
+                        android:background="@drawable/new_g_orange">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/homeExpenseCardCl"

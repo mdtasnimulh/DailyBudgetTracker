@@ -101,13 +101,13 @@ class CategoryChooseDialogFragment : DialogFragment() {
         binding.chooseCatRv.setHasFixedSize(false)
         binding.chooseCatRv.itemAnimator = DefaultItemAnimator()
 
-        val layoutManager = GridLayoutManager(requireContext(), 3)
+        val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.chooseCatRv.layoutManager = layoutManager
 
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return when (adapter.getItemViewType(position)) {
-                    CategoryChooseAdapter.ITEM_TYPE_HEADER -> 3 // Full width for headers
+                    CategoryChooseAdapter.ITEM_TYPE_HEADER -> 2 // Full width for headers
                     CategoryChooseAdapter.ITEM_TYPE_ITEM -> 1 // Normal span size for items
                     else -> 1
                 }

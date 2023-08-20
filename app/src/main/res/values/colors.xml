@@ -43,6 +43,7 @@
     <color name="shuttleBlue">#00469C</color>
     <color name="backgroundBlue">#C1DCFF</color>
     <color name="backgroundBlue2">#ACD0FF</color>
+    <color name="newBlue">#00072D</color>
 
     //-----custom color's purple
     <color name="lightPurple">#8031A7</color>
