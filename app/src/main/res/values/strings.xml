@@ -28,6 +28,7 @@
     <string name="all">All</string>
     <string name="amount">Amount</string>
     <string name="choose_your_category">Choose Your Category</string>
+    <string name="record_transaction">Record Transaction</string>
 
     <string-array name="date_filter">
         <item>This Month</item>

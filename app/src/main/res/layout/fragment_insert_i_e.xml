@@ -9,295 +9,424 @@
         android:layout_height="match_parent"
         tools:context=".ui.incomeExpense.insert.InsertIEFragment">
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/ieScrollView"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/navyBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ieScrollViewCl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="16dp">
+                android:layout_marginHorizontal="16dp"
+                tools:layout_editor_absoluteX="16dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/titleTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/toolBarBackIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_arrow_back"
+                    android:tint="@color/offWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/homeAllAccountsTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/roboto_mono_semi_bold"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="@string/record_transaction"
+                    android:textAlignment="center"
+                    android:textColor="@color/offWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/homeNotificationIcon"
+                    app:layout_constraintStart_toEndOf="@+id/toolBarBackIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/homeNotificationIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:contentDescription="@string/notification_icon_content_description_home_page"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notification_orange"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/ieScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ieScrollViewCl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/amountTitleTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
-                    android:hint="@string/title"
-                    android:textColorHint="@color/navyBlue"
-                    app:boxStrokeColor="@color/navyBlue"
-                    app:boxStrokeErrorColor="@color/cherryRed"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconDrawable="@drawable/ic_clear"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/navyBlue"
-                    app:errorEnabled="true"
-                    app:errorIconDrawable="@drawable/ic_error"
-                    app:errorIconTint="@color/cherryRed"
-                    app:helperText="Required Field*"
-                    app:helperTextEnabled="true"
-                    app:helperTextTextColor="@color/shuttleBlue"
-                    app:hintTextColor="@color/navyBlue"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Amount:"
+                    android:textSize="24sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/background_orange"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:inputType="none"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/navyBlue"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="36sp"
+                    android:padding="16dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:hint="0.00"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:startIconDrawable="@drawable/ic_title"
-                    app:startIconTint="@color/navyBlue">
+                    app:layout_constraintTop_toBottomOf="@+id/amountTitleTv" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/title"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:cursorVisible="true"
-                        android:imeActionLabel="Done"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:paddingVertical="10dp"
-                        android:textColor="@color/navyBlue"
-                        android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/typeTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Type:"
+                    android:textSize="16sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/amount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/typeTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Transaction Type"
-                    android:textColorHint="@color/navyBlue"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleTil">
+                    app:layout_constraintTop_toBottomOf="@+id/typeTitleTv">
 
                     <AutoCompleteTextView
                         android:id="@+id/type"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/background_blue"
                         android:layout_weight="1"
-                        android:text="Income"
-                        android:textColor="@color/navyBlue"
-                        android:inputType="none"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/noteTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Note"
-                    android:textColorHint="@color/navyBlue"
-                    app:boxStrokeColor="@color/navyBlue"
-                    app:boxStrokeErrorColor="@color/cherryRed"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconDrawable="@drawable/ic_clear"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/navyBlue"
-                    app:hintTextColor="@color/navyBlue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/typeTil"
-                    app:startIconDrawable="@drawable/ic_title"
-                    app:startIconTint="@color/navyBlue">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/note"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:cursorVisible="true"
-                        android:imeActionLabel="Done"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:paddingVertical="10dp"
-                        android:textColor="@color/navyBlue"
-                        android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/categoryTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Category"
-                    android:textColorHint="@color/navyBlue"
-                    app:boxStrokeColor="@color/navyBlue"
-                    app:boxStrokeErrorColor="@color/cherryRed"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconDrawable="@drawable/ic_clear"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/navyBlue"
-                    app:errorEnabled="true"
-                    app:errorIconDrawable="@drawable/ic_error"
-                    app:errorIconTint="@color/cherryRed"
-                    app:helperText="Required Field*"
-                    app:helperTextEnabled="true"
-                    app:helperTextTextColor="@color/shuttleBlue"
-                    app:hintTextColor="@color/navyBlue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/noteTil"
-                    app:startIconDrawable="@drawable/ic_title"
-                    app:startIconTint="@color/navyBlue">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/category"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:imeActionLabel="Done"
-                        android:imeOptions="actionDone"
-                        android:importantForAutofill="noExcludeDescendants"
                         android:inputType="none"
-                        android:cursorVisible="false"
-                        android:focusableInTouchMode="false"
-                        android:paddingVertical="10dp"
-                        android:textColor="@color/navyBlue"
-                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:text="Income"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/roboto_mono_regular"
+                        android:textColor="@color/final_primary_black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/titleTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Title:"
+                    android:textSize="16sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/typeTil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:paddingHorizontal="16dp"
+                    android:cursorVisible="true"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/final_primary_black"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_mono_regular"
+                    android:hint="Write your title...."
+                    android:textColorHint="@color/final_primary_black"
+                    android:background="@drawable/background_purple"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleTitleTv" />
+
+                <TextView
+                    android:id="@+id/descriptionTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Description:"
+                    android:textSize="16sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:paddingHorizontal="16dp"
+                    android:cursorVisible="true"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/final_primary_black"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_mono_regular"
+                    android:hint="Describe your transaction...."
+                    android:textColorHint="@color/final_primary_black"
+                    android:background="@drawable/background_yellow"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/categoryTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Category:"
+                    android:textSize="16sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/note"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:paddingHorizontal="16dp"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:inputType="none"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/final_primary_black"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_mono_regular"
+                    android:hint="Choose your desired category..."
+                    android:textColorHint="@color/final_primary_black"
+                    android:background="@drawable/background_orange"
+                    app:layout_constraintTop_toBottomOf="@+id/categoryTitleTv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"  />
+
+                <LinearLayout
+                    android:id="@+id/dateTimeLl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:id="@+id/dateLl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/dateTitleTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Date:"
+                            android:textSize="16sp"
+                            android:textColor="@color/final_primary_black"
+                            android:fontFamily="@font/roboto_mono_medium"
+                            app:layout_constraintTop_toBottomOf="@+id/note"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <EditText
+                            android:id="@+id/dateTil"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:paddingHorizontal="8dp"
+                            android:background="@drawable/background_blue"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="Date"
+                            android:textColorHint="@color/final_primary_black"
+                            android:imeActionLabel="Done"
+                            android:imeOptions="actionDone"
+                            android:importantForAutofill="noExcludeDescendants"
+                            android:inputType="date"
+                            android:textColor="@color/final_primary_black"
+                            android:textCursorDrawable="@drawable/text_cursor"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/roboto_mono_regular"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/timeTil" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/timeLl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/timeTitleTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Time:"
+                            android:textSize="16sp"
+                            android:textColor="@color/final_primary_black"
+                            android:fontFamily="@font/roboto_mono_medium"
+                            app:layout_constraintTop_toBottomOf="@+id/note"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <EditText
+                            android:id="@+id/timeTil"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:paddingHorizontal="8dp"
+                            android:background="@drawable/background_blue"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="Time"
+                            android:textColorHint="@color/final_primary_black"
+                            android:imeActionLabel="Done"
+                            android:imeOptions="actionDone"
+                            android:importantForAutofill="noExcludeDescendants"
+                            android:inputType="date"
+                            android:textColor="@color/final_primary_black"
+                            android:textCursorDrawable="@drawable/text_cursor"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/roboto_mono_regular" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/paymentMethodTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Payment Method:"
+                    android:textSize="16sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_mono_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/dateTimeLl"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/paymentMethodTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Payment Method"
-                    android:textColorHint="@color/navyBlue"
-                    app:boxStrokeColor="@color/navyBlue"
-                    app:boxStrokeErrorColor="@color/cherryRed"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconDrawable="@drawable/ic_clear"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/navyBlue"
-                    app:hintTextColor="@color/navyBlue"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/categoryTil"
-                    app:startIconDrawable="@drawable/ic_title"
-                    app:startIconTint="@color/navyBlue">
+                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodTitleTv">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/paymentMethod"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:cursorVisible="true"
-                        android:imeActionLabel="Done"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:paddingVertical="10dp"
-                        android:textColor="@color/navyBlue"
-                        android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <EditText
-                    android:id="@+id/timeTil"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:cursorVisible="false"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/background_magenda"
-                    android:focusableInTouchMode="false"
-                    android:hint="Time"
-                    android:imeActionLabel="Done"
-                    android:imeOptions="actionDone"
-                    android:importantForAutofill="noExcludeDescendants"
-                    android:inputType="time"
-                    android:paddingVertical="10dp"
-                    android:paddingHorizontal="16dp"
-                    android:textColor="@color/navyBlue"
-                    android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodTil" />
-
-                <EditText
-                    android:id="@+id/dateTil"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:cursorVisible="false"
-                    android:focusableInTouchMode="false"
-                    android:layout_marginTop="12dp"
-                    android:paddingHorizontal="16dp"
-                    android:background="@drawable/background_blue"
-                    android:hint="Date"
-                    android:imeActionLabel="Done"
-                    android:imeOptions="actionDone"
-                    android:importantForAutofill="noExcludeDescendants"
-                    android:inputType="date"
-                    android:paddingVertical="10dp"
-                    android:textColor="@color/navyBlue"
-                    android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/timeTil" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/amountTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:hint="Amount"
-                    android:textColorHint="@color/navyBlue"
-                    app:boxStrokeColor="@color/navyBlue"
-                    app:boxStrokeErrorColor="@color/cherryRed"
-                    app:boxStrokeWidth="1dp"
-                    app:endIconDrawable="@drawable/ic_clear"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/navyBlue"
-                    app:errorEnabled="true"
-                    app:errorIconDrawable="@drawable/ic_error"
-                    app:errorIconTint="@color/cherryRed"
-                    app:helperText="Required Field*"
-                    app:helperTextEnabled="true"
-                    app:helperTextTextColor="@color/shuttleBlue"
-                    app:hintTextColor="@color/navyBlue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dateTil"
-                    app:startIconDrawable="@drawable/ic_title"
-                    app:startIconTint="@color/navyBlue">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:imeActionLabel="Done"
-                        android:background="@drawable/edit_background"
-                        android:imeOptions="actionDone"
-                        android:importantForAutofill="noExcludeDescendants"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/background_yellow"
+                        android:layout_weight="1"
                         android:inputType="none"
-                        android:cursorVisible="false"
-                        android:focusableInTouchMode="false"
-                        android:paddingVertical="10dp"
-                        android:textColor="@color/navyBlue"
-                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:text="Cash"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/roboto_mono_regular"
+                        android:textColor="@color/final_primary_black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -310,16 +439,16 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="32dp"
+                    android:background="@drawable/background_button"
+                    android:fontFamily="@font/roboto_mono_medium"
                     android:text="Insert"
                     android:textColor="@color/final_primary_black"
-                    android:fontFamily="@font/roboto_mono_medium"
                     android:textSize="17sp"
                     app:backgroundTint="@null"
-                    android:background="@drawable/background_button"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/amountTil"
+                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodTil"
                     app:textAllCaps="false" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
