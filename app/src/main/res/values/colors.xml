@@ -81,4 +81,6 @@
     <color name="final_other_yellow">#FFF177</color>
     <color name="final_other_purple">#8A77FF</color>
     <color name="final_other_green">#7CEA87</color>
+
+    <color name="page_color">#FEFFF2</color>
 </resources>

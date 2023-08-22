@@ -61,13 +61,20 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         super.onResume()
 
         setupTypeAdapter()
+        setupPaymentTypeAdapter()
         handleBackPressed()
     }
 
     private fun setupTypeAdapter() {
         val type = resources.getStringArray(R.array.transaction_type)
-        val typeAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown, type)
+        val typeAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown_wbg, type)
         binding.type.setAdapter(typeAdapter)
+    }
+
+    private fun setupPaymentTypeAdapter(){
+        val type = resources.getStringArray(R.array.payment_type)
+        val typeAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown_wbg, type)
+        binding.paymentMethod.setAdapter(typeAdapter)
     }
 
     private fun setupClicks(){
