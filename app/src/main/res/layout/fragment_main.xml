@@ -175,13 +175,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/background_yellow">
+                        android:background="@drawable/final_icome_bg">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/homeIncomeCardCl"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginVertical="8dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_marginStart="8dp"
                             android:background="@drawable/income_expense_inside_card_bg"
                             android:paddingHorizontal="6dp"
@@ -237,13 +238,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/new_g_orange">
+                        android:background="@drawable/final_bg_5">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/homeExpenseCardCl"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginVertical="8dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_marginStart="8dp"
                             android:background="@drawable/income_expense_inside_card_bg"
                             android:paddingHorizontal="6dp"
