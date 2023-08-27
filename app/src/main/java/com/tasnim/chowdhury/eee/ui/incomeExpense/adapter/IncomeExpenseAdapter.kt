@@ -55,6 +55,8 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
                 }
             }
 
+
+
         }
     }
 

@@ -6,14 +6,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainRvLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_orange"
+        android:layout_marginBottom="8dp">
 
         <ImageView
             android:id="@+id/iconImgV"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="16dp"
+            android:layout_marginStart="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -37,6 +40,7 @@
             android:id="@+id/amountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:text="TextView"
             android:fontFamily="@font/roboto_condensed_bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +51,7 @@
             android:id="@+id/dateTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:text="05 Jun 2023"
             android:fontFamily="@font/roboto_condensed_regular"
             app:layout_constraintEnd_toEndOf="@+id/titleTv"
