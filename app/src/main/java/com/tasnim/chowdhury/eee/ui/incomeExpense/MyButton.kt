@@ -39,14 +39,15 @@ private val color: Int, private val listener: RvButtonClickListener) {
         val cHeight = rectF.height()
         val cWidth = rectF.width()
 
-        p.textAlign = Paint.Align.LEFT
-        p.getTextBounds(text, 0, text.length, r)
+        p.textAlign = Paint.Align.CENTER
+        /*p.getTextBounds(text, 0, text.length, r)*/
         var x = 0f
         var y = 0f
         if (imageResId == 0) {
-            x = cWidth / 2f - r.width() / 2f - r.left.toFloat()
+            /*x = cWidth / 2f - r.width() / 2f - r.left.toFloat()
             y = cHeight / 2f - r.height() / 2f - r.bottom.toFloat()
-            c.drawText(text, rectF.left+x, rectF.top+y, p)
+            c.drawText(text, rectF.left+x, rectF.top+y, p)*/
+            c.drawText(text, rectF.centerX(), rectF.centerY()+15f, p)
         }else {
             val d = ContextCompat.getDrawable(context, imageResId)
             val bitmap = drawableToBitmap(d)

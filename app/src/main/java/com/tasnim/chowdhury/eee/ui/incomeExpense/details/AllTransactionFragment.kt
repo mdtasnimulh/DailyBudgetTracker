@@ -194,7 +194,7 @@ class AllTransactionFragment : Fragment() {
         binding.allTransactionRv.setHasFixedSize(true)
         binding.allTransactionRv.itemAnimator = DefaultItemAnimator()
 
-        val swipe = object : MySwipeHelper(requireContext(), binding.allTransactionRv, 200){
+        val swipe = object : MySwipeHelper(requireContext(), binding.allTransactionRv, 250){
             override fun instantiateMyButton(
                 viewHolder: RecyclerView.ViewHolder,
                 buffer: MutableList<MyButton>
@@ -202,8 +202,8 @@ class AllTransactionFragment : Fragment() {
                 buffer.add(
                     MyButton(requireContext(),
                 "Delete",
-                20,
-                R.drawable.ic_delete,
+                40,
+                0,
                 Color.parseColor("#FF3C30"),
                     object : RvButtonClickListener{
                         override fun onClick(pos: Int) {
@@ -216,8 +216,8 @@ class AllTransactionFragment : Fragment() {
                 buffer.add(
                     MyButton(requireContext(),
                         "Update",
-                        20,
-                        R.drawable.ic_edit,
+                        40,
+                        0,
                         Color.parseColor("#FF9502"),
                         object : RvButtonClickListener{
                             override fun onClick(pos: Int) {
