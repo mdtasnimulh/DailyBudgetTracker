@@ -15,8 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.LinkedList
 
 @SuppressLint("ClickableViewAccessibility")
-abstract class MySwipeHelper(context: Context, private val recyclerView: RecyclerView, var buttonWidth: Int):
-    ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+abstract class MySwipeHelper(
+    context: Context,
+    private val recyclerView: RecyclerView,
+    var buttonWidth: Int)
+    : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private var buttonList: MutableList<MyButton>? = null
     lateinit var gestureDetector: GestureDetector
@@ -158,7 +161,7 @@ abstract class MySwipeHelper(context: Context, private val recyclerView: Recycle
     ) {
         val pos = viewHolder.adapterPosition
         var translationX = dX
-        var itemView = viewHolder.itemView
+        val itemView = viewHolder.itemView
         if (pos < 0){
             swipePosition = pos
             return
