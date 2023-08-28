@@ -17,11 +17,11 @@ import com.tasnim.chowdhury.eee.ui.incomeExpense.details.AllTransactionFragmentD
 class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var clickCallback:((item:IncomeExpense, flag: String)->Unit)? = null
+    var data: MutableList<IncomeExpense> = mutableListOf()
 
     companion object{
         const val ITEM_TYPE_HEADER = 0
         const val ITEM_TYPE_ITEM = 1
-        var item: IncomeExpense? = null
     }
 
     private var groupedData: List<Any> = listOf()
@@ -34,7 +34,6 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
 
     inner class IncomeExpenseViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(incomeExpense: IncomeExpense, position: Int){
-            item = incomeExpense
             val amountPlus = "+${incomeExpense.iEAmount.toString()} ৳"
             val amountMinus = "-${incomeExpense.iEAmount.toString()} ৳"
             val amount = "${incomeExpense.iEAmount.toString()} ৳"
@@ -60,9 +59,6 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
                     binding.amountTv.text = amount
                 }
             }
-
-
-
         }
     }
 
