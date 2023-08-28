@@ -16,8 +16,12 @@ import com.tasnim.chowdhury.eee.ui.incomeExpense.details.AllTransactionFragmentD
 
 class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val ITEM_TYPE_HEADER = 0
-    private val ITEM_TYPE_ITEM = 1
+    var clickCallback:((item:IncomeExpense, flag: String)->Unit)? = null
+
+    companion object{
+        const val ITEM_TYPE_HEADER = 0
+        const val ITEM_TYPE_ITEM = 1
+    }
 
     private var groupedData: List<Any> = listOf()
 
