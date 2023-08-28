@@ -21,6 +21,7 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
     companion object{
         const val ITEM_TYPE_HEADER = 0
         const val ITEM_TYPE_ITEM = 1
+        var item: IncomeExpense? = null
     }
 
     private var groupedData: List<Any> = listOf()
@@ -33,6 +34,7 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
 
     inner class IncomeExpenseViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(incomeExpense: IncomeExpense, position: Int){
+            item = incomeExpense
             val amountPlus = "+${incomeExpense.iEAmount.toString()} ৳"
             val amountMinus = "-${incomeExpense.iEAmount.toString()} ৳"
             val amount = "${incomeExpense.iEAmount.toString()} ৳"

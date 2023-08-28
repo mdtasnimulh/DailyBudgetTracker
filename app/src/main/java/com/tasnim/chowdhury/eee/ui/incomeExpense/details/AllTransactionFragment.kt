@@ -26,6 +26,7 @@ import com.tasnim.chowdhury.eee.ui.incomeExpense.MySwipeHelper
 import com.tasnim.chowdhury.eee.ui.incomeExpense.RvButtonClickListener
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter.Companion.ITEM_TYPE_ITEM
+import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.IncomeExpenseAdapter.Companion.item
 
 class AllTransactionFragment : Fragment() {
 
@@ -203,6 +204,7 @@ class AllTransactionFragment : Fragment() {
                 buffer: MutableList<MyButton>
             ) {
                 if (viewHolder.itemViewType == ITEM_TYPE_ITEM) {
+                    val data = item
                     buffer.add(
                         MyButton(requireContext(),
                             "Delete",
@@ -229,8 +231,15 @@ class AllTransactionFragment : Fragment() {
                             Color.parseColor("#FF9502"),
                             object : RvButtonClickListener{
                                 override fun onClick(pos: Int) {
-                                    Toast.makeText(requireContext(), "Update Clicked", Toast.LENGTH_SHORT)
+                                    Toast.makeText(requireContext(), "${data?.iETitle} Update Clicked", Toast.LENGTH_SHORT)
                                         .show()
+                                    data?.let {
+                                        findNavController().navigate(
+                                            AllTransactionFragmentDirections.actionAllTransactionFragmentToIncomeExpenseUpdateFragment(
+                                                it
+                                            )
+                                        )
+                                    }
                                 }
                             })
                     )
