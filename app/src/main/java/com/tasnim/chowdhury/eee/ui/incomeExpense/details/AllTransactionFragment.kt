@@ -33,6 +33,8 @@ class AllTransactionFragment : Fragment() {
     private lateinit var adapter: IncomeExpenseAdapter
     private lateinit var viewModel: IncomeExpenseViewModel
 
+    private var dataList: List<Any> = listOf()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,6 +80,7 @@ class AllTransactionFragment : Fragment() {
                 groupedData.add(item)
             }
             adapter.setGroupedData(groupedData)
+            dataList = groupedData
             if (incomeExpense.isEmpty()) {
                 binding.noDataFound.visibility = View.VISIBLE
             } else {
@@ -118,6 +121,7 @@ class AllTransactionFragment : Fragment() {
                                 groupedData.add(item)
                             }
                             adapter.setGroupedData(groupedData)
+                            dataList = groupedData
                             if (incomeExpense.isEmpty()) {
                                 binding.noDataFound.visibility = View.VISIBLE
                             } else {
@@ -139,6 +143,7 @@ class AllTransactionFragment : Fragment() {
                                 groupedData.add(item)
                             }
                             adapter.setGroupedData(groupedData)
+                            dataList = groupedData
                             if (incomeExpense.isEmpty()) {
                                 binding.noDataFound.visibility = View.VISIBLE
                             } else {
@@ -160,6 +165,7 @@ class AllTransactionFragment : Fragment() {
                                 groupedData.add(item)
                             }
                             adapter.setGroupedData(groupedData)
+                            dataList = groupedData
                             if (incomeExpense.isEmpty()) {
                                 binding.noDataFound.visibility = View.VISIBLE
                             } else {
@@ -211,12 +217,10 @@ class AllTransactionFragment : Fragment() {
                             Color.parseColor("#FF3C30"),
                             object : RvButtonClickListener{
                                 override fun onClick(pos: Int) {
-                                    Toast.makeText(requireContext(), "$pos Delete Clicked", Toast.LENGTH_SHORT)
-                                        .show()
+                                    val mainData = dataList[pos] as IncomeExpense
+                                    /*Toast.makeText(requireContext(), "$pos= ${mainData.iETitle} Delete Clicked", Toast.LENGTH_SHORT)
+                                        .show()*/
                                     Log.d("chkPos", "$pos ")
-                                    /*findNavController().navigate(
-                                        AllTransactionFragmentDirections.actionAllTransactionFragmentToRecordDetailsFragment(data)
-                                    )*/
                                 }
                             })
                     )
@@ -229,13 +233,14 @@ class AllTransactionFragment : Fragment() {
                             Color.parseColor("#FF9502"),
                             object : RvButtonClickListener{
                                 override fun onClick(pos: Int) {
+                                    val mainData = dataList[pos] as IncomeExpense
                                     Toast.makeText(requireContext(), "$pos Update Clicked", Toast.LENGTH_SHORT)
                                         .show()
-                                    /*findNavController().navigate(
+                                    findNavController().navigate(
                                         AllTransactionFragmentDirections.actionAllTransactionFragmentToIncomeExpenseUpdateFragment(
-                                            it
+                                            mainData
                                         )
-                                    )*/
+                                    )
                                 }
                             })
                     )
