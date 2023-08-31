@@ -57,10 +57,14 @@ class AllTransactionFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         val callBack = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                findNavController().navigateUp()
+                val currentTabPosition = binding.allTransactionTabLayout.selectedTabPosition
+                if (currentTabPosition == 0) {
+                    findNavController().navigateUp()
+                } else {
+                    binding.allTransactionTabLayout.selectTab(binding.allTransactionTabLayout.getTabAt(0))
+                }
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
@@ -212,15 +216,13 @@ class AllTransactionFragment : Fragment() {
                     buffer.add(
                         MyButton(requireContext(),
                             "Delete",
-                            40,
+                            35,
                             0,
                             Color.parseColor("#FF3C30"),
                             object : RvButtonClickListener{
                                 override fun onClick(pos: Int) {
                                     val mainData = dataList[pos] as IncomeExpense
-                                    /*Toast.makeText(requireContext(), "$pos= ${mainData.iETitle} Delete Clicked", Toast.LENGTH_SHORT)
-                                        .show()*/
-                                    Log.d("chkPos", "$pos ")
+                                    deleteRecord(mainData)
                                 }
                             })
                     )
@@ -228,14 +230,12 @@ class AllTransactionFragment : Fragment() {
                     buffer.add(
                         MyButton(requireContext(),
                             "Update",
-                            40,
+                            35,
                             0,
                             Color.parseColor("#FF9502"),
                             object : RvButtonClickListener{
                                 override fun onClick(pos: Int) {
                                     val mainData = dataList[pos] as IncomeExpense
-                                    Toast.makeText(requireContext(), "$pos Update Clicked", Toast.LENGTH_SHORT)
-                                        .show()
                                     findNavController().navigate(
                                         AllTransactionFragmentDirections.actionAllTransactionFragmentToIncomeExpenseUpdateFragment(
                                             mainData
@@ -250,6 +250,23 @@ class AllTransactionFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun deleteRecord(item: IncomeExpense) {
+        val deleteDialog = AlertDialog.Builder(requireContext())
+        deleteDialog.setPositiveButton("Yes"){_, _ ->
+            viewModel.deleteIncomeExpense(item)
+            Toast.makeText(requireContext(), "Successfully Deleted ${item.iETitle}", Toast.LENGTH_SHORT).show()
+            findNavController().popBackStack()
+        }
+        deleteDialog.setNegativeButton("No"){_, _ ->
+            deleteDialog.setOnDismissListener {
+                it.dismiss()
+            }
+        }
+        deleteDialog.setTitle("Delete ${item.iETitle}")
+        deleteDialog.setMessage("Are you sure you want to delete ${item.iETitle}?")
+        deleteDialog.create().show()
     }
 
     private fun deleteAllRecords() {
