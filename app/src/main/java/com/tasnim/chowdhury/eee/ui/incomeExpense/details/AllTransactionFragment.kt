@@ -134,7 +134,7 @@ class AllTransactionFragment : Fragment() {
                         }
                     }
                     1 -> {
-                        viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
+                        viewModel.getAllIncome.observe(viewLifecycleOwner) { incomeExpense ->
                             val incomeList = incomeExpense.filter { it.iEType == "Income" }
                             val sortedIncomeExpense = incomeList.sortedByDescending { it.iEDate }
                             val groupedData: MutableList<Any> = mutableListOf()
@@ -156,7 +156,7 @@ class AllTransactionFragment : Fragment() {
                         }
                     }
                     2 -> {
-                        viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
+                        viewModel.getAllExpense.observe(viewLifecycleOwner) { incomeExpense ->
                             val expenseList = incomeExpense.filter { it.iEType == "Expense" }
                             val sortedIncomeExpense = expenseList.sortedByDescending { it.iEDate }
                             val groupedData: MutableList<Any> = mutableListOf()
