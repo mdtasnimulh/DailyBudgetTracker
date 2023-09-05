@@ -1,7 +1,6 @@
 <TextView android:id="@+id/dateFilterDropdown"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:background="@drawable/background_yellow"
     android:padding="10dp"
     android:text="@string/this_month"
     android:textColor="@color/final_primary_black"
