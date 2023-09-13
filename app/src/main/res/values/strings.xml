@@ -13,7 +13,7 @@
     <string name="notification_icon_content_description_home_page">Home Page Notification Icon</string>
     <string name="all_accounts">All Accounts</string>
     <string name="total_balance">Available Balance</string>
-    <string name="demo_value_total">৳.00,000</string>
+    <string name="demo_value_total">৳.1082.96</string>
     <string name="home_income_card_logo">home income card logo</string>
     <string name="income">Income</string>
     <string name="expense">Expense</string>

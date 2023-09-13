@@ -14,7 +14,7 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/navyBlue"
+            android:background="#00FC4C02"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -58,14 +58,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:drawablePadding="6dp"
-                    android:fontFamily="@font/roboto_mono_semi_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="@string/all_accounts"
+                    android:text="Home"
                     android:textAlignment="center"
-                    android:textColor="@color/offWhite"
+                    android:textColor="@color/black_medium"
                     android:textSize="14sp"
-                    app:drawableStartCompat="@drawable/ic_arrow_down"
                     app:layout_constraintBottom_toBottomOf="@+id/toolBarMenuIcon"
                     app:layout_constraintStart_toEndOf="@+id/toolBarMenuIcon"
                     app:layout_constraintEnd_toStartOf="@id/toolBarSearchIcon"
@@ -131,30 +130,56 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/totalBalanceTv"
+                    android:id="@+id/greetingsText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/roboto_mono_medium"
-                    android:text="@string/total_balance"
-                    android:textColor="#8B8F95"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Good Evening"
+                    android:textColor="@color/black_medium"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/homeUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="Md. Tasnimul Hasan"
+                    android:textColor="@color/black_medium"
+                    android:textSize="16sp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintTop_toBottomOf="@+id/greetingsText"
+                    app:layout_constraintStart_toStartOf="@+id/greetingsText"/>
 
                 <TextView
                     android:id="@+id/homeTotalBalanceValueTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="@string/demo_value_total"
-                    android:textColor="@color/final_primary_black"
-                    android:textSize="32sp"
-                    app:layout_constraintEnd_toEndOf="@+id/totalBalanceTv"
-                    app:layout_constraintStart_toStartOf="@+id/totalBalanceTv"
-                    app:layout_constraintTop_toBottomOf="@+id/totalBalanceTv" />
+                    android:textColor="@color/orange"
+                    android:textSize="36sp"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/homeUserName" />
+
+                <TextView
+                    android:id="@+id/totalBalanceTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Your Main Balance"
+                    android:textColor="@color/black_medium"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@+id/homeTotalBalanceValueTv"
+                    app:layout_constraintStart_toStartOf="@+id/homeTotalBalanceValueTv"
+                    app:layout_constraintEnd_toEndOf="@+id/homeTotalBalanceValueTv"/>
 
                 <LinearLayout
                     android:id="@+id/homeIncomeExpenseLl"
@@ -167,7 +192,7 @@
                     android:weightSum="2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/homeTotalBalanceValueTv">
+                    app:layout_constraintTop_toBottomOf="@id/totalBalanceTv">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/homeIncomeCardLl"
@@ -210,8 +235,8 @@
                             android:layout_marginHorizontal="8dp"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/roboto_mono_medium"
-                            android:text="@string/income"
-                            android:textColor="#EDEDED"
+                            android:text="Earned"
+                            android:textColor="@color/black_medium"
                             android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/homeIncomeCardCl"
@@ -224,7 +249,7 @@
                             android:layout_marginTop="2dp"
                             android:fontFamily="@font/roboto_mono_medium"
                             android:text="@string/demo_value_total"
-                            android:textColor="@color/final_primary_white"
+                            android:textColor="@color/black_medium"
                             android:textSize="14sp"
                             app:layout_constraintEnd_toEndOf="@+id/incomeCardIncomeTv"
                             app:layout_constraintStart_toStartOf="@+id/incomeCardIncomeTv"
@@ -273,8 +298,8 @@
                             android:layout_marginHorizontal="8dp"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/roboto_mono_medium"
-                            android:text="@string/expense"
-                            android:textColor="#EDEDED"
+                            android:text="Spend"
+                            android:textColor="@color/black_medium"
                             android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/homeExpenseCardCl"
@@ -287,7 +312,7 @@
                             android:layout_marginTop="2dp"
                             android:fontFamily="@font/roboto_mono_medium"
                             android:text="@string/demo_value_total"
-                            android:textColor="@color/final_primary_white"
+                            android:textColor="@color/black_medium"
                             android:textSize="14sp"
                             app:layout_constraintEnd_toEndOf="@+id/expenseCardExpenseTv"
                             app:layout_constraintStart_toStartOf="@+id/expenseCardExpenseTv"
@@ -303,7 +328,7 @@
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="16dp"
-                    android:background="@color/backgroundBlue"
+                    android:background="@color/black_medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/homeIncomeExpenseLl" />

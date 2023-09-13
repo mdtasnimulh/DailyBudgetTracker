@@ -74,6 +74,7 @@
     <color name="final_primary_orange">#F58B39</color>
     <color name="final_primary_white">#F9F9F9</color>
     <color name="final_primary_black">#292929</color>
+    <color name="black_medium">#454545</color>
     <color name="final_secondary_green">#00A86B</color>
     <color name="final_secondary_red">#FD3C53</color>
     <color name="final_other_red">#FF6464</color>
