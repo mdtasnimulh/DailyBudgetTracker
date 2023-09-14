@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.tasnim.chowdhury.eee.databinding.ActivityMainBinding
 import com.tasnim.chowdhury.eee.ui.MainFragment
 
@@ -93,11 +94,14 @@ class MainActivity : AppCompatActivity() {
             }else{
                 binding.bottomNavigationView.visibility = View.GONE
             }
+
+            when(destination.id){
+                R.id.mainFragment -> {
+                    binding.toolBarTitle.text = "Home"
+                }
+            }
         }
 
-        /*when(supportFragmentManager.fragments){
-            MainFragment()
-        }*/
     }
 
     override fun onSupportNavigateUp(): Boolean {
