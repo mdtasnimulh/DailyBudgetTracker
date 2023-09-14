@@ -94,12 +94,6 @@ class MainActivity : AppCompatActivity() {
             }else{
                 binding.bottomNavigationView.visibility = View.GONE
             }
-
-            when(destination.id){
-                R.id.mainFragment -> {
-                    binding.toolBarTitle.text = "Home"
-                }
-            }
         }
 
     }

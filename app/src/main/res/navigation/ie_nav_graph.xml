@@ -21,7 +21,11 @@
             app:destination="@id/recordDetailsFragment" />
         <action
             android:id="@+id/action_mainFragment_to_allTransactionFragment"
-            app:destination="@id/allTransactionFragment" />
+            app:destination="@id/allTransactionFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/insertIEFragment"

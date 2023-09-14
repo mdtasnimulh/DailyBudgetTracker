@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:id="@+id/one"
+        android:title="One"
+        android:icon="@drawable/ic_home_colored"/>
+
+    <item android:id="@+id/two"
+        android:title="Two"
+        android:icon="@drawable/ic_home_colored"/>
+
+    <item android:id="@+id/three"
+        android:title="Three"
+        android:icon="@drawable/ic_home_colored"/>
+
+    <item android:title="Menu Two">
+
+        <menu>
+
+            <item android:id="@+id/four"
+                android:title="Four"
+                android:icon="@drawable/ic_home_colored"/>
+
+            <item android:id="@+id/five"
+                android:title="Five"
+                android:icon="@drawable/ic_home_colored"/>
+
+            <item android:id="@+id/six"
+                android:title="Six"
+                android:icon="@drawable/ic_home_colored"/>
+
+        </menu>
+
+    </item>
+
+    <item android:title="Menu Three">
+
+        <menu>
+
+            <item android:id="@+id/seven"
+                android:title="Seven"
+                android:icon="@drawable/ic_home_colored"/>
+
+            <item android:id="@+id/Eight"
+                android:title="Eight"
+                android:icon="@drawable/ic_home_colored"/>
+
+        </menu>
+
+    </item>
+
+</menu>

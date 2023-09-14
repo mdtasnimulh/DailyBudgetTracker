@@ -29,6 +29,8 @@
     <string name="amount">Amount</string>
     <string name="choose_your_category">Choose Your Category</string>
     <string name="record_transaction">Add New Transaction</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
     <string-array name="date_filter">
         <item>This Month</item>
