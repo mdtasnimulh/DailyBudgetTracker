@@ -9,18 +9,107 @@
         android:background="#FEFFF2"
         tools:context=".MainActivity">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="#00FC4C02"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                tools:layout_editor_absoluteX="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/toolBarMenuIcon"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_menu_two"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!--<com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/homeUserImage"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="2dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    app:srcCompat="@drawable/demo_image"
+                    app:strokeColor="@color/final_primary_orange"
+                    app:strokeWidth="1dp" />-->
+
+                <TextView
+                    android:id="@+id/homeAllAccountsTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Home"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_medium"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/toolBarMenuIcon"
+                    app:layout_constraintStart_toEndOf="@+id/toolBarMenuIcon"
+                    app:layout_constraintEnd_toStartOf="@id/toolBarSearchIcon"
+                    app:layout_constraintTop_toTopOf="@+id/toolBarMenuIcon"
+                    app:drawableTint="@color/offWhite" />
+
+                <!--<ImageView
+                    android:id="@+id/homeNotificationIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:contentDescription="@string/notification_icon_content_description_home_page"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notification_orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/homeUserImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/homeUserImage" />-->
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/toolBarSearchIcon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_search_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
         <com.ismaeldivita.chipnavigation.ChipNavigationBar
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="8dp"
             android:layout_gravity="bottom"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingEnd="5dp"
             android:paddingStart="5dp"
-            android:elevation="8dp"
+            android:elevation="6dp"
             android:outlineSpotShadowColor="#AFFFBD"
             android:textStyle="bold"
             app:cnb_menuResource="@menu/bottom_nav_menu"
@@ -36,7 +125,7 @@
             android:layout_height="0dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:navGraph="@navigation/ie_nav_graph" />

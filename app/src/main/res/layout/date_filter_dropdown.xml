@@ -5,5 +5,5 @@
     android:text="@string/this_month"
     android:textColor="@color/final_primary_black"
     android:textSize="14sp"
-    android:fontFamily="@font/roboto_mono_medium"
+    android:fontFamily="@font/roboto_medium"
     xmlns:android="http://schemas.android.com/apk/res/android" />

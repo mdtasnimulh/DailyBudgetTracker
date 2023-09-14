@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.tasnim.chowdhury.eee.databinding.ActivityMainBinding
+import com.tasnim.chowdhury.eee.ui.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -93,6 +94,10 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNavigationView.visibility = View.GONE
             }
         }
+
+        /*when(supportFragmentManager.fragments){
+            MainFragment()
+        }*/
     }
 
     override fun onSupportNavigateUp(): Boolean {

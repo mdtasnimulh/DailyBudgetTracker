@@ -59,8 +59,14 @@ class MainFragment : Fragment(){
                 binding.homeTotalBalanceValueTv.text = noData
                 binding.IncomeValueTv.text = noData
                 binding.expenseValueTv.text = noData
+
+                binding.noChartView.visibility = View.VISIBLE
+                binding.homePieChart.visibility = View.GONE
             }else{
                 binding.noDataFound.visibility = View.GONE
+                binding.noChartView.visibility = View.GONE
+                binding.homePieChart.visibility = View.VISIBLE
+
                 val totalAmount = incomeExpense.sumOf { it.iEAmount ?: 0.00 }
                 val totalIncomeAmount = incomeExpense
                     .filter { it.iEType == "Income" }

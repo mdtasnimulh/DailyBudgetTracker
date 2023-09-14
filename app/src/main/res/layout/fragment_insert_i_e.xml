@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:drawablePadding="6dp"
-                    android:fontFamily="@font/roboto_mono_semi_bold"
+                    android:fontFamily="@font/roboto_bold"
                     android:gravity="center"
                     android:padding="2dp"
                     android:text="@string/record_transaction"
@@ -104,7 +104,7 @@
                     android:text="Amount:"
                     android:textSize="20sp"
                     android:textColor="@color/final_primary_black"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:fontFamily="@font/roboto_medium"
                     app:layout_constraintTop_toBottomOf="@+id/insertImageView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -144,7 +144,7 @@
                     android:text="Type:"
                     android:textSize="14sp"
                     android:textColor="@color/final_primary_black"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:fontFamily="@font/roboto_medium"
                     app:layout_constraintTop_toBottomOf="@+id/amount"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -170,7 +170,7 @@
                         android:inputType="none"
                         android:text="Income"
                         android:textSize="14sp"
-                        android:fontFamily="@font/roboto_mono_regular"
+                        android:fontFamily="@font/roboto"
                         android:textColor="@color/final_primary_black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -184,7 +184,7 @@
                     android:text="Title:"
                     android:textSize="14sp"
                     android:textColor="@color/final_primary_black"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:fontFamily="@font/roboto_medium"
                     app:layout_constraintTop_toBottomOf="@+id/typeTil"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -205,7 +205,7 @@
                     android:textColor="@color/final_primary_black"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:textSize="14sp"
-                    android:fontFamily="@font/roboto_mono_regular"
+                    android:fontFamily="@font/roboto"
                     android:hint="Give a title...."
                     android:textColorHint="@color/final_primary_black"
                     android:background="@drawable/background_03"
@@ -222,7 +222,7 @@
                     android:text="Description:"
                     android:textSize="14sp"
                     android:textColor="@color/final_primary_black"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:fontFamily="@font/roboto_medium"
                     app:layout_constraintTop_toBottomOf="@+id/title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -242,7 +242,7 @@
                     android:textColor="@color/final_primary_black"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:textSize="14sp"
-                    android:fontFamily="@font/roboto_mono_regular"
+                    android:fontFamily="@font/roboto"
                     android:hint="Describe transaction...."
                     android:textColorHint="@color/final_primary_black"
                     android:background="@drawable/background_03"
@@ -259,7 +259,7 @@
                     android:text="Category:"
                     android:textSize="14sp"
                     android:textColor="@color/final_primary_black"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:fontFamily="@font/roboto_medium"
                     app:layout_constraintTop_toBottomOf="@+id/note"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -282,7 +282,7 @@
                     android:textColor="@color/final_primary_black"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:textSize="14sp"
-                    android:fontFamily="@font/roboto_mono_regular"
+                    android:fontFamily="@font/roboto"
                     android:hint="Choose a category..."
                     android:textColorHint="@color/final_primary_black"
                     android:background="@drawable/background_03"
@@ -318,7 +318,7 @@
                             android:text="Date:"
                             android:textSize="14sp"
                             android:textColor="@color/final_primary_black"
-                            android:fontFamily="@font/roboto_mono_medium"
+                            android:fontFamily="@font/roboto_medium"
                             app:layout_constraintTop_toBottomOf="@+id/note"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -344,7 +344,7 @@
                             android:textColor="@color/final_primary_black"
                             android:textCursorDrawable="@drawable/text_cursor"
                             android:textSize="14sp"
-                            android:fontFamily="@font/roboto_mono_regular"
+                            android:fontFamily="@font/roboto"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/timeTil" />
@@ -366,7 +366,7 @@
                             android:text="Time:"
                             android:textSize="14sp"
                             android:textColor="@color/final_primary_black"
-                            android:fontFamily="@font/roboto_mono_medium"
+                            android:fontFamily="@font/roboto_medium"
                             app:layout_constraintTop_toBottomOf="@+id/note"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -392,7 +392,7 @@
                             android:textColor="@color/final_primary_black"
                             android:textCursorDrawable="@drawable/text_cursor"
                             android:textSize="14sp"
-                            android:fontFamily="@font/roboto_mono_regular" />
+                            android:fontFamily="@font/roboto" />
 
                     </LinearLayout>
 
@@ -407,7 +407,7 @@
                     android:text="Payment Method:"
                     android:textSize="14sp"
                     android:textColor="@color/final_primary_black"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:fontFamily="@font/roboto_medium"
                     app:layout_constraintTop_toBottomOf="@+id/dateTimeLl"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -433,7 +433,7 @@
                         android:inputType="none"
                         android:text="Cash"
                         android:textSize="14sp"
-                        android:fontFamily="@font/roboto_mono_regular"
+                        android:fontFamily="@font/roboto"
                         android:textColor="@color/final_primary_black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -448,7 +448,7 @@
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="32dp"
                     android:background="@drawable/background_02"
-                    android:fontFamily="@font/roboto_mono_medium"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="Save Transaction"
                     android:textColor="@color/final_primary_black"
                     android:textSize="17sp"
