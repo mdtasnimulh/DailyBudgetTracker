@@ -18,6 +18,7 @@
     //-----custom color's gray
     <color name="graphiteGray">#36454F</color>
     <color name="silverGray">#53565A</color>
+    <color name="lighterGray">#A5A7A8</color>
     <color name="steelGray">#393D47</color>
 
     //-----custom color's green
@@ -32,6 +33,7 @@
     <color name="bananaYellow">#FFC600</color>
     <color name="schoolBusOrange">#FA4616</color>
     <color name="orange">#FC4C02</color>
+    <color name="mediumOrange">#FF7337</color>
     <color name="backgroundYellow">#FFF3C9</color>
     <color name="backgroundYellow2">#FFEDAE</color>
 

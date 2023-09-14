@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,7 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
             binding.iconImgV.setImageResource(R.drawable.ic_chart)
             binding.titleTv.text = incomeExpense.iETitle
             binding.dateTv.text = incomeExpense.iEDate
+            binding.categoryTv.text = incomeExpense.iECategory
 
             binding.mainRvLayout.setOnClickListener {
                 val action = AllTransactionFragmentDirections.actionAllTransactionFragmentToRecordDetailsFragment(incomeExpense)
@@ -50,10 +52,12 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
                 "Income" -> {
                     binding.amountTv.text = amountPlus
                     binding.amountTv.setTextColor(Color.parseColor("#31D618"))
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.background_income)
                 }
                 "Expense" -> {
                     binding.amountTv.text = amountMinus
                     binding.amountTv.setTextColor(Color.parseColor("#FA1E25"))
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.background_expense)
                 }
                 else -> {
                     binding.amountTv.text = amount

@@ -12,11 +12,9 @@
 
         <ImageView
             android:id="@+id/iconImgV"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,37 +24,60 @@
             android:id="@+id/titleTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="TextView"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/roboto_bold"
             android:maxLines="1"
-            android:maxEms="38"
-            android:fontFamily="@font/acme_regular"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="TextView"
+            android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/amountTv"
             app:layout_constraintStart_toEndOf="@+id/iconImgV"
-            app:layout_constraintTop_toTopOf="@+id/iconImgV" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/categoryTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="80dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Food"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@+id/dateTv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleTv"
+            app:layout_constraintTop_toBottomOf="@+id/titleTv" />
 
         <TextView
             android:id="@+id/amountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="14dp"
             android:text="TextView"
-            android:fontFamily="@font/roboto_condensed_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/titleTv" />
 
         <TextView
             android:id="@+id/dateTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="4dp"
             android:text="05 Jun 2023"
-            android:fontFamily="@font/roboto_condensed_regular"
-            app:layout_constraintEnd_toEndOf="@+id/titleTv"
-            app:layout_constraintStart_toStartOf="@+id/titleTv"
-            app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto"
+            app:layout_constraintTop_toBottomOf="@+id/amountTv"
+            app:layout_constraintEnd_toEndOf="@+id/amountTv"
+            app:layout_constraintBottom_toBottomOf="@+id/categoryTv"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

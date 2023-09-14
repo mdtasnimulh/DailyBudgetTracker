@@ -24,6 +24,7 @@ class MainFragmentAdapter(val context: Context): RecyclerView.Adapter<MainFragme
             binding.iconImgV.setImageResource(R.drawable.ic_chart)
             binding.titleTv.text = incomeExpense.iETitle
             binding.dateTv.text = incomeExpense.iEDate
+            binding.categoryTv.text = incomeExpense.iECategory
 
             binding.mainRvLayout.setOnClickListener {
                 val action = MainFragmentDirections.actionMainFragmentToRecordDetailsFragment(incomeExpense)
@@ -34,13 +35,16 @@ class MainFragmentAdapter(val context: Context): RecyclerView.Adapter<MainFragme
                 "Income" -> {
                     binding.amountTv.text = amountPlus
                     binding.amountTv.setTextColor(Color.parseColor("#31D618"))
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.background_income)
                 }
                 "Expense" -> {
                     binding.amountTv.text = amountMinus
                     binding.amountTv.setTextColor(Color.parseColor("#FA1E25"))
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.background_expense)
                 }
                 else -> {
                     binding.amountTv.text = amount
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.background_gray)
                 }
             }
 

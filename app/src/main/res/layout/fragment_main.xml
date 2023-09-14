@@ -219,6 +219,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
+                                android:id="@+id/incomeCardImg"
                                 android:layout_width="25dp"
                                 android:layout_height="40dp"
                                 android:contentDescription="@string/home_income_card_logo"
@@ -265,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
-                        android:background="@drawable/background_06">
+                        android:background="@drawable/background_expense">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/homeExpenseCardCl"
@@ -282,6 +283,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
+                                android:id="@+id/expenseCardImg"
                                 android:layout_width="25dp"
                                 android:layout_height="40dp"
                                 android:contentDescription="@string/home_income_card_logo"
@@ -376,16 +378,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dateFilter" />
 
-                    <TextView
-                        android:id="@+id/noChartView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/noDataChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:src="@drawable/no_data_chart_gray"
                         android:visibility="gone"
-                        android:text="Add transaction to view charts."
-                        android:textColor="@color/amberOrange"
-                        app:layout_constraintEnd_toEndOf="@+id/homePieChart"
-                        app:layout_constraintStart_toStartOf="@+id/homePieChart"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dateFilter"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -433,12 +434,45 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:paddingBottom="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/recentTransactionTv"
                         tools:itemCount="5"
                         tools:listitem="@layout/main_rv_layout" />
+
+                    <LinearLayout
+                        android:id="@+id/noTransactionView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recentTransactionTv">
+
+                        <include layout="@layout/no_transaction_view"
+                            android:layout_marginTop="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <include layout="@layout/no_transaction_view"
+                            android:layout_marginTop="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <include layout="@layout/no_transaction_view"
+                            android:layout_marginTop="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <include layout="@layout/no_transaction_view"
+                            android:layout_marginTop="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

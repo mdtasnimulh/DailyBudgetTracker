@@ -52,20 +52,40 @@ class MainFragment : Fragment(){
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
+
             adapter.addLimitedIncomeExpense(incomeExpense)
+
             if (incomeExpense.isEmpty()){
-                binding.noDataFound.visibility = View.VISIBLE
 
                 binding.homeTotalBalanceValueTv.text = noData
                 binding.IncomeValueTv.text = noData
                 binding.expenseValueTv.text = noData
 
-                binding.noChartView.visibility = View.VISIBLE
+                binding.noDataChart.visibility = View.VISIBLE
+                binding.noTransactionView.visibility = View.VISIBLE
                 binding.homePieChart.visibility = View.GONE
+
+                binding.homeTotalBalanceValueTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.silverGray))
+
+                binding.incomeCardImg.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_income_gray))
+                binding.expenseCardImg.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_expense_gray))
+                binding.homeIncomeCardLl.background = ContextCompat.getDrawable(requireContext(), R.drawable.background_gray)
+                binding.homeExpenseCardLl.background = ContextCompat.getDrawable(requireContext(), R.drawable.background_gray)
+                binding.homeIncomeCardCl.background = ContextCompat.getDrawable(requireContext(), R.drawable.income_expense_inside_card_bg_gray)
+                binding.homeExpenseCardCl.background = ContextCompat.getDrawable(requireContext(), R.drawable.income_expense_inside_card_bg_gray)
+
             }else{
-                binding.noDataFound.visibility = View.GONE
-                binding.noChartView.visibility = View.GONE
+
+                binding.noDataChart.visibility = View.GONE
+                binding.noTransactionView.visibility = View.GONE
                 binding.homePieChart.visibility = View.VISIBLE
+
+                binding.incomeCardImg.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_income))
+                binding.expenseCardImg.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_expense))
+                binding.homeIncomeCardLl.background = ContextCompat.getDrawable(requireContext(), R.drawable.background_income)
+                binding.homeExpenseCardLl.background = ContextCompat.getDrawable(requireContext(), R.drawable.background_expense)
+                binding.homeIncomeCardCl.background = ContextCompat.getDrawable(requireContext(), R.drawable.income_expense_inside_card_bg)
+                binding.homeExpenseCardCl.background = ContextCompat.getDrawable(requireContext(), R.drawable.income_expense_inside_card_bg)
 
                 val totalAmount = incomeExpense.sumOf { it.iEAmount ?: 0.00 }
                 val totalIncomeAmount = incomeExpense
@@ -78,6 +98,7 @@ class MainFragment : Fragment(){
                 val availableAmount = totalIncomeAmount - totalExpenseAmount
 
                 binding.homeTotalBalanceValueTv.text = "৳ ${availableAmount}"
+                binding.homeTotalBalanceValueTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.orange))
                 binding.IncomeValueTv.text = "৳ $totalIncomeAmount"
                 binding.expenseValueTv.text = "৳ $totalExpenseAmount"
 
@@ -87,6 +108,7 @@ class MainFragment : Fragment(){
                 Log.d("chkchk", "$income $expense")
 
                 setupPieChart()
+
             }
         }
 
