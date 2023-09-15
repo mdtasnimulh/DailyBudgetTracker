@@ -23,6 +23,7 @@
             android:elevation="6dp"
             android:outlineSpotShadowColor="#AFFFBD"
             android:textStyle="bold"
+            app:cnb_radius="7dp"
             app:cnb_menuResource="@menu/bottom_nav_menu"
             android:background="@drawable/chip_bar_bg_green"
             app:layout_constraintBottom_toBottomOf="parent"
