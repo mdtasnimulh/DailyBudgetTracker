@@ -1,5 +1,7 @@
 package com.tasnim.chowdhury.eee.ui
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -34,6 +36,9 @@ class MainFragment : Fragment(){
     private var expense: Float = 0.0F
     private val noData: String = "৳ 0.00"
 
+    private var isLayoutMoved = false
+    private var isMenuOpen = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,8 +52,127 @@ class MainFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MainFragmentAdapter(requireContext())
         setupAdapter()
+        initData()
+        setupClicks()
+
+        /*val searchView = binding.searchView
+        val search = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        search.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH || event?.keyCode == KeyEvent.KEYCODE_SEARCH){
+                val query = searchView.query.toString()
+                searchDatabase(query)
+                searchView.clearFocus()
+                true
+            }else{
+                false
+            }
+        }*/
+
+        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(searchQuery: String?): Boolean {
+                if (searchQuery != null){
+                    searchDatabase(searchQuery)
+                }
+                return true
+            }
+
+            override fun onQueryTextSubmit(searchQuery: String?): Boolean {
+                if (searchQuery != null){
+                    searchDatabase(searchQuery)
+                }
+                return true
+            }
+        })*/
+
+    }
+
+    private fun setupClicks() {
+
+        binding.addFloatButton.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_insertIEFragment)
+        }
+
+        binding.recentTransactionSeeMore.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_allTransactionFragment)
+        }
+
+        /*binding.toolBarMenuIcon.setOnClickListener {
+            if (!isMenuOpen) {
+                // Open the menu by translating the layout to the right
+                binding.mainFragment.animate()
+                    .translationX(0.75f * binding.mainFragment.width) // 85% of the layout width
+                    //.translationY(150f)// Set your desired top and bottom margin here
+                    .setDuration(600) // Animation duration in milliseconds
+                    .start()
+                val marginParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
+                marginParams.setMargins(0, 150, 0, 150)
+                binding.mainFragment.layoutParams = marginParams
+            } else {
+                // Close the menu by translating the layout back to its original position
+                binding.mainFragment.animate()
+                    .translationX(0f)
+                    //.translationY(0f)
+                    .setDuration(600)
+                    .start()
+                val marginParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
+                marginParams.setMargins(0, 0, 0, 0)
+                binding.mainFragment.layoutParams = marginParams
+            }
+
+            // Toggle the menu state
+            isMenuOpen = !isMenuOpen
+        }*/
+        binding.toolBarMenuIcon.setOnClickListener {
+            if (!isMenuOpen) {
+                val initialX = 0f
+                val finalX = 0.75f * binding.mainFragment.width
+                val initialMargin = 0
+                val finalMargin = 150
+                val duration = 500L
+
+                val animator = ValueAnimator.ofFloat(initialX, finalX)
+                animator.duration = duration
+                animator.addUpdateListener { animation ->
+                    val animatedValue = animation.animatedValue as Float
+                    val layoutParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
+                    layoutParams.setMargins(0, initialMargin + ((finalMargin - initialMargin) * animation.animatedFraction).toInt(), 0, initialMargin + ((finalMargin - initialMargin) * animation.animatedFraction).toInt())
+                    binding.mainFragment.layoutParams = layoutParams
+                    binding.mainFragment.translationX = animatedValue
+                    binding.toolBarMenuIcon.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_close))
+                }
+
+                animator.start()
+            } else {
+                val initialX = 0.75f * binding.mainFragment.width
+                val finalX = 0f
+                val initialMargin = 150
+                val finalMargin = 0
+                val duration = 500L
+
+                val animator = ValueAnimator.ofFloat(initialX, finalX)
+                animator.duration = duration
+                animator.addUpdateListener { animation ->
+                    val animatedValue = animation.animatedValue as Float
+                    val layoutParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
+                    layoutParams.setMargins(0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt(), 0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt())
+                    binding.mainFragment.layoutParams = layoutParams
+                    binding.mainFragment.translationX = animatedValue
+                    binding.toolBarMenuIcon.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_menu_two))
+                }
+
+                animator.start()
+            }
+
+            // Toggle the menu state
+            isMenuOpen = !isMenuOpen
+        }
+
+    }
+
+    private fun initData() {
+
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
@@ -112,43 +236,6 @@ class MainFragment : Fragment(){
             }
         }
 
-        binding.addFloatButton.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_insertIEFragment)
-        }
-
-        binding.recentTransactionSeeMore.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_allTransactionFragment)
-        }
-
-        /*val searchView = binding.searchView
-        val search = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-        search.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH || event?.keyCode == KeyEvent.KEYCODE_SEARCH){
-                val query = searchView.query.toString()
-                searchDatabase(query)
-                searchView.clearFocus()
-                true
-            }else{
-                false
-            }
-        }*/
-
-        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(searchQuery: String?): Boolean {
-                if (searchQuery != null){
-                    searchDatabase(searchQuery)
-                }
-                return true
-            }
-
-            override fun onQueryTextSubmit(searchQuery: String?): Boolean {
-                if (searchQuery != null){
-                    searchDatabase(searchQuery)
-                }
-                return true
-            }
-        })*/
     }
 
     private fun setupPieChart() {
@@ -196,6 +283,7 @@ class MainFragment : Fragment(){
     }
 
     private fun setupAdapter() {
+        adapter = MainFragmentAdapter(requireContext())
         binding.mainRv.adapter = adapter
         binding.mainRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.mainRv.setHasFixedSize(false)
