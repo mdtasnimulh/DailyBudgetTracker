@@ -44,7 +44,13 @@ class CategoryChooseAdapter(val context: Context): RecyclerView.Adapter<Recycler
             binding.catId1.backgroundTintList = ColorStateList.valueOf(Color.parseColor(chooseCategory.color))
 
             binding.catId1.setOnClickListener {
-                categoryClickListener?.onCategoryClicked(chooseCategory.title!!)
+                chooseCategory.title?.let { it1 -> chooseCategory.catParent?.let { it2 ->
+                    chooseCategory.catIcon?.let { it3 ->
+                        categoryClickListener?.onCategoryClicked(it1,
+                            it2, it3
+                        )
+                    }
+                } }
             }
         }
     }

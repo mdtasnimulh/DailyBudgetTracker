@@ -36,6 +36,12 @@ data class IncomeExpense(
     val iEDate: String? = "",
 
     @ColumnInfo(name = "paymentMethod")
-    val paymentMethod: String? = ""
+    val paymentMethod: String? = "",
+
+    @ColumnInfo(name = "categoryParent")
+    val categoryParent: String? = "",
+
+    @ColumnInfo(name = "categoryIcon")
+    val categoryIcon: Int,
 
 ): Parcelable

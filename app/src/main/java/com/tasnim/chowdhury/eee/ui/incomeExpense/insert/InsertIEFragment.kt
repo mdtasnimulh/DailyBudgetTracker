@@ -39,6 +39,10 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
     var month: Int = 0
     var dayOfMonth: Int = 0
 
+    private var categoryTitle: String = ""
+    private var categoryParent: String = ""
+    private var categoryIcon: Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +58,7 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         setupClicks()
+        initData()
 
     }
 
@@ -63,6 +68,10 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         setupTypeAdapter()
         setupPaymentTypeAdapter()
         handleBackPressed()
+    }
+
+    private fun initData(){
+
     }
 
     private fun setupTypeAdapter() {
@@ -183,12 +192,15 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         val amount = binding.amount.text.toString()
         val category = binding.category.text.toString()
         val paymentMethod = binding.paymentMethod.text.toString()
+        val categoryParent = categoryParent
+        val categoryIcon = categoryIcon
 
         if (binding.title.text.isNullOrEmpty() || binding.type.text.isNullOrEmpty() || binding.amount.text.isNullOrEmpty()){
             Toast.makeText(requireContext(), "Please fill all the required field.", Toast.LENGTH_SHORT).show()
             binding.title.requestFocus()
         }else{
-            val incomeExpense = IncomeExpense(0, title, type, note, time, amount.toDouble(), category, date, paymentMethod)
+            val incomeExpense = IncomeExpense(0, title, type, note, time, amount.toDouble(), category, date, paymentMethod, categoryParent, categoryIcon)
+            Log.d("chkDdata", "$categoryTitle $categoryParent $categoryIcon")
 
             viewModel.insertIncomeExpense(incomeExpense)
             findNavController().popBackStack()
@@ -211,7 +223,11 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         binding.amount.setText(result)
     }
 
-    override fun onCategoryClicked(categoryTitle: String) {
+    override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int) {
+        this.categoryTitle = categoryTitle
+        this.categoryParent = categoryParent
+        this.categoryIcon = categoryIcon
         binding.category.setText(categoryTitle)
+        Log.d("chkData", "$categoryTitle $categoryParent $categoryIcon" )
     }
 }

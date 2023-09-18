@@ -1,6 +1,5 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
-import android.graphics.drawable.BitmapDrawable
 import androidx.room.ColumnInfo
 
 data class ChooseCatModel (
