@@ -69,38 +69,37 @@ class CategoryChooseViewModel(application: Application): AndroidViewModel(applic
             ChooseCatModel(38, "Home Appliances", "#B39DDB", "Shopping", R.drawable.ic_home_applience),
 
             // Education Categories
-            ChooseCatModel(39, "Education", "#90CAF9", "Education", R.drawable.ic_budget),
-            ChooseCatModel(40, "Courses/Workshops", "#B2DFDB", "Education", R.drawable.ic_budget),
-            ChooseCatModel(41, "Books/Notes", "#A5D6A7", "Education", R.drawable.ic_budget),
+            ChooseCatModel(39, "Education", "#90CAF9", "Education", R.drawable.ic_education),
+            ChooseCatModel(40, "Courses/Workshops", "#B2DFDB", "Education", R.drawable.ic_courses_workshop),
+            ChooseCatModel(41, "Books/Notes", "#A5D6A7", "Education", R.drawable.ic_books_notes),
 
             // Debt/Tax Categories
-            ChooseCatModel(42, "Debt", "#FFD54F", "Debt/Tax", R.drawable.ic_budget),
-            ChooseCatModel(43, "Loans", "#9FA8DA", "Debt/Tax", R.drawable.ic_budget),
-            ChooseCatModel(44, "Credit Cards", "#FFCC80", "Debt/Tax", R.drawable.ic_budget),
-            ChooseCatModel(45, "Insurance", "#A5D6A7", "Debt/Tax", R.drawable.ic_budget),
-            ChooseCatModel(46, "Taxes", "#9FA8DA", "Debt/Tax", R.drawable.ic_budget),
+            ChooseCatModel(42, "Debt", "#FFD54F", "Debt/Tax", R.drawable.ic_debt),
+            ChooseCatModel(43, "Loans", "#9FA8DA", "Debt/Tax", R.drawable.ic_loan),
+            ChooseCatModel(44, "Credit Cards", "#FFCC80", "Debt/Tax", R.drawable.ic_credit_cards),
+            ChooseCatModel(45, "Insurance", "#A5D6A7", "Debt/Tax", R.drawable.ic_insurance),
+            ChooseCatModel(46, "Taxes", "#9FA8DA", "Debt/Tax", R.drawable.ic_tax),
 
             // Savings Categories
-            ChooseCatModel(47, "Savings", "#80DEEA", "Savings", R.drawable.ic_budget),
-            ChooseCatModel(48, "Investments", "#E57373", "Savings", R.drawable.ic_budget),
-            ChooseCatModel(49, "Vacation Savings", "#80DEEA", "Savings", R.drawable.ic_budget),
-            ChooseCatModel(50, "Investment Funds", "#80CBC4", "Savings", R.drawable.ic_budget),
-            ChooseCatModel(51, "Emergency Expenses", "#FFD54F", "Savings", R.drawable.ic_budget),
-            ChooseCatModel(52, "Hobbies", "#FFD54F", "Savings", R.drawable.ic_budget),
+            ChooseCatModel(47, "Savings", "#80DEEA", "Savings", R.drawable.ic_savings),
+            ChooseCatModel(48, "Investments", "#E57373", "Savings", R.drawable.ic_investments),
+            ChooseCatModel(49, "Vacation Savings", "#80DEEA", "Savings", R.drawable.ic_vacation_savings),
+            ChooseCatModel(50, "Investment Funds", "#80CBC4", "Savings", R.drawable.ic_investment_funds),
+            ChooseCatModel(51, "Emergency Expenses", "#FFD54F", "Savings", R.drawable.ic_emergency_savings),
 
             // Gifts/Donations Categories
-            ChooseCatModel(53, "Gifts", "#FFD54F", "Gifts/Donations", R.drawable.ic_budget),
-            ChooseCatModel(54, "Charity", "#9FA8DA", "Gifts/Donations", R.drawable.ic_budget),
+            ChooseCatModel(52, "Gifts", "#FFD54F", "Gifts/Donations", R.drawable.ic_gifts),
+            ChooseCatModel(53, "Charity", "#9FA8DA", "Gifts/Donations", R.drawable.ic_charity),
 
             // Travel Categories
-            ChooseCatModel(55, "Travel", "#80CBC4", "Travel", R.drawable.ic_budget),
-            ChooseCatModel(56, "Vacation", "#FFAB91", "Travel", R.drawable.ic_budget),
-            ChooseCatModel(57, "Bus", "#FFAB91", "Travel", R.drawable.ic_budget),
-            ChooseCatModel(58, "Train", "#FFAB91", "Travel", R.drawable.ic_budget),
-            ChooseCatModel(59, "Air", "#FFAB91", "Travel", R.drawable.ic_budget),
+            ChooseCatModel(54, "Travel", "#80CBC4", "Travel", R.drawable.ic_travel),
+            ChooseCatModel(55, "Vacation", "#FFAB91", "Travel", R.drawable.ic_vacation),
+            ChooseCatModel(56, "Bus", "#FFAB91", "Travel", R.drawable.ic_bus),
+            ChooseCatModel(57, "Train", "#FFAB91", "Travel", R.drawable.ic_train),
+            ChooseCatModel(58, "Air", "#FFAB91", "Travel", R.drawable.ic_air),
 
             // Others Categories
-            ChooseCatModel(60, "Miscellaneous", "#E0E0E0", "Others", R.drawable.ic_budget),
+            ChooseCatModel(59, "Miscellaneous", "#E0E0E0", "Others", R.drawable.ic_miscelelinous),
         )
         _expenseCategory.value = expenseCategories
     }

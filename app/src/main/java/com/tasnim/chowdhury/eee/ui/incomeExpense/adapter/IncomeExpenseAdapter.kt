@@ -38,7 +38,7 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
             val amountPlus = "+${incomeExpense.iEAmount.toString()} ৳"
             val amountMinus = "-${incomeExpense.iEAmount.toString()} ৳"
             val amount = "${incomeExpense.iEAmount.toString()} ৳"
-            binding.iconImgV.setImageResource(R.drawable.ic_chart)
+            binding.iconImgV.setImageResource(incomeExpense.categoryIcon)
             binding.titleTv.text = incomeExpense.iETitle
             binding.dateTv.text = incomeExpense.iEDate
             binding.categoryTv.text = incomeExpense.iECategory

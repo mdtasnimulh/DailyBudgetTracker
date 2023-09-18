@@ -33,7 +33,6 @@ class CategoryChooseAdapter(val context: Context): RecyclerView.Adapter<Recycler
     inner class HeaderViewHolder(private val binding: ChooseCatNameLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(date: String){
             binding.headerText.text = date
-
         }
     }
 
@@ -42,6 +41,7 @@ class CategoryChooseAdapter(val context: Context): RecyclerView.Adapter<Recycler
             Log.d("chkCategory", "$chooseCategory")
             binding.catId1Title.text = chooseCategory.title
             binding.catId1.backgroundTintList = ColorStateList.valueOf(Color.parseColor(chooseCategory.color))
+            chooseCategory.catIcon?.let { binding.catId1Image.setImageResource(it) }
 
             binding.catId1.setOnClickListener {
                 chooseCategory.title?.let { it1 -> chooseCategory.catParent?.let { it2 ->
