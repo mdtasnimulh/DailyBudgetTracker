@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="7dp"
         android:layout_marginBottom="12dp"
-        android:background="@android:color/transparent"
+        android:background="#FEFFF2"
         app:cardCornerRadius="5dp"
-        app:cardElevation="3dp"
+        app:cardElevation="5dp"
         android:outlineAmbientShadowColor="@color/orange3"
         android:outlineSpotShadowColor="@color/orange3">
 
@@ -44,7 +45,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/roboto_medium"
                 android:maxLines="2"
-                android:text="Budget Title Budget Title Budget Title Budget Title Budget Title Budget Title Budget Title Budget Title"
+                android:text="@string/dummy_budget_title"
                 android:textColor="@color/orange"
                 android:textSize="14sp"
                 android:gravity="center_vertical"
@@ -54,24 +55,51 @@
                 app:layout_constraintTop_toTopOf="@+id/budgetIcon" />
 
             <TextView
-                android:id="@+id/budgetCategory"
+                android:id="@+id/budgetCategoryTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Budget Category"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/category_colon"
                 android:textColor="@color/black_medium"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/budgetIcon"
                 app:layout_constraintTop_toBottomOf="@+id/budgetIcon" />
 
             <TextView
+                android:id="@+id/budgetCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/budget_category"
+                android:textColor="@color/black_medium"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/budgetCategoryTv"
+                app:layout_constraintTop_toTopOf="@+id/budgetCategoryTv"
+                app:layout_constraintBottom_toBottomOf="@+id/budgetCategoryTv"/>
+
+            <TextView
+                android:id="@+id/budgetTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/budget_colon"
+                android:textColor="@color/black_medium"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/budgetAmount"
+                app:layout_constraintEnd_toStartOf="@+id/budgetAmount"
+                app:layout_constraintTop_toTopOf="@+id/budgetAmount" />
+
+            <TextView
                 android:id="@+id/budgetAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
-                android:text="$ 2000.00"
-                android:textColor="@color/final_secondary_green"
+                android:fontFamily="@font/roboto_black"
+                android:text="@string/dummy_zero_value"
+                android:textColor="@color/orange"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/budgetCategory"
                 app:layout_constraintEnd_toEndOf="@+id/budgetTitle"
@@ -90,43 +118,93 @@
                 app:layout_constraintTop_toBottomOf="@+id/budgetCategory" />
 
             <TextView
-                android:id="@+id/budgetStartDate"
+                android:id="@+id/budgetStartTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/roboto"
-                android:text="Start: 19/09/2023"
+                android:text="@string/from"
                 android:textColor="@color/black_medium"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/budgetProgressBar"
                 app:layout_constraintTop_toBottomOf="@+id/budgetProgressBar"/>
 
             <TextView
+                android:id="@+id/budgetStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/dummy_date"
+                android:textColor="@color/black_medium"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/budgetStartTv"
+                app:layout_constraintTop_toTopOf="@+id/budgetStartTv"
+                app:layout_constraintBottom_toBottomOf="@+id/budgetStartTv"/>
+
+            <TextView
+                android:id="@+id/budgetEndTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/end"
+                android:textColor="@color/black_medium"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/budgetEndDate"
+                app:layout_constraintTop_toTopOf="@+id/budgetEndDate"
+                app:layout_constraintBottom_toBottomOf="@+id/budgetEndDate"/>
+
+            <TextView
                 android:id="@+id/budgetEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto"
-                android:text="End: 30/09/2023"
+                android:text="@string/dummy_date"
                 android:textColor="@color/black_medium"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/budgetStartDate"
-                app:layout_constraintTop_toBottomOf="@+id/budgetProgressBar"/>
+                app:layout_constraintEnd_toEndOf="@+id/budgetProgressBar"
+                app:layout_constraintTop_toBottomOf="@+id/budgetProgressBar" />
+
+            <TextView
+                android:id="@+id/budgetSpendTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/spend"
+                android:textColor="@color/black_medium"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/budgetStartTv"
+                app:layout_constraintTop_toBottomOf="@+id/budgetStartTv" />
+
+            <TextView
+                android:id="@+id/budgetSpendAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/dummy_zero_value"
+                android:textColor="@color/leafGreen"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/budgetSpendTv"
+                app:layout_constraintStart_toEndOf="@+id/budgetSpendTv"
+                app:layout_constraintTop_toTopOf="@+id/budgetSpendTv" />
 
             <TextView
                 android:id="@+id/remainingBalanceTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Remaining Balance:"
+                android:text="@string/remaining_balance"
                 android:textColor="@color/black_medium"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/budgetIcon"
-                app:layout_constraintTop_toBottomOf="@+id/budgetStartDate" />
+                app:layout_constraintTop_toBottomOf="@+id/budgetSpendTv" />
 
             <TextView
                 android:id="@+id/remainingBalanceStart"
@@ -135,8 +213,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="6dp"
-                android:fontFamily="@font/roboto"
-                android:text="$500"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/dummy_zero_value"
                 android:textColor="@color/amberOrange"
                 android:textSize="13sp"
                 android:gravity="center_vertical"
@@ -148,13 +226,11 @@
                 android:id="@+id/remainingBalanceMiddle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginStart="6dp"
                 android:fontFamily="@font/roboto"
-                android:text="out of"
+                android:text="@string/out_of"
                 android:textColor="@color/black_medium"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:gravity="center_vertical"
                 app:layout_constraintTop_toTopOf="@+id/remainingBalanceStart"
                 app:layout_constraintBottom_toBottomOf="@+id/remainingBalanceStart"
@@ -164,14 +240,13 @@
                 android:id="@+id/remainingBalanceEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginStart="6dp"
                 android:fontFamily="@font/roboto"
-                android:text="$2000.00"
-                android:textColor="@color/cherryRed"
+                android:text="@string/dummy_zero_value"
+                android:textColor="@color/amberOrange"
                 android:textSize="13sp"
                 android:gravity="center_vertical"
+                tools:text="@string/dummy_zero_value"
                 app:layout_constraintTop_toTopOf="@+id/remainingBalanceMiddle"
                 app:layout_constraintBottom_toBottomOf="@+id/remainingBalanceMiddle"
                 app:layout_constraintStart_toEndOf="@+id/remainingBalanceMiddle"/>

@@ -85,6 +85,8 @@
             android:src="@drawable/ic_add_new"
             app:tint="@color/white"
             app:backgroundTint="@color/orange"
+            android:outlineSpotShadowColor="@color/orange3"
+            android:outlineAmbientShadowColor="@color/orange3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

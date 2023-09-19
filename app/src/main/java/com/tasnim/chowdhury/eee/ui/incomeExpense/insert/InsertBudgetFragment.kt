@@ -35,7 +35,7 @@ class InsertBudgetFragment : Fragment(), IncomeExpenseListener {
     private var dateFromOrTo = ""
     private var pointType = "0"
     private var date: Date? = null
-    val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+    val formatter = SimpleDateFormat("MMM dd, yyyy", Locale.US)
     private var now = Calendar.getInstance()
 
     private val fromDateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -239,14 +239,14 @@ class InsertBudgetFragment : Fragment(), IncomeExpenseListener {
         val catIconBg = catIconBg
         val startDate = binding.pointSystemFromDateEt.text.toString()
         val endDate = binding.pointSystemToDateEt.text.toString()
-        val time = "20/09/2023"
+        val time = "Sep 19, 2023"
 
         if (binding.title.text.isNullOrEmpty() || binding.amount.text.isNullOrEmpty()){
             Toast.makeText(requireContext(), "Please fill all the required field.", Toast.LENGTH_SHORT).show()
             binding.title.requestFocus()
         }else{
             val budget = Budget(0, title, category, note, startDate, endDate, amount.toDouble(), categoryIcon, catIconBg, time)
-            Log.d("chkDdata", "$categoryTitle $categoryParent $categoryIcon")
+            Log.d("chkDate", "$startDate $endDate insert")
 
             viewModel.insertBudget(budget)
             findNavController().popBackStack()

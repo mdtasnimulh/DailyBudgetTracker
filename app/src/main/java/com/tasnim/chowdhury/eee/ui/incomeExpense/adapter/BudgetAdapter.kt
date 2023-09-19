@@ -1,23 +1,17 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.data.model.Budget
-import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
-import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.BudgetRvLayoutBinding
-import com.tasnim.chowdhury.eee.ui.MainFragmentDirections
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseViewModel): RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
@@ -25,6 +19,7 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
     private var budgetList: List<Budget> = listOf()
 
     inner class BudgetViewHolder(private val binding: BudgetRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
+        @SuppressLint("SetTextI18n")
         fun bind(budget: Budget, position: Int){
 
             budget.budgetIcon?.let { binding.budgetIcon.setImageResource(it) }
@@ -36,14 +31,30 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
             binding.budgetEndDate.text = budget.budgetEndDate
 
             // Calculate spend amount for this budget item
-            val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+            val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.US)
             val fromDate = budget.budgetStartDate?.let { dateFormat.parse(it)?.time } ?: 0L
             val toDate = budget.budgetEndDate?.let { dateFormat.parse(it)?.time } ?: 0L
 
-            viewModel.getAllIncomeExpense.observe(context as LifecycleOwner){ transaction ->
-                if (transaction.isNotEmpty()){
-                    val amount = transaction.filter { it.iECategory == budget.budgetCategory }.sumOf { it.iEAmount ?: 0.0 }
-                    binding.remainingBalanceStart.text = amount.toString()
+            viewModel.getAllIncomeExpense.observe(context as LifecycleOwner) { transactions ->
+                if (transactions.isNotEmpty()) {
+                    val amount = transactions.filter { transaction ->
+                        //val transactionDate = transaction.iEDate?.let { dateFormat.parse(it)?.time } ?: 0L
+                        val transactionDate = Date(transaction.iEDate?.let { dateFormat.parse(it)?.time } ?: 0L)
+                        val startDate = Date(fromDate)
+                        val endDate = Date(toDate)
+
+                        // Compare transactionDate with startDate and endDate
+                        transactionDate in startDate..endDate &&
+                                transaction.iECategory == budget.budgetCategory && transaction.iEType == "Expense"
+                    }.sumOf { it.iEAmount ?: 0.0 }
+
+                    binding.budgetSpendAmount.text = "৳ ${amount.toString()}"
+                    val remainingBalance = budget.budgetAmount?.minus(amount)
+                    binding.remainingBalanceStart.text = "৳ ${remainingBalance.toString()}"
+                    binding.remainingBalanceEnd.text = "৳ ${budget.budgetAmount.toString()}"
+                    binding.budgetProgressBar.max = budget.budgetAmount?.toInt()!!
+                    binding.budgetProgressBar.min = 0
+                    binding.budgetProgressBar.progress = amount.toInt()
                 }
             }
 

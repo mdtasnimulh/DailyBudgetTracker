@@ -31,6 +31,17 @@
     <string name="record_transaction">Add New Transaction</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="dummy_zero_value">৳ 0.0</string>
+    <string name="out_of">out of</string>
+    <string name="remaining_balance">Remaining budget:</string>
+    <string name="spend">Spend from budget:</string>
+    <string name="dummy_date">00/00/0000</string>
+    <string name="end">End:</string>
+    <string name="from">From:</string>
+    <string name="budget_colon">Budget:</string>
+    <string name="budget_category">Budget Category</string>
+    <string name="category_colon">Category:</string>
+    <string name="dummy_budget_title">This is a dummy title for a dummy budget. Latter this text will be replace you create a new budget from create budget fragment.</string>
 
     <string-array name="date_filter">
         <item>This Month</item>
