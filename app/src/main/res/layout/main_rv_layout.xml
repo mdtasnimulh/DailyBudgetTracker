@@ -12,13 +12,18 @@
 
         <ImageView
             android:id="@+id/iconImgV"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="7dp"
+            android:background="@drawable/transaction_card_icon_bg"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="6dp"
+            android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_chart" />
+            app:srcCompat="@drawable/ic_chart"
+            android:contentDescription="Transaction Card Icon" />
 
         <TextView
             android:id="@+id/titleTv"

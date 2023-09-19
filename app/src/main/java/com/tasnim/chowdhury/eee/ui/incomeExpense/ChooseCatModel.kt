@@ -9,8 +9,8 @@ data class ChooseCatModel (
     @ColumnInfo(name = "title")
     val title: String?,
 
-    @ColumnInfo(name = "color")
-    val color: String?,
+    @ColumnInfo(name = "background")
+    val background: Int?,
 
     @ColumnInfo(name = "catParent")
     val catParent: String?,

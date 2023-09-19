@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class MainFragmentAdapter(val context: Context): RecyclerView.Adapter<MainFragme
             val amountMinus = "-${incomeExpense.iEAmount.toString()} ৳"
             val amount = "${incomeExpense.iEAmount.toString()} ৳"
             binding.iconImgV.setImageResource(incomeExpense.categoryIcon)
+            binding.iconImgV.background = ContextCompat.getDrawable(context, incomeExpense.catIconBg)
             binding.titleTv.text = incomeExpense.iETitle
             binding.dateTv.text = incomeExpense.iEDate
             binding.categoryTv.text = incomeExpense.iECategory

@@ -44,4 +44,7 @@ data class IncomeExpense(
     @ColumnInfo(name = "categoryIcon")
     val categoryIcon: Int,
 
+    @ColumnInfo(name = "catIconBg")
+    val catIconBg: Int,
+
 ): Parcelable

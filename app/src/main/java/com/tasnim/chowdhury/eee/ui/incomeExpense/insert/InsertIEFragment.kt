@@ -42,6 +42,7 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
     private var categoryTitle: String = ""
     private var categoryParent: String = ""
     private var categoryIcon: Int = 0
+    private var catIconBg: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -194,12 +195,13 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         val paymentMethod = binding.paymentMethod.text.toString()
         val categoryParent = categoryParent
         val categoryIcon = categoryIcon
+        val catIconBg = catIconBg
 
         if (binding.title.text.isNullOrEmpty() || binding.type.text.isNullOrEmpty() || binding.amount.text.isNullOrEmpty()){
             Toast.makeText(requireContext(), "Please fill all the required field.", Toast.LENGTH_SHORT).show()
             binding.title.requestFocus()
         }else{
-            val incomeExpense = IncomeExpense(0, title, type, note, time, amount.toDouble(), category, date, paymentMethod, categoryParent, categoryIcon)
+            val incomeExpense = IncomeExpense(0, title, type, note, time, amount.toDouble(), category, date, paymentMethod, categoryParent, categoryIcon, catIconBg)
             Log.d("chkDdata", "$categoryTitle $categoryParent $categoryIcon")
 
             viewModel.insertIncomeExpense(incomeExpense)
@@ -223,10 +225,11 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
         binding.amount.setText(result)
     }
 
-    override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int) {
+    override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int,catIconBg: Int) {
         this.categoryTitle = categoryTitle
         this.categoryParent = categoryParent
         this.categoryIcon = categoryIcon
+        this.catIconBg = catIconBg
         binding.category.setText(categoryTitle)
         Log.d("chkData", "$categoryTitle $categoryParent $categoryIcon" )
     }

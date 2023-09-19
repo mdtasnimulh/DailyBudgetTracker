@@ -91,8 +91,8 @@ class CategoryChooseDialogFragment : DialogFragment() {
                 TODO("Not yet implemented")
             }
 
-            override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int) {
-                listener?.onCategoryClicked(categoryTitle, categoryParent, categoryIcon)
+            override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int, catIconBg: Int) {
+                listener?.onCategoryClicked(categoryTitle, categoryParent, categoryIcon, catIconBg)
                 dismiss()
             }
 

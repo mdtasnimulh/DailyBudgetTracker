@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.data.model.HeaderItem
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
@@ -40,17 +41,21 @@ class CategoryChooseAdapter(val context: Context): RecyclerView.Adapter<Recycler
         fun bind(chooseCategory: ChooseCatModel, position: Int) {
             Log.d("chkCategory", "$chooseCategory")
             binding.catId1Title.text = chooseCategory.title
-            binding.catId1.backgroundTintList = ColorStateList.valueOf(Color.parseColor(chooseCategory.color))
+            binding.catId1.background = chooseCategory.background?.let { ContextCompat.getDrawable(context, it) }
             chooseCategory.catIcon?.let { binding.catId1Image.setImageResource(it) }
 
             binding.catId1.setOnClickListener {
-                chooseCategory.title?.let { it1 -> chooseCategory.catParent?.let { it2 ->
-                    chooseCategory.catIcon?.let { it3 ->
-                        categoryClickListener?.onCategoryClicked(it1,
-                            it2, it3
-                        )
+                chooseCategory.title?.let { title ->
+                    chooseCategory.catParent?.let { cParent ->
+                        chooseCategory.catIcon?.let { cIcon ->
+                            chooseCategory.background?.let { iconBg ->
+                                categoryClickListener?.onCategoryClicked(
+                                    title, cParent, cIcon, iconBg
+                                )
+                            }
+                        }
                     }
-                } }
+                }
             }
         }
     }

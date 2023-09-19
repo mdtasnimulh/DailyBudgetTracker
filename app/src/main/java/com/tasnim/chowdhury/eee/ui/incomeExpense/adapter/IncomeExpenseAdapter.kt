@@ -39,6 +39,7 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
             val amountMinus = "-${incomeExpense.iEAmount.toString()} ৳"
             val amount = "${incomeExpense.iEAmount.toString()} ৳"
             binding.iconImgV.setImageResource(incomeExpense.categoryIcon)
+            binding.iconImgV.background = ContextCompat.getDrawable(context, incomeExpense.catIconBg)
             binding.titleTv.text = incomeExpense.iETitle
             binding.dateTv.text = incomeExpense.iEDate
             binding.categoryTv.text = incomeExpense.iECategory
