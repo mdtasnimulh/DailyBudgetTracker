@@ -40,24 +40,10 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
             val fromDate = budget.budgetStartDate?.let { dateFormat.parse(it)?.time } ?: 0L
             val toDate = budget.budgetEndDate?.let { dateFormat.parse(it)?.time } ?: 0L
 
-            if (fromDate != null) {
-                if (toDate != null) {
-                    viewModel.getAllDateFilteredTransaction(fromDate, toDate).observe(context as LifecycleOwner) { transactions ->
-
-                        Log.d("chkValueOf", "$transactions fdasdf")
-
-                        // Filter transactions by category
-                        val categoryFilteredTransactions = transactions.filter { it.iECategory == budget.budgetCategory }
-                        Log.d("chkValueOf", "$categoryFilteredTransactions")
-
-                        // Calculate the sum of amounts for category-filtered transactions
-                        val spendAmount = categoryFilteredTransactions.sumOf {it.iEAmount ?: 0.0}
-                        Log.d("chkValueOf", "$spendAmount taka")
-
-                        // Update the spendAmount field in the budget item
-                        binding.remainingBalanceStart.text = spendAmount.toString()
-
-                    }
+            viewModel.getAllIncomeExpense.observe(context as LifecycleOwner){ transaction ->
+                if (transaction.isNotEmpty()){
+                    val amount = transaction.filter { it.iECategory == budget.budgetCategory }.sumOf { it.iEAmount ?: 0.0 }
+                    binding.remainingBalanceStart.text = amount.toString()
                 }
             }
 
