@@ -35,6 +35,8 @@ class BudgetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
+
         setupAdapter()
         initData()
         setupClicks()
@@ -43,7 +45,7 @@ class BudgetFragment : Fragment() {
 
     private fun setupAdapter() {
 
-        budgetAdapter = BudgetAdapter(requireContext())
+        budgetAdapter = BudgetAdapter(requireContext(), viewModel)
         binding.budgetRv.adapter = budgetAdapter
         binding.budgetRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.budgetRv.setHasFixedSize(false)
@@ -53,13 +55,11 @@ class BudgetFragment : Fragment() {
 
     private fun initData() {
 
-        viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
-
         viewModel.getAllBudget.observe(viewLifecycleOwner) { budget ->
-
             budgetAdapter.addBudget(budget)
-
         }
+
+
 
     }
 

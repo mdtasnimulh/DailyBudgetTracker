@@ -5,6 +5,7 @@ import androidx.room.*
 import com.tasnim.chowdhury.eee.data.model.Budget
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import kotlinx.coroutines.flow.Flow
+import java.util.Date
 
 @Dao
 interface IncomeExpenseDao {
@@ -28,6 +29,9 @@ interface IncomeExpenseDao {
     fun getAllExpense(): LiveData<List<IncomeExpense>>
     @Query("SELECT * FROM income_expense_table ORDER BY iEId DESC LIMIT 5")
     fun getFirstFiveIncomeExpense(): LiveData<List<IncomeExpense>>
+
+    @Query("SELECT * FROM income_expense_table WHERE iEDate BETWEEN :fromDate AND :toDate")
+    fun getAllDateFilteredTransaction(fromDate: Long, toDate: Long): LiveData<List<IncomeExpense>>
 
     // Budget
     @Insert(onConflict = OnConflictStrategy.IGNORE)

@@ -31,6 +31,10 @@ class IncomeExpenseRepository(private val incomeExpenseDao: IncomeExpenseDao) {
         return incomeExpenseDao.getFirstFiveIncomeExpense()
     }
 
+    fun getAllDateFilteredTransaction(fromDate: Long, toDate: Long): LiveData<List<IncomeExpense>> {
+        return incomeExpenseDao.getAllDateFilteredTransaction(fromDate, toDate)
+    }
+
     // Budget
     suspend fun insertBudget(budget: Budget){
         incomeExpenseDao.insertBudget(budget)

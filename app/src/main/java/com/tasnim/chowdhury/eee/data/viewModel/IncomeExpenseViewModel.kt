@@ -85,4 +85,8 @@ class IncomeExpenseViewModel(application: Application): AndroidViewModel(applica
         return repository.searchBudget(searchBudget).asLiveData()
     }
 
+    fun getAllDateFilteredTransaction(fromDate: Long, toDate: Long): LiveData<List<IncomeExpense>>{
+        return repository.getAllDateFilteredTransaction(fromDate, toDate)
+    }
+
 }
