@@ -52,7 +52,11 @@
         android:id="@+id/budgetFragment"
         android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.BudgetFragment"
         android:label="fragment_budget"
-        tools:layout="@layout/fragment_budget" />
+        tools:layout="@layout/fragment_budget" >
+        <action
+            android:id="@+id/action_budgetFragment_to_insertBudgetFragment"
+            app:destination="@id/insertBudgetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/stateViewFragment"
         android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.StateFragment"
@@ -85,5 +89,13 @@
         <action
             android:id="@+id/action_allTransactionFragment_to_incomeExpenseUpdateFragment"
             app:destination="@id/incomeExpenseUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/insertBudgetFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.insert.InsertBudgetFragment"
+        android:label="InsertBudgetFragment" >
+        <action
+            android:id="@+id/action_insertBudgetFragment_to_budgetFragment"
+            app:destination="@id/budgetFragment" />
     </fragment>
 </navigation>

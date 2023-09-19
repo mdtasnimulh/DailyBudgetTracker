@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.incomeExpense.insert.InsertBudgetFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/orange3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                tools:layout_editor_absoluteX="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/toolBarBackIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_arrow_back"
+                    android:tint="@color/offWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/homeAllAccountsTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Add New Budget"
+                    android:textAlignment="center"
+                    android:textColor="@color/offWhite"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/homeNotificationIcon"
+                    app:layout_constraintStart_toEndOf="@+id/toolBarBackIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/homeNotificationIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="35dp"
+                    android:clickable="true"
+                    android:contentDescription="@string/notification_icon_content_description_home_page"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_notification_new"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/offWhite" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/ieScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ieScrollViewCl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/insertImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:srcCompat="@drawable/insert_img"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/amountTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Amount:"
+                    android:textSize="20sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/insertImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/background_03"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:inputType="none"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/navyBlue"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="36sp"
+                    android:padding="16dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:hint="0.00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/amountTitleTv" />
+
+                <TextView
+                    android:id="@+id/titleTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Title:"
+                    android:textSize="14sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/amount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:padding="16dp"
+                    android:cursorVisible="true"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/final_primary_black"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Give a title...."
+                    android:textColorHint="@color/final_primary_black"
+                    android:background="@drawable/background_03"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleTitleTv" />
+
+                <TextView
+                    android:id="@+id/descriptionTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Description:"
+                    android:textSize="14sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:padding="16dp"
+                    android:cursorVisible="true"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/final_primary_black"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Describe transaction...."
+                    android:textColorHint="@color/final_primary_black"
+                    android:background="@drawable/background_03"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/categoryTitleTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Category:"
+                    android:textSize="14sp"
+                    android:textColor="@color/final_primary_black"
+                    android:fontFamily="@font/roboto_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/note"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:paddingHorizontal="16dp"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:imeActionLabel="Done"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:inputType="none"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/final_primary_black"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Choose a category..."
+                    android:textColorHint="@color/final_primary_black"
+                    android:background="@drawable/background_03"
+                    app:layout_constraintTop_toBottomOf="@+id/categoryTitleTv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"  />
+
+                <LinearLayout
+                    android:id="@+id/dateTimeLl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category"
+                    android:baselineAligned="false">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fromDateCl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/pointSystemFromDateEt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transaction_card_icon_bg"
+                            android:fontFamily="@font/roboto"
+                            android:hint="from date"
+                            android:inputType="date"
+                            android:padding="8dp"
+                            android:textColorHint="@color/orange"
+                            android:textSize="11sp"
+                            android:focusableInTouchMode="false"
+                            android:cursorVisible="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/fromDateCalenderIcon"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,Deprecated" />
+
+                        <ImageView
+                            android:id="@+id/fromDateCalenderIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:background="@drawable/transaction_card_icon_bg"
+                            android:padding="7dp"
+                            android:src="@drawable/ic_edit"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/white"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/toDateCl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/pointSystemToDateEt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transaction_card_icon_bg"
+                            android:fontFamily="@font/roboto"
+                            android:hint="to date"
+                            android:inputType="date"
+                            android:padding="8dp"
+                            android:textColorHint="@color/orange"
+                            android:textSize="11sp"
+                            android:focusableInTouchMode="false"
+                            android:cursorVisible="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/toDateCalenderIcon"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                        <ImageView
+                            android:id="@+id/toDateCalenderIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:background="@drawable/transaction_card_icon_bg"
+                            android:padding="7dp"
+                            android:src="@drawable/ic_edit"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/white"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/insertButton"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/background_02"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Create Budget"
+                    android:textColor="@color/final_primary_black"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dateTimeLl"
+                    app:textAllCaps="false" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

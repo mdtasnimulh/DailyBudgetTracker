@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/budgetRvLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/budget_rv_layout_bg">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/budgetIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:padding="7dp"
+            android:elevation="4dp"
+            android:background="@drawable/category_others_bg"
+            android:src="@drawable/ic_miscelelinous"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/budgetTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginVertical="6dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="2"
+            android:text="Budget Title Budget Title Budget Title Budget Title Budget Title Budget Title Budget Title Budget Title"
+            android:textColor="@color/orange"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/budgetIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/budgetIcon"
+            app:layout_constraintTop_toTopOf="@+id/budgetIcon" />
+
+        <TextView
+            android:id="@+id/budgetCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Budget Category"
+            android:textColor="@color/black_medium"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/budgetIcon"
+            app:layout_constraintTop_toBottomOf="@+id/budgetIcon" />
+
+        <TextView
+            android:id="@+id/budgetAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="$ 2000.00"
+            android:textColor="@color/final_secondary_green"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/budgetCategory"
+            app:layout_constraintEnd_toEndOf="@+id/budgetTitle"
+            app:layout_constraintTop_toTopOf="@+id/budgetCategory" />
+
+        <ProgressBar
+            android:id="@+id/budgetProgressBar"
+            style="@style/Widget.MaterialComponents.LinearProgressIndicator"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            android:progress="60"
+            android:progressDrawable="@drawable/budget_progress_bg"
+            app:layout_constraintEnd_toEndOf="@+id/budgetTitle"
+            app:layout_constraintStart_toStartOf="@+id/budgetIcon"
+            app:layout_constraintTop_toBottomOf="@+id/budgetCategory" />
+
+        <TextView
+            android:id="@+id/budgetStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/roboto"
+            android:text="Start: 19/09/2023"
+            android:textColor="@color/black_medium"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/budgetProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/budgetProgressBar"/>
+
+        <TextView
+            android:id="@+id/budgetEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/roboto"
+            android:text="End: 30/09/2023"
+            android:textColor="@color/black_medium"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/budgetStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/budgetProgressBar"/>
+
+        <TextView
+            android:id="@+id/remainingBalanceTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Remaining Balance:"
+            android:textColor="@color/black_medium"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/budgetIcon"
+            app:layout_constraintTop_toBottomOf="@+id/budgetStartDate" />
+
+        <TextView
+            android:id="@+id/remainingBalanceStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/roboto"
+            android:text="$500"
+            android:textColor="@color/amberOrange"
+            android:textSize="13sp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="@+id/remainingBalanceTv"
+            app:layout_constraintBottom_toBottomOf="@+id/remainingBalanceTv"
+            app:layout_constraintStart_toEndOf="@+id/remainingBalanceTv"/>
+
+        <TextView
+            android:id="@+id/remainingBalanceMiddle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/roboto"
+            android:text="out of"
+            android:textColor="@color/black_medium"
+            android:textSize="13sp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="@+id/remainingBalanceStart"
+            app:layout_constraintBottom_toBottomOf="@+id/remainingBalanceStart"
+            app:layout_constraintStart_toEndOf="@+id/remainingBalanceStart"/>
+
+        <TextView
+            android:id="@+id/remainingBalanceEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/roboto"
+            android:text="$2000.00"
+            android:textColor="@color/cherryRed"
+            android:textSize="13sp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="@+id/remainingBalanceMiddle"
+            app:layout_constraintBottom_toBottomOf="@+id/remainingBalanceMiddle"
+            app:layout_constraintStart_toEndOf="@+id/remainingBalanceMiddle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
