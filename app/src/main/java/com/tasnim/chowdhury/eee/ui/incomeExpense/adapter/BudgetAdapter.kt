@@ -23,9 +23,10 @@ class BudgetAdapter(val context: Context): RecyclerView.Adapter<BudgetAdapter.Bu
         fun bind(budget: Budget, position: Int){
 
             budget.budgetIcon?.let { binding.budgetIcon.setImageResource(it) }
+            binding.budgetIcon.background = budget.budgetIconBg?.let { ContextCompat.getDrawable(context, it) }
             binding.budgetTitle.text = budget.budgetTitle
             binding.budgetCategory.text = budget.budgetCategory
-            binding.budgetAmount.text = budget.budgetAmount.toString()
+            binding.budgetAmount.text = "৳ ${budget.budgetAmount.toString()}"
             binding.budgetStartDate.text = budget.budgetStartDate
             binding.budgetEndDate.text = budget.budgetEndDate
 
