@@ -2,11 +2,13 @@ package com.tasnim.chowdhury.eee.ui.incomeExpense.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.data.model.Budget
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.BudgetRvLayoutBinding
@@ -47,6 +49,16 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
                         transactionDate in startDate..endDate &&
                                 transaction.iECategory == budget.budgetCategory && transaction.iEType == "Expense"
                     }.sumOf { it.iEAmount ?: 0.0 }
+
+                    if (amount>=((budget.budgetAmount?.div(4))?.times(3)!!)){
+                        binding.budgetSpendAmount.setTextColor(ContextCompat.getColor(context, R.color.cherryRed))
+                    } else if (amount>=((budget.budgetAmount?.div(4))?.times(2)!!)){
+                        binding.budgetSpendAmount.setTextColor(ContextCompat.getColor(context, R.color.bananaYellow))
+                    }else{
+                        binding.budgetSpendAmount.setTextColor(ContextCompat.getColor(context, R.color.leafGreen))
+                    }
+
+                    Log.d("chkAmount", "$amount ${(budget.budgetAmount?.div(4))?.times(3)!!}")
 
                     binding.budgetSpendAmount.text = "৳ ${amount.toString()}"
                     val remainingBalance = budget.budgetAmount?.minus(amount)
