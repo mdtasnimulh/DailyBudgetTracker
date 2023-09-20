@@ -1,5 +1,6 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense.adapter
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
@@ -50,23 +51,33 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
                                 transaction.iECategory == budget.budgetCategory && transaction.iEType == "Expense"
                     }.sumOf { it.iEAmount ?: 0.0 }
 
-                    if (amount>=((budget.budgetAmount?.div(4))?.times(3)!!)){
+                    val amount75 = budget.budgetAmount?.div(4)?.times(3)
+                    val amount50 = budget.budgetAmount?.div(4)?.times(2)
+                    if (amount > amount75!!){
                         binding.budgetSpendAmount.setTextColor(ContextCompat.getColor(context, R.color.cherryRed))
-                    } else if (amount>=((budget.budgetAmount?.div(4))?.times(2)!!)){
+                    }else if (amount > amount50!!){
                         binding.budgetSpendAmount.setTextColor(ContextCompat.getColor(context, R.color.bananaYellow))
-                    }else{
+                    }else {
                         binding.budgetSpendAmount.setTextColor(ContextCompat.getColor(context, R.color.leafGreen))
                     }
 
-                    Log.d("chkAmount", "$amount ${(budget.budgetAmount?.div(4))?.times(3)!!}")
+                    Log.d("chkAmount", "$amount ${(budget.budgetAmount.div(4)).times(3)}")
 
-                    binding.budgetSpendAmount.text = "৳ ${amount.toString()}"
-                    val remainingBalance = budget.budgetAmount?.minus(amount)
-                    binding.remainingBalanceStart.text = "৳ ${remainingBalance.toString()}"
-                    binding.remainingBalanceEnd.text = "৳ ${budget.budgetAmount.toString()}"
-                    binding.budgetProgressBar.max = budget.budgetAmount?.toInt()!!
+                    binding.budgetSpendAmount.text = "৳ $amount"
+                    val remainingBalance = budget.budgetAmount.minus(amount)
+                    binding.remainingBalanceStart.text = "৳ $remainingBalance"
+                    binding.remainingBalanceEnd.text = "৳ ${budget.budgetAmount}"
+                    binding.budgetProgressBar.max = budget.budgetAmount.toInt()
                     binding.budgetProgressBar.min = 0
                     binding.budgetProgressBar.progress = amount.toInt()
+
+                    val progressAnimator = ObjectAnimator.ofInt(
+                        binding.budgetProgressBar,
+                        "progress",
+                        0, amount.toInt()
+                    )
+                    progressAnimator?.duration = 1000
+                    progressAnimator?.start()
                 }
             }
 
