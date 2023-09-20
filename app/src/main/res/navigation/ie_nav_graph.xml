@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_budgetFragment_to_insertBudgetFragment"
             app:destination="@id/insertBudgetFragment" />
+        <action
+            android:id="@+id/action_budgetFragment_to_budgetDetailsFragment2"
+            app:destination="@id/budgetDetailsFragment2" />
     </fragment>
     <fragment
         android:id="@+id/stateViewFragment"
@@ -97,5 +100,17 @@
         <action
             android:id="@+id/action_insertBudgetFragment_to_budgetFragment"
             app:destination="@id/budgetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/budgetDetailsFragment2"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.details.BudgetDetailsFragment"
+        android:label="BudgetDetailsFragment" >
+        <action
+            android:id="@+id/action_budgetDetailsFragment2_to_budgetFragment"
+            app:destination="@id/budgetFragment" />
+        <argument
+            android:name="budgetDetails"
+            app:argType="com.tasnim.chowdhury.eee.data.model.Budget"
+            app:nullable="true"/>
     </fragment>
 </navigation>

@@ -33,9 +33,8 @@ class InsertBudgetFragment : Fragment(), IncomeExpenseListener {
     private var catIconBg: Int = 0
 
     private var dateFromOrTo = ""
-    private var pointType = "0"
     private var date: Date? = null
-    val formatter = SimpleDateFormat("MMM dd, yyyy", Locale.US)
+    private val formatter = SimpleDateFormat("MMM dd, yyyy", Locale.US)
     private var now = Calendar.getInstance()
 
     private val fromDateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -73,6 +72,7 @@ class InsertBudgetFragment : Fragment(), IncomeExpenseListener {
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         setupClicks()
+        handleBackPressed()
     }
 
     private fun setupClicks() {
