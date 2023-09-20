@@ -111,7 +111,7 @@
                 android:layout_width="0dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="8dp"
-                android:progress="60"
+                android:progress="0"
                 android:progressDrawable="@drawable/budget_progress_bg"
                 app:layout_constraintEnd_toEndOf="@+id/budgetTitle"
                 app:layout_constraintStart_toStartOf="@+id/budgetIcon"

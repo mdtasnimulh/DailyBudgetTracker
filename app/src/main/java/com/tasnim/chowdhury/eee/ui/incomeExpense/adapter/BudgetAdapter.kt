@@ -1,6 +1,7 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense.adapter
 
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
@@ -61,8 +62,6 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
                         binding.budgetSpendAmount.setTextColor(ContextCompat.getColor(context, R.color.leafGreen))
                     }
 
-                    Log.d("chkAmount", "$amount ${(budget.budgetAmount.div(4)).times(3)}")
-
                     binding.budgetSpendAmount.text = "৳ $amount"
                     val remainingBalance = budget.budgetAmount.minus(amount)
                     binding.remainingBalanceStart.text = "৳ $remainingBalance"
@@ -78,6 +77,7 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
                     )
                     progressAnimator?.duration = 1000
                     progressAnimator?.start()
+
                 }
             }
 
