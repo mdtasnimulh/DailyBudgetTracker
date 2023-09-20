@@ -16,6 +16,9 @@ class CategoryChooseViewModel(application: Application): AndroidViewModel(applic
     private var _expenseCategory = MutableLiveData<List<ChooseCatModel>>()
     val expenseCategory: LiveData<List<ChooseCatModel>> = _expenseCategory
 
+    private var _budgetCategory = MutableLiveData<List<ChooseCatModel>>()
+    val budgetCategory: LiveData<List<ChooseCatModel>> = _budgetCategory
+
     fun getExpenseCategories(){
         val expenseCategories = listOf<ChooseCatModel>(
             // Food Categories
@@ -102,6 +105,24 @@ class CategoryChooseViewModel(application: Application): AndroidViewModel(applic
             ChooseCatModel(59, "Miscellaneous", R.drawable.category_others_bg, "Others", R.drawable.ic_miscelelinous),
         )
         _expenseCategory.value = expenseCategories
+    }
+
+    fun getBudgetCategories(){
+        val budgetCategories = listOf<ChooseCatModel>(
+            ChooseCatModel(13, "Food", R.drawable.category_food_bg, "Food", R.drawable.ic_cooking_ingredients),
+            ChooseCatModel(15, "Transportation", R.drawable.category_transportation_bg, "Transportation", R.drawable.ic_public_transit),
+            ChooseCatModel(20, "Housing/Rental", R.drawable.category_housing_bg, "Housing/Rental", R.drawable.ic_home_maintenence),
+            ChooseCatModel(26, "Entertainment", R.drawable.category_entertainment_bg, "Entertainment", R.drawable.ic_movie_theatre),
+            ChooseCatModel(30, "Healthcare/Family", R.drawable.category_healthcare_bg, "Healthcare/Family", R.drawable.ic_fitness),
+            ChooseCatModel(34, "Shopping", R.drawable.category_shopping_bg, "Shopping", R.drawable.ic_shopping),
+            ChooseCatModel(40, "Education", R.drawable.category_education_bg, "Education", R.drawable.ic_courses_workshop),
+            ChooseCatModel(42, "Debt/Tax", R.drawable.category_debt_bg, "Debt/Tax", R.drawable.ic_debt),
+            ChooseCatModel(48, "Savings", R.drawable.category_savings_bg, "Savings", R.drawable.ic_investments),
+            ChooseCatModel(52, "Gifts/Donations", R.drawable.category_gift_bg, "Gifts/Donations", R.drawable.ic_gifts),
+            ChooseCatModel(55, "Travel", R.drawable.category_travel_bg, "Travel", R.drawable.ic_vacation),
+            ChooseCatModel(59, "Others", R.drawable.category_others_bg, "Others", R.drawable.ic_miscelelinous),
+        )
+        _budgetCategory.value = budgetCategories
     }
 
 }

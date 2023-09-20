@@ -107,7 +107,7 @@ class InsertIEFragment : Fragment(), IncomeExpenseListener {
 
         binding.category.setOnClickListener {
             val dialog = CategoryChooseDialogFragment()
-            dialog.setCategoryTitleListener(this)
+            dialog.setCategoryTitleListener(this, "Income")
             dialog.show(childFragmentManager, TAG)
         }
     }

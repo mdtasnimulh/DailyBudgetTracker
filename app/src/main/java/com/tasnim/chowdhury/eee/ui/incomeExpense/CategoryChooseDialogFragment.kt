@@ -20,17 +20,22 @@ import com.tasnim.chowdhury.eee.data.viewModel.CategoryChooseViewModel
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentCategoryChooseDialogBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.IncomeExpenseListener
+import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.InsertBudgetFragment
+import com.tasnim.chowdhury.eee.ui.incomeExpense.insert.InsertIEFragment
 
-class CategoryChooseDialogFragment : DialogFragment() {
+class CategoryChooseDialogFragment() : DialogFragment() {
 
     private lateinit var binding: FragmentCategoryChooseDialogBinding
     private var listener: IncomeExpenseListener? = null
+    private var tag: String = ""
     private lateinit var categoryViewModel: CategoryChooseViewModel
 
-    private lateinit var adapter: CategoryChooseAdapter
+    private var adapter: CategoryChooseAdapter? = null
+    private var bAdapter: BudgetCategoryChooseAdapter? = null
 
-    fun setCategoryTitleListener(listener: IncomeExpenseListener){
+    fun setCategoryTitleListener(listener: IncomeExpenseListener, tag: String){
         this.listener = listener
+        this.tag = tag
     }
 
     override fun onCreateView(
@@ -67,54 +72,116 @@ class CategoryChooseDialogFragment : DialogFragment() {
         setupClicks()
         setupAdapter()
 
-        categoryViewModel.expenseCategory.observe(viewLifecycleOwner) { categoryList ->
-            val sortedCategories = categoryList.sortedBy { it.catParent }
-            val groupedData: MutableList<Any> = mutableListOf()
-            var catHeaderName: String? = null
-            for(item in sortedCategories){
-                if (item.catParent != catHeaderName){
-                    groupedData.add(HeaderItem(item.catParent!!))
-                    catHeaderName = item.catParent
+        initData()
+    }
+
+    private fun initData(){
+        when (tag) {
+            "Income" -> {
+                categoryViewModel.expenseCategory.observe(viewLifecycleOwner) { categoryList ->
+                    val sortedCategories = categoryList.sortedBy { it.catParent }
+                    val groupedData: MutableList<Any> = mutableListOf()
+                    var catHeaderName: String? = null
+                    for(item in sortedCategories){
+                        if (item.catParent != catHeaderName){
+                            groupedData.add(HeaderItem(item.catParent!!))
+                            catHeaderName = item.catParent
+                        }
+                        groupedData.add(item)
+                    }
+                    adapter?.setGroupedData(groupedData)
                 }
-                groupedData.add(item)
             }
-            adapter.setGroupedData(groupedData)
+
+            "Budget" -> {
+                categoryViewModel.budgetCategory.observe(viewLifecycleOwner) { categoryList ->
+                    val sortedCategories = categoryList.sortedBy { it.catParent }
+                    val groupedData: MutableList<Any> = mutableListOf()
+                    var catHeaderName: String? = null
+                    for(item in sortedCategories){
+                        if (item.catParent != catHeaderName){
+                            groupedData.add(HeaderItem(item.catParent!!))
+                            catHeaderName = item.catParent
+                        }
+                        groupedData.add(item)
+                    }
+                    bAdapter?.setGroupedData(groupedData)
+                }
+            }
         }
     }
 
     private fun setupAdapter() {
-        adapter = CategoryChooseAdapter(requireContext())
-        binding.chooseCatRv.adapter = adapter
+        when (tag){
+            "Income" -> {
+                adapter = CategoryChooseAdapter(requireContext())
+                binding.chooseCatRv.adapter = adapter
 
-        adapter.categoryClickListener = object : IncomeExpenseListener{
-            override fun onCalculatorResultCalculated(result: String) {
-                TODO("Not yet implemented")
-            }
+                adapter?.categoryClickListener = object : IncomeExpenseListener{
+                    override fun onCalculatorResultCalculated(result: String) {
+                        TODO("Not yet implemented")
+                    }
 
-            override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int, catIconBg: Int) {
-                listener?.onCategoryClicked(categoryTitle, categoryParent, categoryIcon, catIconBg)
-                dismiss()
-            }
+                    override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int, catIconBg: Int) {
+                        listener?.onCategoryClicked(categoryTitle, categoryParent, categoryIcon, catIconBg)
+                        dismiss()
+                    }
 
-        }
-
-        binding.chooseCatRv.setHasFixedSize(false)
-        binding.chooseCatRv.itemAnimator = DefaultItemAnimator()
-
-        val layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.chooseCatRv.layoutManager = layoutManager
-
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return when (adapter.getItemViewType(position)) {
-                    CategoryChooseAdapter.ITEM_TYPE_HEADER -> 2 // Full width for headers
-                    CategoryChooseAdapter.ITEM_TYPE_ITEM -> 1 // Normal span size for items
-                    else -> 1
                 }
+
+                binding.chooseCatRv.setHasFixedSize(false)
+                binding.chooseCatRv.itemAnimator = DefaultItemAnimator()
+
+                val layoutManager = GridLayoutManager(requireContext(), 2)
+                binding.chooseCatRv.layoutManager = layoutManager
+
+                layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return when (adapter?.getItemViewType(position)) {
+                            CategoryChooseAdapter.ITEM_TYPE_HEADER -> 2 // Full width for headers
+                            CategoryChooseAdapter.ITEM_TYPE_ITEM -> 1 // Normal span size for items
+                            else -> 1
+                        }
+                    }
+                }
+
+                categoryViewModel.getExpenseCategories()
+            }
+            "Budget" -> {
+                bAdapter = BudgetCategoryChooseAdapter(requireContext())
+                binding.chooseCatRv.adapter = bAdapter
+
+                bAdapter?.categoryClickListener = object : IncomeExpenseListener{
+                    override fun onCalculatorResultCalculated(result: String) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onCategoryClicked(categoryTitle: String, categoryParent: String, categoryIcon: Int, catIconBg: Int) {
+                        listener?.onCategoryClicked(categoryTitle, categoryParent, categoryIcon, catIconBg)
+                        dismiss()
+                    }
+
+                }
+
+                binding.chooseCatRv.setHasFixedSize(false)
+                binding.chooseCatRv.itemAnimator = DefaultItemAnimator()
+
+                val layoutManager = GridLayoutManager(requireContext(), 1)
+                binding.chooseCatRv.layoutManager = layoutManager
+
+                layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return when (bAdapter?.getItemViewType(position)) {
+                            CategoryChooseAdapter.ITEM_TYPE_HEADER -> 1 // Full width for headers
+                            CategoryChooseAdapter.ITEM_TYPE_ITEM -> 1 // Normal span size for items
+                            else -> 1
+                        }
+                    }
+                }
+
+                categoryViewModel.getBudgetCategories()
             }
         }
-
-        categoryViewModel.getExpenseCategories()
 
     }
 

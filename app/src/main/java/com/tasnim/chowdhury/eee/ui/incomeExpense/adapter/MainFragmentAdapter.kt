@@ -50,6 +50,57 @@ class MainFragmentAdapter(val context: Context): RecyclerView.Adapter<MainFragme
                 }
             }
 
+            when (incomeExpense.categoryParent) {
+                "Food" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.food_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.food_color)
+                }
+                "Transportation" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.transportation_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.transportation_color)
+                }
+                "Housing/Rental" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.housing_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.housing_color)
+                }
+                "Entertainment" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.entertainment_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.entertainment_color)
+                }
+                "Healthcare/Family" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.healthcare_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.healthcare_color)
+                }
+                "Shopping" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.shopping_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.shopping_color)
+                }
+                "Education" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.education_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.education_color)
+                }
+                "Debt/Tax" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.debt_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.debt_color)
+                }
+                "Savings" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.savings_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.savings_color)
+                }
+                "Gifts/Donations" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.gift_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.gift_color)
+                }
+                "Travel" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.travel_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.travel_color)
+                }
+                "Others" -> {
+                    binding.iconImgV.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.others_color)
+                    binding.iconImgV.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.others_color)
+                }
+            }
+
         }
     }
 

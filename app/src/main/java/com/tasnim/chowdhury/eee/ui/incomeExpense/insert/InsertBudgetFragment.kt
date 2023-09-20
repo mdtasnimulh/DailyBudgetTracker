@@ -89,7 +89,7 @@ class InsertBudgetFragment : Fragment(), IncomeExpenseListener {
 
         binding.category.setOnClickListener {
             val dialog = CategoryChooseDialogFragment()
-            dialog.setCategoryTitleListener(this)
+            dialog.setCategoryTitleListener(this, "Budget")
             dialog.show(childFragmentManager, CalculatorDialogFragment.TAG)
         }
 

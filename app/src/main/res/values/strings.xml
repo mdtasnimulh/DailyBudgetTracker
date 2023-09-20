@@ -36,7 +36,7 @@
     <string name="remaining_balance">Remaining budget:</string>
     <string name="spend">Spend from budget:</string>
     <string name="dummy_date">00/00/0000</string>
-    <string name="end">End:</string>
+    <string name="end">To:</string>
     <string name="from">From:</string>
     <string name="budget_colon">Budget:</string>
     <string name="budget_category">Budget Category</string>
@@ -53,6 +53,21 @@
     <string-array name="transaction_type">
         <item>Income</item>
         <item>Expense</item>
+    </string-array>
+
+    <string-array name="budget_category">
+        <item>Food</item>
+        <item>Transportation</item>
+        <item>Housing/Rental</item>
+        <item>Entertainment</item>
+        <item>Healthcare/Family</item>
+        <item>Shopping</item>
+        <item>Education</item>
+        <item>Debt/Tax</item>
+        <item>Savings</item>
+        <item>Gifts/Donations</item>
+        <item>Travel</item>
+        <item>Others</item>
     </string-array>
 
     <string-array name="payment_type">

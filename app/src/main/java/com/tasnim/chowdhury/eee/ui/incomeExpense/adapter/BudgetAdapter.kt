@@ -49,7 +49,7 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
 
                         // Compare transactionDate with startDate and endDate
                         transactionDate in startDate..endDate &&
-                                transaction.iECategory == budget.budgetCategory && transaction.iEType == "Expense"
+                                transaction.categoryParent == budget.budgetCategory && transaction.iEType == "Expense"
                     }.sumOf { it.iEAmount ?: 0.0 }
 
                     val amount75 = budget.budgetAmount?.div(4)?.times(3)
@@ -78,6 +78,57 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
                     progressAnimator?.duration = 1000
                     progressAnimator?.start()
 
+                }
+            }
+
+            when (budget.budgetCategory) {
+                "Food" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.food_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.food_color)
+                }
+                "Transportation" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.transportation_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.transportation_color)
+                }
+                "Housing/Rental" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.housing_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.housing_color)
+                }
+                "Entertainment" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.entertainment_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.entertainment_color)
+                }
+                "Healthcare/Family" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.healthcare_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.healthcare_color)
+                }
+                "Shopping" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.shopping_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.shopping_color)
+                }
+                "Education" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.education_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.education_color)
+                }
+                "Debt/Tax" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.debt_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.debt_color)
+                }
+                "Savings" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.savings_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.savings_color)
+                }
+                "Gifts/Donations" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.gift_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.gift_color)
+                }
+                "Travel" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.travel_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.travel_color)
+                }
+                "Others" -> {
+                    binding.budgetIcon.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.others_color)
+                    binding.budgetIcon.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.others_color)
                 }
             }
 
