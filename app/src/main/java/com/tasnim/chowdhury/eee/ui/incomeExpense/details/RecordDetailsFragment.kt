@@ -62,37 +62,32 @@ class RecordDetailsFragment : Fragment() {
                 findNavController().navigateUp()
             }
 
-            /*binding.toolBarEditIcon.setOnClickListener {
-                val action = RecordDetailsFragmentDirections.actionRecordDetailsFragmentToIncomeExpenseUpdateFragment(data)
-                findNavController().navigate(action)
-            }*/
+            binding.invoice.invoiceAmount.text = "৳ ${data.iEAmount.toString()}"
+            binding.invoice.invoiceTitle.text = data.iETitle
+            binding.invoice.invoicePaymentType.text = data.paymentMethod
+            binding.invoice.invoiceCatType.text = data.iECategory
+            binding.invoice.invoiceNote.text = data.iENote
+            binding.invoice.invoiceDate.text = data.iEDate
+            binding.invoice.invoiceTime.text = data.iETimeStamp
+            binding.invoice.invoiceTransactionType.text = data.iEType
 
-            binding.recordAmount.text = "${data.iEAmount.toString()} BDT"
-            binding.recordTitle.text = data.iETitle
-            binding.recordPaymentType.text = data.paymentMethod
-            binding.recordCatType.text = data.iECategory
-            binding.recordNote.text = data.iENote
-            binding.recordDate.text = data.iEDate
-            binding.recordTime.text = data.iETimeStamp
-            binding.recordTransactionType.text = data.iEType
+            binding.invoice.invoiceCategoryIcon.setImageResource(data.categoryIcon)
 
             if (data.iEType == "Income"){
-                binding.recordTransactionType.setTextColor(Color.parseColor("#12A518"))
-                binding.recordTransactionType.setBackgroundResource(R.drawable.transaction_type_green)
-                binding.recordTopCl.setBackgroundResource(R.drawable.bg_red)
-                binding.recordTransactionType.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_type_green), null, null, null)
+                binding.invoice.invoiceTransactionType.setTextColor(Color.parseColor("#12A518"))
+                binding.invoice.invoiceTransactionType.setBackgroundResource(R.drawable.transaction_type_green)
+                binding.invoice.invoiceTransactionType.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_type_green), null, null, null)
             }else{
-                binding.recordTransactionType.setTextColor(Color.parseColor("#FF4E40"))
-                binding.recordTransactionType.setBackgroundResource(R.drawable.transaction_type_red)
-                binding.recordTopCl.setBackgroundResource(R.drawable.bg_green)
-                binding.recordTransactionType.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_type_red), null, null, null)
+                binding.invoice.invoiceTransactionType.setTextColor(Color.parseColor("#FF4E40"))
+                binding.invoice.invoiceTransactionType.setBackgroundResource(R.drawable.transaction_type_red)
+                binding.invoice.invoiceTransactionType.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.ic_type_red), null, null, null)
             }
 
-            binding.recordEditButton.setOnClickListener{
+            binding.invoice.recordEditButton.setOnClickListener{
                 val action = RecordDetailsFragmentDirections.actionRecordDetailsFragmentToIncomeExpenseUpdateFragment(data)
                 findNavController().navigate(action)
             }
-            binding.recordDeleteButton.setOnClickListener {
+            binding.invoice.recordDeleteButton.setOnClickListener {
                 deleteRecord()
             }
         }

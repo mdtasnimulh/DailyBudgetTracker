@@ -14,6 +14,7 @@
     <color name="roseRed">#FF033E</color>
     <color name="backgroundRed">#FFC5C7</color>
     <color name="backgroundRed2">#FFADAF</color>
+    <color name="detailsRed">#FFD5D6</color>
 
     //-----custom color's gray
     <color name="graphiteGray">#36454F</color>
@@ -27,6 +28,7 @@
     <color name="neonGreen">#31D618</color>
     <color name="backgroundGreen">#CFFFD7</color>
     <color name="backgroundGreen2">#AFFFBD</color>
+    <color name="detailsGreen">#DFFFE4</color>
 
     //-----custom color's yellow and orange
     <color name="amberOrange">#FFA400</color>
@@ -58,6 +60,7 @@
     <color name="offWhite">#FFE6C7</color>
     <color name="lightOrange">#FFA559</color>
     <color name="offWhiteLight">#FDFFE6</color>
+    <color name="backgroundWhite">#FEFFF2</color>
 
     //-----custom color's rainbow or default natural
     <color name="customWhite">#FFFFFF</color>

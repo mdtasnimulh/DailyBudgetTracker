@@ -24,6 +24,9 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="ShapeAppearanceOverlay.App.CornerSize15Percent" parent="">
+        <item name="cornerSize">15%</item>
+    </style>
 
     <style name="CustomTextCapitalizationCareerCounseling" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
