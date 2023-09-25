@@ -18,10 +18,11 @@
             android:id="@+id/invoiceDetailsLayoutCl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingVertical="12dp"
-            android:layout_marginVertical="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="35dp"
+            android:layout_marginVertical="15dp"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/invoice_bg">
+            android:background="@drawable/invoice_real_like">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -296,10 +297,11 @@
                         android:id="@+id/recordButtonLl"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginHorizontal="32dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="20dp"
                         android:gravity="center"
+                        android:weightSum="2"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -307,10 +309,11 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/recordEditButton"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:layout_marginEnd="8dp"
-                            android:elevation="5dp"
+                            android:elevation="8dp"
                             android:fontFamily="@font/roboto_bold"
                             android:outlineAmbientShadowColor="@color/amberOrange"
                             android:outlineSpotShadowColor="@color/amberOrange"
@@ -319,14 +322,16 @@
                             android:textSize="16sp"
                             app:backgroundTint="@color/amberOrange"
                             app:cornerRadius="7dp"
+                            app:iconGravity="textStart"
                             app:icon="@drawable/ic_edit_mini" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/recordDeleteButton"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:layout_marginStart="8dp"
-                            android:elevation="5dp"
+                            android:elevation="8dp"
                             android:fontFamily="@font/roboto_bold"
                             android:outlineAmbientShadowColor="@color/final_secondary_red"
                             android:outlineSpotShadowColor="@color/final_secondary_red"
@@ -335,6 +340,7 @@
                             android:textSize="16sp"
                             app:backgroundTint="@color/final_secondary_red"
                             app:cornerRadius="7dp"
+                            app:iconGravity="textStart"
                             app:icon="@drawable/ic_delete_mini" />
 
                     </LinearLayout>
