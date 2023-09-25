@@ -41,6 +41,7 @@
     <color name="backgroundYellow2">#FFEDAE</color>
 
     //-----custom color's blue
+    <color name="royalBlue">#00539C</color>
     <color name="navyBlue">#004481</color>
     <color name="deepBlue">#06038D</color>
     <color name="aquaBlue">#05C3DD</color>
