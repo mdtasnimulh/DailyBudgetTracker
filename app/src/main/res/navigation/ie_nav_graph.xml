@@ -112,5 +112,8 @@
             android:name="budgetDetails"
             app:argType="com.tasnim.chowdhury.eee.data.model.Budget"
             app:nullable="true"/>
+        <argument
+            android:name="spendAmount"
+            app:argType="float"/>
     </fragment>
 </navigation>

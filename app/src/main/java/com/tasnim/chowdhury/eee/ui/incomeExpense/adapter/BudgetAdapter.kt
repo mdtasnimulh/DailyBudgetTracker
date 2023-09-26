@@ -21,6 +21,8 @@ import java.util.Locale
 class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseViewModel): RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
 
     private var budgetList: List<Budget> = listOf()
+    private var spendAmount: Float = 0F
+    var budgetDetails:((item:Budget, spendAmount: Float)->Unit)? = null
 
     inner class BudgetViewHolder(private val binding: BudgetRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
@@ -78,7 +80,13 @@ class BudgetAdapter(val context: Context, private val viewModel: IncomeExpenseVi
                     progressAnimator?.duration = 1000
                     progressAnimator?.start()
 
+                    spendAmount = amount.toFloat()
+
                 }
+            }
+
+            binding.goToDetails.setOnClickListener {
+                budgetDetails?.invoke(budget, spendAmount)
             }
 
             when (budget.budgetCategory) {

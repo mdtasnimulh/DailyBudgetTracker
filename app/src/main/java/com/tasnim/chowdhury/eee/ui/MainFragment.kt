@@ -283,11 +283,17 @@ class MainFragment : Fragment(){
     }
 
     private fun setupAdapter() {
-        adapter = MainFragmentAdapter(requireContext())
+        adapter = MainFragmentAdapter(requireContext(), "MainFragment")
         binding.mainRv.adapter = adapter
         binding.mainRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.mainRv.setHasFixedSize(false)
         binding.mainRv.itemAnimator = DefaultItemAnimator()
+
+        adapter.transactionDetails = { transaction ->
+
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToRecordDetailsFragment(transaction))
+
+        }
     }
 
     private fun searchDatabase(query: String){

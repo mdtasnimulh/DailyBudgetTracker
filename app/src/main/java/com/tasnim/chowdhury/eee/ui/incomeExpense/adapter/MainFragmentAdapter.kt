@@ -5,23 +5,24 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
-import com.tasnim.chowdhury.eee.ui.MainFragmentDirections
+import com.tasnim.chowdhury.eee.other.currencyType
 
-class MainFragmentAdapter(val context: Context): RecyclerView.Adapter<MainFragmentAdapter.MainFragmentViewHolder>() {
+class MainFragmentAdapter(val context: Context, flag: String): RecyclerView.Adapter<MainFragmentAdapter.MainFragmentViewHolder>() {
 
     private var incomeExpenseList: List<IncomeExpense> = listOf()
+    var transactionDetails:((item: IncomeExpense)->Unit)? = null
+
+    private val tag = flag
 
     inner class MainFragmentViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(incomeExpense: IncomeExpense, position: Int){
-            val amountPlus = "+${incomeExpense.iEAmount.toString()} ৳"
-            val amountMinus = "-${incomeExpense.iEAmount.toString()} ৳"
-            val amount = "${incomeExpense.iEAmount.toString()} ৳"
+            val amountPlus = "$currencyType+${incomeExpense.iEAmount.toString()}"
+            val amountMinus = "${currencyType}-${incomeExpense.iEAmount.toString()}"
+            val amount = "${currencyType}${incomeExpense.iEAmount.toString()}"
             binding.iconImgV.setImageResource(incomeExpense.categoryIcon)
             binding.iconImgV.background = ContextCompat.getDrawable(context, incomeExpense.catIconBg)
             binding.titleTv.text = incomeExpense.iETitle
@@ -29,8 +30,11 @@ class MainFragmentAdapter(val context: Context): RecyclerView.Adapter<MainFragme
             binding.categoryTv.text = incomeExpense.iECategory
 
             binding.mainRvLayout.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToRecordDetailsFragment(incomeExpense)
-                it.findNavController().navigate(action)
+                when(tag) {
+                    "MainFragment" -> {
+                        transactionDetails?.invoke(incomeExpense)
+                    }
+                }
             }
 
             when (incomeExpense.iEType) {

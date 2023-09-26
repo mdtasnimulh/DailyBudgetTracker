@@ -59,7 +59,9 @@ class BudgetFragment : Fragment() {
             budgetAdapter.addBudget(budget)
         }
 
-
+        budgetAdapter.budgetDetails = { budget, spendAmount ->
+            findNavController().navigate(BudgetFragmentDirections.actionBudgetFragmentToBudgetDetailsFragment2(budget, spendAmount))
+        }
 
     }
 
