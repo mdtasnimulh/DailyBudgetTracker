@@ -1,8 +1,10 @@
 package com.tasnim.chowdhury.eee
 
+import android.content.DialogInterface.OnDismissListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -10,6 +12,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.tasnim.chowdhury.eee.databinding.ActivityMainBinding
 import com.tasnim.chowdhury.eee.ui.MainFragment
 
@@ -66,16 +70,26 @@ class MainActivity : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (home){
+                    val view = layoutInflater.inflate(R.layout.close_dialog, null)
                     val dialog = AlertDialog.Builder(this@MainActivity)
-                    dialog.setPositiveButton("Yes"){_, _ ->
+                    dialog.setView(view)
+
+                    val imageView = view.findViewById<ImageView>(R.id.closeImage)
+                    Glide.with(this@MainActivity).load(R.drawable.close_image).into(imageView)
+
+                    val noButton = view.findViewById<MaterialButton>(R.id.noButton)
+                    val yesButton = view.findViewById<MaterialButton>(R.id.yesButton)
+
+                    val closeDialog = dialog.create()
+
+                    noButton.setOnClickListener {
+                        closeDialog.dismiss()
+                    }
+                    yesButton.setOnClickListener {
                         finishAffinity()
                     }
-                    dialog.setNegativeButton("No"){_, _ ->
 
-                    }
-                    dialog.setTitle("Exiting the app!!!")
-                    dialog.setMessage("Are you sure you want to close the app?")
-                    dialog.create().show()
+                    closeDialog.show()
                 }else{
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.mainFragment)
