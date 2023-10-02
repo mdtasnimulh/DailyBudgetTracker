@@ -3,11 +3,12 @@ package com.tasnim.chowdhury.eee.ui.incomeExpense.details
 import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.tabs.TabLayout
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.data.model.HeaderItem
@@ -253,20 +256,31 @@ class AllTransactionFragment : Fragment() {
     }
 
     private fun deleteRecord(item: IncomeExpense) {
-        val deleteDialog = AlertDialog.Builder(requireContext())
-        deleteDialog.setPositiveButton("Yes"){_, _ ->
+        val view = layoutInflater.inflate(R.layout.delete_dialog, null)
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+        dialog.setView(view)
+
+        val imageView = view.findViewById<ImageView>(R.id.deleteImage)
+        Glide.with(requireContext()).load(R.drawable.delete_animated_image).into(imageView)
+
+        val noButton = view.findViewById<MaterialButton>(R.id.deleteNoButton)
+        val yesButton = view.findViewById<MaterialButton>(R.id.deleteYesButton)
+        val message = view.findViewById<TextView>(R.id.deleteMessageTv)
+
+        val deleteDialog = dialog.create()
+        message.text = "Are you sure you want to delete ${item.iETitle}?"
+
+        noButton.setOnClickListener {
+            deleteDialog.dismiss()
+        }
+        yesButton.setOnClickListener {
             viewModel.deleteIncomeExpense(item)
             Toast.makeText(requireContext(), "Successfully Deleted ${item.iETitle}", Toast.LENGTH_SHORT).show()
+            deleteDialog.dismiss()
             findNavController().popBackStack()
         }
-        deleteDialog.setNegativeButton("No"){_, _ ->
-            deleteDialog.setOnDismissListener {
-                it.dismiss()
-            }
-        }
-        deleteDialog.setTitle("Delete ${item.iETitle}")
-        deleteDialog.setMessage("Are you sure you want to delete ${item.iETitle}?")
-        deleteDialog.create().show()
+
+        deleteDialog.show()
     }
 
     private fun deleteAllRecords() {
