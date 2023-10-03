@@ -1,27 +1,33 @@
 package com.tasnim.chowdhury.eee.ui
 
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
+import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentMainBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.MainFragmentAdapter
+import java.text.NumberFormat
+
 
 class MainFragment : Fragment(){
 
@@ -35,6 +41,19 @@ class MainFragment : Fragment(){
     private var income: Float = 0.0F
     private var expense: Float = 0.0F
     private val noData: String = "৳ 0.00"
+
+    private var foodBalance: Float = 0.0F
+    private var transportationBalance: Float = 0.0F
+    private var housingBalance: Float = 0.0F
+    private var entertainmentBalance: Float = 0.0F
+    private var healthcareBalance: Float = 0.0F
+    private var shoppingBalance: Float = 0.0F
+    private var educationBalance: Float = 0.0F
+    private var debtBalance: Float = 0.0F
+    private var savingsBalance: Float = 0.0F
+    private var giftBalance: Float = 0.0F
+    private var travelBalance: Float = 0.0F
+    private var othersBalance: Float = 0.0F
 
     private var isLayoutMoved = false
     private var isMenuOpen = false
@@ -219,6 +238,56 @@ class MainFragment : Fragment(){
                     .filter { it.iEType == "Expense" }
                     .sumOf { it.iEAmount ?: 0.00 }
 
+                // Category wise spend amount
+
+                val foodBalance = incomeExpense
+                    .filter { it.categoryParent == "Food" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val transportationBalance = incomeExpense
+                    .filter { it.categoryParent == "Transportation" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val housingBalance = incomeExpense
+                    .filter { it.categoryParent == "Housing/Rental" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val entertainmentBalance = incomeExpense
+                    .filter { it.categoryParent == "Entertainment" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val healthcareBalance = incomeExpense
+                    .filter { it.categoryParent == "Healthcare/Family" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val shoppingBalance = incomeExpense
+                    .filter { it.categoryParent == "Shopping" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val educationBalance = incomeExpense
+                    .filter { it.categoryParent == "Education" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val debtBalance = incomeExpense
+                    .filter { it.categoryParent == "Debt/Tax" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val savingsBalance = incomeExpense
+                    .filter { it.categoryParent == "Savings" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val giftBalance = incomeExpense
+                    .filter { it.categoryParent == "Gifts/Donations" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val travelBalance = incomeExpense
+                    .filter { it.categoryParent == "Travel" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
+                val othersBalance = incomeExpense
+                    .filter { it.categoryParent == "Others" && it.iEType == "Expense"}
+                    .sumOf { it.iEAmount ?: 0.00 }
+
                 val availableAmount = totalIncomeAmount - totalExpenseAmount
 
                 binding.homeTotalBalanceValueTv.text = "৳ ${availableAmount}"
@@ -229,7 +298,18 @@ class MainFragment : Fragment(){
                 income = totalIncomeAmount.toFloat()
                 expense = totalExpenseAmount.toFloat()
 
-                Log.d("chkchk", "$income $expense")
+                this.foodBalance = foodBalance.toFloat()
+                this.transportationBalance = transportationBalance.toFloat()
+                this.housingBalance = housingBalance.toFloat()
+                this.entertainmentBalance = entertainmentBalance.toFloat()
+                this.healthcareBalance = healthcareBalance.toFloat()
+                this.shoppingBalance = shoppingBalance.toFloat()
+                this.educationBalance = educationBalance.toFloat()
+                this.debtBalance = debtBalance.toFloat()
+                this.savingsBalance = savingsBalance.toFloat()
+                this.giftBalance = giftBalance.toFloat()
+                this.travelBalance = travelBalance.toFloat()
+                this.othersBalance = othersBalance.toFloat()
 
                 setupPieChart()
 
@@ -241,22 +321,82 @@ class MainFragment : Fragment(){
     private fun setupPieChart() {
         val list: ArrayList<PieEntry> = ArrayList()
 
-
-        list.add(PieEntry(income, "Income"))
-        list.add(PieEntry(expense, "Expense"))
+        if (this.savingsBalance > 0){
+            list.add(PieEntry(savingsBalance, "Savings"))
+        }
+        if (this.foodBalance > 0){
+            list.add(PieEntry(foodBalance, "Food"))
+        }
+        if (this.transportationBalance > 0){
+            list.add(PieEntry(transportationBalance, "Transport"))
+        }
+        if (this.housingBalance > 0){
+            list.add(PieEntry(housingBalance, "Housing"))
+        }
+        if (this.entertainmentBalance > 0){
+            list.add(PieEntry(entertainmentBalance, "Entertainment"))
+        }
+        if (this.healthcareBalance > 0){
+            list.add(PieEntry(healthcareBalance, "Healthcare"))
+        }
+        if (this.shoppingBalance > 0){
+            list.add(PieEntry(shoppingBalance, "Shopping"))
+        }
+        if (this.educationBalance > 0){
+            list.add(PieEntry(educationBalance, "Education"))
+        }
+        if (this.debtBalance > 0){
+            list.add(PieEntry(debtBalance, "Debt"))
+        }
+        if (this.giftBalance > 0){
+            list.add(PieEntry(giftBalance, "Gift"))
+        }
+        if (this.travelBalance > 0){
+            list.add(PieEntry(travelBalance, "Travel"))
+        }
+        if (this.othersBalance > 0){
+            list.add(PieEntry(othersBalance, "Other"))
+        }
 
         Log.d("chkData", "$income $expense")
 
-        val pieDataSet = PieDataSet(list, "Balance")
+        val pieDataSet = PieDataSet(list, "")
         pieDataSet.colors = getColorList()
-        pieDataSet.valueTextSize = 12f
-        pieDataSet.valueTextColor = R.color.final_primary_black
+        pieDataSet.valueTextSize = 10f
+        pieDataSet.valueTextColor = Color.WHITE
+        pieDataSet.setDrawValues(true)
+        pieDataSet.sliceSpace = 3.0f
+        pieDataSet.valueFormatter = object : ValueFormatter() {
+            private val formatter = NumberFormat.getPercentInstance()
+
+            override fun getFormattedValue(value: Float) =
+                formatter.format(value / 100f)
+        }
 
         val pieData = PieData(pieDataSet)
         binding.homePieChart.data = pieData
-        binding.homePieChart.description.text = "Income/Expense Chart"
-        binding.homePieChart.centerText = "List"
+        binding.homePieChart.description.text = ""
+        binding.homePieChart.centerText = "Spending's"
+        binding.homePieChart.setCenterTextSize(9f)
         binding.homePieChart.animateY(800)
+        binding.homePieChart.holeRadius = 35f
+        binding.homePieChart.transparentCircleRadius = 42f
+        binding.homePieChart.setHoleColor(Color.parseColor("#FEFFF2"))
+        binding.homePieChart.setDrawEntryLabels(false)
+        binding.homePieChart.setUsePercentValues(true)
+        binding.homePieChart.extraRightOffset = 60f
+        binding.homePieChart.isRotationEnabled = false
+
+        val l: Legend = binding.homePieChart.legend
+        l.orientation = Legend.LegendOrientation.VERTICAL
+        l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        l.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
+        l.isWordWrapEnabled = true
+        l.form = Legend.LegendForm.CIRCLE
+        l.setDrawInside(false)
+        l.isEnabled = true
+        l.xOffset = 225f
+
     }
 
     override fun onResume() {
@@ -267,12 +407,18 @@ class MainFragment : Fragment(){
 
     private fun getColorList(): List<Int> {
         return listOf(
-            ContextCompat.getColor(requireContext(), R.color.final_secondary_green),
-            ContextCompat.getColor(requireContext(), R.color.final_other_red),
-            /*ContextCompat.getColor(requireContext(), R.color.final_other_blue),
-            ContextCompat.getColor(requireContext(), R.color.final_other_green),
-            ContextCompat.getColor(requireContext(), R.color.final_other_purple),
-            ContextCompat.getColor(requireContext(), R.color.final_primary_orange),*/
+            ContextCompat.getColor(requireContext(), R.color.food_color),
+            ContextCompat.getColor(requireContext(), R.color.transportation_color),
+            ContextCompat.getColor(requireContext(), R.color.housing_color),
+            ContextCompat.getColor(requireContext(), R.color.entertainment_color),
+            ContextCompat.getColor(requireContext(), R.color.healthcare_color),
+            ContextCompat.getColor(requireContext(), R.color.shopping_color),
+            ContextCompat.getColor(requireContext(), R.color.education_color),
+            ContextCompat.getColor(requireContext(), R.color.debt_color),
+            ContextCompat.getColor(requireContext(), R.color.savings_color),
+            ContextCompat.getColor(requireContext(), R.color.gift_color),
+            ContextCompat.getColor(requireContext(), R.color.travel_color),
+            ContextCompat.getColor(requireContext(), R.color.others_color),
         )
     }
 

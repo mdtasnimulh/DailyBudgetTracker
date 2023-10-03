@@ -93,16 +93,16 @@
     <color name="page_color">#FEFFF2</color>
 
     // Category Colors
-    <color name="food_color">#FD5B5D</color>
-    <color name="transportation_color">#FFA83E</color>
-    <color name="housing_color">#FF6E43</color>
-    <color name="entertainment_color">#58FC55</color>
-    <color name="healthcare_color">#42D3FD</color>
-    <color name="shopping_color">#FB7D3A</color>
-    <color name="education_color">#3F74FD</color>
-    <color name="debt_color">#F84607</color>
-    <color name="savings_color">#28FFDB</color>
-    <color name="gift_color">#FD3731</color>
-    <color name="travel_color">#FBC729</color>
-    <color name="others_color">#24394E</color>
+    <color name="food_color">#FF5E5F</color>
+    <color name="transportation_color">#FDA83F</color>
+    <color name="housing_color">#9F208E</color>
+    <color name="entertainment_color">#2D6ECF</color>
+    <color name="healthcare_color">#35AF57</color>
+    <color name="shopping_color">#DABB4E</color>
+    <color name="education_color">#4E6CC8</color>
+    <color name="debt_color">#189C8F</color>
+    <color name="savings_color">#6DAA46</color>
+    <color name="gift_color">#BF3632</color>
+    <color name="travel_color">#77A35C</color>
+    <color name="others_color">#384F67</color>
 </resources>
