@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="Income/Expense Chart"
+                        android:text="Total Earning &amp; Spending"
                         android:textColor="@color/final_primary_black"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/dateFilter"
@@ -117,7 +117,7 @@
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/statIEPieChart"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"
+                        android:layout_height="200dp"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
                         android:visibility="visible"
@@ -129,7 +129,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/noDataChart"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"
+                        android:layout_height="200dp"
                         android:layout_marginHorizontal="16dp"
                         android:src="@drawable/no_data_chart_gray"
                         android:visibility="gone"
@@ -175,7 +175,7 @@
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/catPieChart"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"
+                        android:layout_height="200dp"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
                         android:visibility="visible"
@@ -187,7 +187,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/catNoDataChart"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"
+                        android:layout_height="200dp"
                         android:layout_marginHorizontal="16dp"
                         android:src="@drawable/no_data_chart_gray"
                         android:visibility="gone"
@@ -198,6 +198,19 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/statSpendingBarTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Income/Expense Statistics"
+                    android:textColor="@color/final_primary_black"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@+id/iEChartCl"
+                    app:layout_constraintStart_toStartOf="parent" />
+
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/statBarChart"
                     android:layout_width="match_parent"
@@ -205,10 +218,640 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/iEChartCl" />
+                    app:layout_constraintTop_toBottomOf="@+id/statSpendingBarTv" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/categoryFullViewCl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/statBarChart">
+
+                    <TextView
+                        android:id="@+id/categoryFullViewTv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textColor="@color/final_primary_black"
+                        android:textSize="14sp"
+                        android:text="All Spend Amount By Category"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <LinearLayout
+                        android:id="@+id/categoryGroup1Ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false"
+                        android:weightSum="3"
+                        app:layout_constraintTop_toBottomOf="@+id/categoryFullViewTv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <LinearLayout
+                            android:background="@drawable/food_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/food_color"
+                            android:outlineSpotShadowColor="@color/food_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/foodIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_cooking_ingredients"/>
+
+                            <TextView
+                                android:id="@+id/foodTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Food"/>
+
+                            <TextView
+                                android:id="@+id/foodAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/transportation_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/transportation_color"
+                            android:outlineSpotShadowColor="@color/transportation_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/transportationIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_public_transit"/>
+
+                            <TextView
+                                android:id="@+id/transportationTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Transportation"/>
+
+                            <TextView
+                                android:id="@+id/transportationAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/housing_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/housing_color"
+                            android:outlineSpotShadowColor="@color/housing_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/housingIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_home_maintenence"/>
+
+                            <TextView
+                                android:id="@+id/housingTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Housing"/>
+
+                            <TextView
+                                android:id="@+id/housingAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/categoryGroup2Ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false"
+                        android:weightSum="3"
+                        app:layout_constraintTop_toBottomOf="@+id/categoryGroup1Ll"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <LinearLayout
+                            android:background="@drawable/entertainment_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/entertainment_color"
+                            android:outlineSpotShadowColor="@color/entertainment_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/entertainmentIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_movie_theatre"/>
+
+                            <TextView
+                                android:id="@+id/entertainmentTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Entertainment"/>
+
+                            <TextView
+                                android:id="@+id/entertainmentAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/healthcare_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/healthcare_color"
+                            android:outlineSpotShadowColor="@color/healthcare_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/healthcareIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_fitness"/>
+
+                            <TextView
+                                android:id="@+id/healthcareTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Healthcare"/>
+
+                            <TextView
+                                android:id="@+id/healthcareAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/shopping_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/shopping_color"
+                            android:outlineSpotShadowColor="@color/shopping_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/shoppingIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_shopping"/>
+
+                            <TextView
+                                android:id="@+id/shoppingTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Shopping"/>
+
+                            <TextView
+                                android:id="@+id/shoppingAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/categoryGroup3Ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false"
+                        android:weightSum="3"
+                        app:layout_constraintTop_toBottomOf="@+id/categoryGroup2Ll"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <LinearLayout
+                            android:background="@drawable/education_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/education_color"
+                            android:outlineSpotShadowColor="@color/education_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/educationIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_courses_workshop"/>
+
+                            <TextView
+                                android:id="@+id/educationTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Education"/>
+
+                            <TextView
+                                android:id="@+id/educationAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/debt_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/debt_color"
+                            android:outlineSpotShadowColor="@color/debt_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/debtIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_debt"/>
+
+                            <TextView
+                                android:id="@+id/debtTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Debt/Tax"/>
+
+                            <TextView
+                                android:id="@+id/debtAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/savings_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/savings_color"
+                            android:outlineSpotShadowColor="@color/savings_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/savingsIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_investments"/>
+
+                            <TextView
+                                android:id="@+id/savingsTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Savings"/>
+
+                            <TextView
+                                android:id="@+id/savingsAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/categoryGroup4Ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false"
+                        android:weightSum="3"
+                        app:layout_constraintTop_toBottomOf="@+id/categoryGroup3Ll"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <LinearLayout
+                            android:background="@drawable/gift_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/gift_color"
+                            android:outlineSpotShadowColor="@color/gift_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/giftIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_gifts"/>
+
+                            <TextView
+                                android:id="@+id/giftTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Gifts"/>
+
+                            <TextView
+                                android:id="@+id/giftAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/travel_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/travel_color"
+                            android:outlineSpotShadowColor="@color/travel_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/travelIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_vacation"/>
+
+                            <TextView
+                                android:id="@+id/travelTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Travel"/>
+
+                            <TextView
+                                android:id="@+id/travelAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:background="@drawable/others_cat_bg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:elevation="3dp"
+                            android:layout_margin="5dp"
+                            android:outlineAmbientShadowColor="@color/others_color"
+                            android:outlineSpotShadowColor="@color/others_color">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/othersIcon"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/ic_miscelelinous"/>
+
+                            <TextView
+                                android:id="@+id/othersTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/final_primary_black"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="Others"/>
+
+                            <TextView
+                                android:id="@+id/othersAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="4dp"
+                                android:layout_marginVertical="6dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/cherryRed"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text="0.00"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

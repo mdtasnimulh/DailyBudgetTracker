@@ -5,7 +5,7 @@
     <string name="addfloatbutton">addFloatButton</string>
     <string name="home">Home</string>
     <string name="budget">Budget</string>
-    <string name="state">State</string>
+    <string name="stat">Stat</string>
     <string name="more">More</string>
     <string name="no_records_found">No Records Found</string>
     <string name="delete_icon">Delete Icon</string>
@@ -17,7 +17,7 @@
     <string name="home_income_card_logo">home income card logo</string>
     <string name="income">Income</string>
     <string name="expense">Expense</string>
-    <string name="spending">Spending\'s Chart</string>
+    <string name="spending">Spending\'s by category</string>
     <string name="this_month">This Month</string>
     <string name="recent_transaction">Recent Transaction</string>
     <string name="see_more">See More</string>

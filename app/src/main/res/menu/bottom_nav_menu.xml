@@ -25,7 +25,7 @@
     <item
         android:id="@+id/stateViewFragment"
         android:icon="@drawable/ic_chart_black_filled"
-        android:title="@string/state"
+        android:title="@string/stat"
         app:cnb_iconTintMode="src_in"
         app:cnb_iconColor="@color/cherryRed"
         app:cnb_backgroundColor="@color/backgroundRed"

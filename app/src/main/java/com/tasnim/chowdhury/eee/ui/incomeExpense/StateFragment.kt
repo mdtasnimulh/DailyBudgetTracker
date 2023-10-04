@@ -22,6 +22,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.tasnim.chowdhury.eee.R
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.data.model.IncomeExpenseEntry
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentStateBinding
@@ -71,6 +72,7 @@ class StateFragment : Fragment() {
         super.onResume()
 
         setUpDateFilter()
+        setupCatDateFilter()
     }
 
     private fun initData() {
@@ -78,75 +80,6 @@ class StateFragment : Fragment() {
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
-
-            val incomeExpenseMap = mutableMapOf<String, IncomeExpenseEntry>()
-
-            incomeExpense.forEach { entry ->
-                val date = entry.iEDate // Replace with the actual date property of your data
-                val income = if (entry.iEType == "Income") entry.iEAmount ?: 0.0 else 0.0
-                val expense = if (entry.iEType == "Expense") entry.iEAmount ?: 0.0 else 0.0
-
-                // If an entry for this date already exists in the map, update it; otherwise, create a new entry
-                if (incomeExpenseMap.containsKey(date)) {
-                    val existingEntry = incomeExpenseMap[date]!!
-                    val updatedIncome = existingEntry.income + income
-                    val updatedExpense = existingEntry.expense + expense
-                    incomeExpenseMap[date!!] = IncomeExpenseEntry(date, updatedIncome.toFloat(), updatedExpense.toFloat())
-                } else {
-                    incomeExpenseMap[date!!] = IncomeExpenseEntry(date, income.toFloat(), expense.toFloat())
-                }
-            }
-
-            val dates = incomeExpenseMap.keys.toList()
-            val incomeValues = incomeExpenseMap.values.map { it.income }
-            val expenseValues = incomeExpenseMap.values.map { it.expense }
-            val incomeEntries = dates.indices.map { BarEntry(it.toFloat(), incomeValues[it]) }
-            val expenseEntries = dates.indices.map { BarEntry(it.toFloat() + 0.5f, expenseValues[it]) }
-
-            val incomeDataSet = BarDataSet(incomeEntries, "Income")
-            incomeDataSet.color = ContextCompat.getColor(requireContext(), R.color.debt_color)
-
-            val expenseDataSet = BarDataSet(expenseEntries, "Expense")
-            expenseDataSet.color = ContextCompat.getColor(requireContext(), R.color.orange3)
-
-            val groupSpace = 0.4f
-            val barSpace = 0.03f
-            val barWidth = 0.27f
-
-            val barData = BarData(incomeDataSet, expenseDataSet)
-            barData.barWidth = barWidth
-
-            binding.statBarChart.data = barData
-            binding.statBarChart.groupBars(0f, groupSpace, barSpace)
-
-            val xAxis: XAxis = binding.statBarChart.xAxis
-            xAxis.valueFormatter = object : ValueFormatter() {
-                private val dateFormatter = SimpleDateFormat("MM/dd", Locale.US)
-
-                override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                    val index = value.toInt()
-                    if (index >= 0 && index < dates.size) {
-                        val date = dates[index]
-                        val dateObj = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).parse(date)
-                        return dateFormatter.format(dateObj!!)
-                    }
-                    return ""
-                }
-            }
-            xAxis.position = XAxis.XAxisPosition.TOP
-            xAxis.setCenterAxisLabels(true)
-            xAxis.labelCount = dates.size
-            xAxis.setDrawGridLines(true)
-            xAxis.granularity = 1f
-            xAxis.isGranularityEnabled = true
-
-            binding.statBarChart.isScaleXEnabled = true
-            binding.statBarChart.isScaleYEnabled = false
-            binding.statBarChart.description.text = ""
-            binding.statBarChart.setVisibleXRange(0f, 5f)
-            binding.statBarChart.isDragEnabled = true
-
-            binding.statBarChart.invalidate()
 
             if (incomeExpense.isEmpty()) {
 
@@ -241,9 +174,188 @@ class StateFragment : Fragment() {
                 setupBalancePieChart()
                 setupCatPieChart()
 
+                setupBarChart(incomeExpense)
+
+                setupCategoryAmounts()
+
             }
         }
 
+    }
+
+    private fun setupCategoryAmounts() {
+        binding.foodAmount.text = foodBalance.toString()
+        binding.transportationAmount.text = transportationBalance.toString()
+        binding.housingAmount.text = housingBalance.toString()
+        binding.entertainmentAmount.text = entertainmentBalance.toString()
+        binding.healthcareAmount.text = healthcareBalance.toString()
+        binding.shoppingAmount.text = shoppingBalance.toString()
+        binding.educationAmount.text = educationBalance.toString()
+        binding.debtAmount.text = debtBalance.toString()
+        binding.savingsAmount.text = savingsBalance.toString()
+        binding.giftAmount.text = giftBalance.toString()
+        binding.travelAmount.text = travelBalance.toString()
+        binding.othersAmount.text = othersBalance.toString()
+
+        setupAmountColor()
+
+    }
+
+    private fun setupAmountColor() {
+        if (foodBalance < 1){
+            binding.foodAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.foodAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.food_color))
+            binding.foodTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.food_color))
+        }
+
+        if (transportationBalance < 1){
+            binding.transportationAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.transportationAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.transportation_color))
+            binding.transportationTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.transportation_color))
+        }
+
+        if (housingBalance < 1){
+            binding.housingAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.housingAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.housing_color))
+            binding.housingTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.housing_color))
+        }
+
+        if (entertainmentBalance < 1){
+            binding.entertainmentAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.entertainmentAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.entertainment_color))
+            binding.entertainmentTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.entertainment_color))
+        }
+
+        if (healthcareBalance < 1){
+            binding.healthcareAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.healthcareAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.healthcare_color))
+            binding.healthcareTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.healthcare_color))
+        }
+
+        if (shoppingBalance < 1){
+            binding.shoppingAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.shoppingAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.shopping_color))
+            binding.shoppingTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.shopping_color))
+        }
+
+        if (educationBalance < 1){
+            binding.educationAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.educationAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.education_color))
+            binding.educationTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.education_color))
+        }
+
+        if (debtBalance < 1){
+            binding.debtAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.debtAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.debt_color))
+            binding.debtTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.debt_color))
+        }
+
+        if (savingsBalance < 1){
+            binding.savingsAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.savingsAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.savings_color))
+            binding.savingsTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.savings_color))
+        }
+
+        if (giftBalance < 1){
+            binding.giftAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.giftAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.gift_color))
+            binding.giftTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.gift_color))
+        }
+
+        if (travelBalance < 1){
+            binding.travelAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.travelAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.travel_color))
+            binding.travelTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.travel_color))
+        }
+
+        if (othersBalance < 1){
+            binding.othersAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.graphiteGray))
+        }else{
+            binding.othersAmount.setTextColor(ContextCompat.getColor(requireContext(), R.color.others_color))
+            binding.othersTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.others_color))
+        }
+    }
+
+    private fun setupBarChart(incomeExpense: List<IncomeExpense>) {
+        val incomeExpenseMap = mutableMapOf<String, IncomeExpenseEntry>()
+
+        incomeExpense.forEach { entry ->
+            val date = entry.iEDate // Replace with the actual date property of your data
+            val income = if (entry.iEType == "Income") entry.iEAmount ?: 0.0 else 0.0
+            val expense = if (entry.iEType == "Expense") entry.iEAmount ?: 0.0 else 0.0
+
+            // If an entry for this date already exists in the map, update it; otherwise, create a new entry
+            if (incomeExpenseMap.containsKey(date)) {
+                val existingEntry = incomeExpenseMap[date]!!
+                val updatedIncome = existingEntry.income + income
+                val updatedExpense = existingEntry.expense + expense
+                incomeExpenseMap[date!!] = IncomeExpenseEntry(date, updatedIncome.toFloat(), updatedExpense.toFloat())
+            } else {
+                incomeExpenseMap[date!!] = IncomeExpenseEntry(date, income.toFloat(), expense.toFloat())
+            }
+        }
+
+        val dates = incomeExpenseMap.keys.toList()
+        val incomeValues = incomeExpenseMap.values.map { it.income }
+        val expenseValues = incomeExpenseMap.values.map { it.expense }
+        val incomeEntries = dates.indices.map { BarEntry(it.toFloat(), incomeValues[it]) }
+        val expenseEntries = dates.indices.map { BarEntry(it.toFloat() + 0.5f, expenseValues[it]) }
+
+        val incomeDataSet = BarDataSet(incomeEntries, "Income")
+        incomeDataSet.color = ContextCompat.getColor(requireContext(), R.color.debt_color)
+
+        val expenseDataSet = BarDataSet(expenseEntries, "Expense")
+        expenseDataSet.color = ContextCompat.getColor(requireContext(), R.color.orange3)
+
+        val groupSpace = 0.4f
+        val barSpace = 0.03f
+        val barWidth = 0.27f
+
+        val barData = BarData(incomeDataSet, expenseDataSet)
+        barData.barWidth = barWidth
+
+        binding.statBarChart.data = barData
+        binding.statBarChart.groupBars(0f, groupSpace, barSpace)
+
+        val xAxis: XAxis = binding.statBarChart.xAxis
+        xAxis.valueFormatter = object : ValueFormatter() {
+            private val dateFormatter = SimpleDateFormat("MM/dd", Locale.US)
+
+            override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+                val index = value.toInt()
+                if (index >= 0 && index < dates.size) {
+                    val date = dates[index]
+                    val dateObj = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).parse(date)
+                    return dateFormatter.format(dateObj!!)
+                }
+                return ""
+            }
+        }
+        xAxis.position = XAxis.XAxisPosition.TOP
+        xAxis.setCenterAxisLabels(true)
+        xAxis.labelCount = dates.size
+        xAxis.setDrawGridLines(true)
+        xAxis.granularity = 1f
+        xAxis.isGranularityEnabled = true
+
+        binding.statBarChart.isScaleXEnabled = true
+        binding.statBarChart.isScaleYEnabled = false
+        binding.statBarChart.description.text = ""
+        binding.statBarChart.setVisibleXRange(0f, 5f)
+        binding.statBarChart.isDragEnabled = true
+
+        binding.statBarChart.invalidate()
     }
 
     private fun setupBalancePieChart() {
@@ -276,7 +388,7 @@ class StateFragment : Fragment() {
         binding.statIEPieChart.setDrawEntryLabels(true)
         binding.statIEPieChart.setUsePercentValues(false)
         binding.statIEPieChart.extraRightOffset = 60f
-        binding.statIEPieChart.isRotationEnabled = false
+        binding.statIEPieChart.isRotationEnabled = true
 
         val l: Legend = binding.statIEPieChart.legend
         l.orientation = Legend.LegendOrientation.VERTICAL
@@ -356,7 +468,7 @@ class StateFragment : Fragment() {
         binding.catPieChart.setDrawEntryLabels(false)
         binding.catPieChart.setUsePercentValues(true)
         binding.catPieChart.extraRightOffset = 60f
-        binding.catPieChart.isRotationEnabled = false
+        binding.catPieChart.isRotationEnabled = true
 
         val l: Legend = binding.catPieChart.legend
         l.orientation = Legend.LegendOrientation.VERTICAL
@@ -398,6 +510,12 @@ class StateFragment : Fragment() {
         val filterItem = resources.getStringArray(R.array.date_filter)
         val dateFilterAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown, filterItem)
         binding.dateFilter.adapter = dateFilterAdapter
+    }
+
+    private fun setupCatDateFilter() {
+        val filterItem = resources.getStringArray(R.array.date_filter)
+        val dateFilterAdapter = ArrayAdapter(requireContext(), R.layout.date_filter_dropdown, filterItem)
+        binding.catDateFilter.adapter = dateFilterAdapter
     }
 
 }
