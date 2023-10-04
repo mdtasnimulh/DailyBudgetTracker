@@ -10,15 +10,24 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.tasnim.chowdhury.eee.R
+import com.tasnim.chowdhury.eee.data.model.IncomeExpenseEntry
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentStateBinding
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class StateFragment : Fragment() {
 
@@ -69,6 +78,75 @@ class StateFragment : Fragment() {
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
+
+            val incomeExpenseMap = mutableMapOf<String, IncomeExpenseEntry>()
+
+            incomeExpense.forEach { entry ->
+                val date = entry.iEDate // Replace with the actual date property of your data
+                val income = if (entry.iEType == "Income") entry.iEAmount ?: 0.0 else 0.0
+                val expense = if (entry.iEType == "Expense") entry.iEAmount ?: 0.0 else 0.0
+
+                // If an entry for this date already exists in the map, update it; otherwise, create a new entry
+                if (incomeExpenseMap.containsKey(date)) {
+                    val existingEntry = incomeExpenseMap[date]!!
+                    val updatedIncome = existingEntry.income + income
+                    val updatedExpense = existingEntry.expense + expense
+                    incomeExpenseMap[date!!] = IncomeExpenseEntry(date, updatedIncome.toFloat(), updatedExpense.toFloat())
+                } else {
+                    incomeExpenseMap[date!!] = IncomeExpenseEntry(date, income.toFloat(), expense.toFloat())
+                }
+            }
+
+            val dates = incomeExpenseMap.keys.toList()
+            val incomeValues = incomeExpenseMap.values.map { it.income }
+            val expenseValues = incomeExpenseMap.values.map { it.expense }
+            val incomeEntries = dates.indices.map { BarEntry(it.toFloat(), incomeValues[it]) }
+            val expenseEntries = dates.indices.map { BarEntry(it.toFloat() + 0.5f, expenseValues[it]) }
+
+            val incomeDataSet = BarDataSet(incomeEntries, "Income")
+            incomeDataSet.color = ContextCompat.getColor(requireContext(), R.color.debt_color)
+
+            val expenseDataSet = BarDataSet(expenseEntries, "Expense")
+            expenseDataSet.color = ContextCompat.getColor(requireContext(), R.color.orange3)
+
+            val groupSpace = 0.4f
+            val barSpace = 0.03f
+            val barWidth = 0.27f
+
+            val barData = BarData(incomeDataSet, expenseDataSet)
+            barData.barWidth = barWidth
+
+            binding.statBarChart.data = barData
+            binding.statBarChart.groupBars(0f, groupSpace, barSpace)
+
+            val xAxis: XAxis = binding.statBarChart.xAxis
+            xAxis.valueFormatter = object : ValueFormatter() {
+                private val dateFormatter = SimpleDateFormat("MM/dd", Locale.US)
+
+                override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+                    val index = value.toInt()
+                    if (index >= 0 && index < dates.size) {
+                        val date = dates[index]
+                        val dateObj = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).parse(date)
+                        return dateFormatter.format(dateObj!!)
+                    }
+                    return ""
+                }
+            }
+            xAxis.position = XAxis.XAxisPosition.TOP
+            xAxis.setCenterAxisLabels(true)
+            xAxis.labelCount = dates.size
+            xAxis.setDrawGridLines(true)
+            xAxis.granularity = 1f
+            xAxis.isGranularityEnabled = true
+
+            binding.statBarChart.isScaleXEnabled = true
+            binding.statBarChart.isScaleYEnabled = false
+            binding.statBarChart.description.text = ""
+            binding.statBarChart.setVisibleXRange(0f, 5f)
+            binding.statBarChart.isDragEnabled = true
+
+            binding.statBarChart.invalidate()
 
             if (incomeExpense.isEmpty()) {
 
