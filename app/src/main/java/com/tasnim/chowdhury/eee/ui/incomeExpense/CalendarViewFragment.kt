@@ -53,7 +53,7 @@ class CalendarViewFragment : Fragment() {
         binding.cRV.layoutManager = GridLayoutManager(requireContext(), 7)
     }
 
-    private fun daysInMonthArray(date: LocalDate): ArrayList<String> {
+    /*private fun daysInMonthArray(date: LocalDate): ArrayList<String> {
         val daysInMonthArray: ArrayList<String> = arrayListOf()
         val yearMonth: YearMonth = YearMonth.from(date)
         val daysInMonth: Int = yearMonth.lengthOfMonth()
@@ -69,7 +69,44 @@ class CalendarViewFragment : Fragment() {
         }
 
         return daysInMonthArray
+    }*/
+
+    private fun daysInMonthArray(date: LocalDate): ArrayList<String> {
+        val daysInMonthArray: ArrayList<String> = arrayListOf()
+        val yearMonth: YearMonth = YearMonth.from(date)
+        val daysInMonth: Int = yearMonth.lengthOfMonth()
+        val firstOfMonth: LocalDate = currentDate.withDayOfMonth(1)
+
+        // Calculate the number of days to show from the previous month.
+        val dayOfWeek: Int = firstOfMonth.dayOfWeek.value
+        val daysFromPrevMonth = if (dayOfWeek == 7) 0 else dayOfWeek
+        val prevMonth = currentDate.minusMonths(1)
+        val daysInPrevMonth = YearMonth.from(prevMonth).lengthOfMonth()
+
+        // Add days from the previous month.
+        for (i in (daysInPrevMonth - daysFromPrevMonth + 1)..daysInPrevMonth) {
+            daysInMonthArray.add(i.toString())
+        }
+
+        // Add days from the current month.
+        for (i in 1..daysInMonth) {
+            daysInMonthArray.add(i.toString())
+        }
+
+        // Calculate the number of days to show from the next month.
+        val totalDays = daysFromPrevMonth + daysInMonth
+        val daysFromNextMonth = 42 - totalDays
+        val nextMonth = currentDate.plusMonths(1)
+
+        // Add days from the next month.
+        for (i in 1..daysFromNextMonth) {
+            daysInMonthArray.add(i.toString())
+        }
+
+        return daysInMonthArray
     }
+
+
 
     private fun monthYearFromDate(date: LocalDate): String{
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM, yy")

@@ -1,5 +1,6 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.CalendarCelBinding
 import java.time.LocalDate
+import java.util.Calendar
 
 class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
@@ -19,6 +21,11 @@ class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate)
     inner class CalendarViewHolder(val binding: CalendarCelBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(position: Int) {
             binding.cCellDayText.text = dayOfMonth[position]
+
+            val thisMonthDates = getCurrentMonthDates()
+
+
+            Log.d("chkDate", "$dayOfMonth $thisMonthDates")
 
             /*val itemDate = LocalDate.of(
                 currentDate.year, currentDate.month, dayOfMonth[position].toInt()
@@ -47,6 +54,26 @@ class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate)
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         holder.bind(position)
+    }
+
+    fun getCurrentMonthDates(): List<Calendar> {
+        val calendar = Calendar.getInstance()
+        val currentYear = calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH)
+
+        // Set the calendar to the first day of the current month
+        calendar.set(currentYear, currentMonth, 1)
+
+        val dates = mutableListOf<Calendar>()
+
+        // Loop through the days of the current month
+        while (calendar.get(Calendar.MONTH) == currentMonth) {
+            val date = calendar.clone() as Calendar
+            dates.add(date)
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        return dates
     }
 
 }
