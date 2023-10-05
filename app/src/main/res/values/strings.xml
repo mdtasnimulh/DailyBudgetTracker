@@ -43,6 +43,16 @@
     <string name="category_colon">Category:</string>
     <string name="dummy_budget_title">This is a dummy title for a dummy budget. Latter this text will be replace you create a new budget from create budget fragment.</string>
     <string name="budget_details">Budget Details</string>
+    <string name="saturday">Sat</string>
+    <string name="sunday">Sun</string>
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="demo_month_year">October, 23</string>
+    <string name="calendar_go_to_previous_button">Calendar go to previous button</string>
+    <string name="calendar_go_to_forward_button">Calendar go to forward button</string>
 
     <string-array name="date_filter">
         <item>This Month</item>

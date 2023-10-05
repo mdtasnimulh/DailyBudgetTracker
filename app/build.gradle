@@ -83,7 +83,7 @@ dependencies {
 
     //-----firebase
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.8.1'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx:21.1.0'
 
     //-----chip bottom navigation bar

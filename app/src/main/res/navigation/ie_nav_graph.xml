@@ -26,6 +26,9 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_calendarViewFragment"
+            app:destination="@id/calendarViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/insertIEFragment"
@@ -116,4 +119,8 @@
             android:name="spendAmount"
             app:argType="float"/>
     </fragment>
+    <fragment
+        android:id="@+id/calendarViewFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.CalendarViewFragment"
+        android:label="CalendarViewFragment" />
 </navigation>

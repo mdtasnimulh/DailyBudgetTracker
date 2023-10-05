@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.incomeExpense.CalendarViewFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/calendarViewCl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/cHeaderLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/cPreviousMonth"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/food_cat_bg"
+                    android:contentDescription="@string/calendar_go_to_previous_button"
+                    android:paddingVertical="5dp"
+                    android:src="@drawable/ic_arrow_back" />
+
+                <TextView
+                    android:id="@+id/cMonthYearText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="@string/demo_month_year"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/cForwardMonth"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/food_cat_bg"
+                    android:contentDescription="@string/calendar_go_to_forward_button"
+                    android:paddingVertical="5dp"
+                    android:src="@drawable/ic_arrow_forward" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cWeekLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:weightSum="7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cHeaderLl">
+
+                <TextView
+                    android:id="@+id/cWeekSun"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:text="@string/sunday"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cWeekMon"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:text="@string/monday"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cWeekTue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:text="@string/tuesday"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cWeekWed"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:text="@string/wednesday"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cWeekThu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:text="@string/thursday"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cWeekFri"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:text="@string/friday"
+                    android:textColor="@color/cherryRed"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cWeekSat"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_black"
+                    android:gravity="center"
+                    android:paddingVertical="4dp"
+                    android:text="@string/saturday"
+                    android:textColor="@color/cherryRed"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cWeekLl" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarViewCl"
+            tools:text="00/00/0000" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

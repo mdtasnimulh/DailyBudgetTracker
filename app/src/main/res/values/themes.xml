@@ -48,4 +48,8 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+    <style name="CalendarWeekTextColor" parent="Widget.MaterialComponents.MaterialCalendar">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
 </resources>

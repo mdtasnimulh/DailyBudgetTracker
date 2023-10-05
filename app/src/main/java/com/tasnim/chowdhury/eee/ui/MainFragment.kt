@@ -109,6 +109,10 @@ class MainFragment : Fragment(){
 
     private fun setupClicks() {
 
+        binding.homeExpenseCardLl.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_calendarViewFragment)
+        }
+
         binding.addFloatButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_insertIEFragment)
         }
