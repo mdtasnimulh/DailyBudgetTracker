@@ -25,6 +25,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
             val calendarDate = dayOfMonth[position]
             val day = calendarDate.day
             val month = calendarDate.month
+            val week = calendarDate.dayName
 
             binding.cCellDayText.text = day.toString()
 
@@ -37,16 +38,41 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
                 binding.cCellDayText.setBackgroundResource(R.drawable.current_date_bg)
                 binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
             } else {
-                // Reset the background for other dates
-                binding.cCellDayText.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
-                binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.others_color))
+                if (!isCurrentMonth){
+                    // Set the background for dates that showing inside this month but not current month dates
+                    binding.cCellDayText.setBackgroundResource(R.drawable.not_month_date_bg)
+                    binding.cCellDayText.setTextColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.transparentSilver
+                        )
+                    )
+                }else {
+                    // Set the background for weekend dates
+                    if (week == "FRIDAY" || week == "SATURDAY"){
+                        binding.cCellDayText.setBackgroundResource(R.drawable.weekend_date_bg)
+                        binding.cCellDayText.setTextColor(
+                            ContextCompat.getColor(
+                                binding.root.context,
+                                R.color.roseRed
+                            )
+                        )
+                    }else {
+                        // Reset the background for other dates
+                        binding.cCellDayText.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
+                        binding.cCellDayText.setTextColor(
+                            ContextCompat.getColor(
+                                binding.root.context,
+                                R.color.others_color
+                            )
+                        )
+                    }
+                }
             }
 
-            Log.d("chkDate", "$dayOfMonth")
-            Log.d("chkMonth", "$isCurrentMonth $isCurrentDate $isCurrentCalendarMonth")
+            Log.d("chkWeek", "$isCurrentMonth, $isCurrentDate, $isCurrentCalendarMonth, $week")
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         return CalendarViewHolder(

@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/cCellDayText"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_margin="2dp"
             android:text="30"
             android:textSize="16sp"
             android:textColor="@color/others_color"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
-            android:paddingHorizontal="7dp"
+            android:paddingHorizontal="3dp"
             android:paddingVertical="5dp"
             android:background="@drawable/calendar_cell_layout_bg"
             app:layout_constraintBottom_toBottomOf="parent"
