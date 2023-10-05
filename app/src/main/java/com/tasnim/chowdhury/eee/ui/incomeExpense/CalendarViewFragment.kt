@@ -34,6 +34,17 @@ class CalendarViewFragment : Fragment() {
         currentDate = LocalDate.now()
         setMonthView()
 
+        setupClicks()
+
+        // Get today's position
+        val todayPosition = cAdapter?.getTodayPosition() ?: -1
+        // Scroll to today's position if it's valid
+        if (todayPosition >= 0) {
+            binding.cRV.scrollToPosition(todayPosition)
+        }
+    }
+
+    private fun setupClicks() {
         binding.cPreviousMonth.setOnClickListener {
             previousMonthAction()
         }
@@ -41,11 +52,8 @@ class CalendarViewFragment : Fragment() {
             nextMonthAction()
         }
 
-        // Get today's position
-        val todayPosition = cAdapter?.getTodayPosition() ?: -1
-        // Scroll to today's position if it's valid
-        if (todayPosition >= 0) {
-            binding.cRV.scrollToPosition(todayPosition)
+        binding.toolBarBackIcon.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 
