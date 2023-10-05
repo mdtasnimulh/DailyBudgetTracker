@@ -10,9 +10,9 @@ import com.tasnim.chowdhury.eee.databinding.CalendarCelBinding
 import java.time.LocalDate
 import java.util.Calendar
 
-class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
+class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: LocalDate): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
-    val dayOfMonth: ArrayList<String>
+    val dayOfMonth: ArrayList<CalendarDate>
 
     private var todayPosition = -1
 
@@ -20,24 +20,26 @@ class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate)
         this.dayOfMonth = dayOfMonth
     }
 
-    inner class CalendarViewHolder(val binding: CalendarCelBinding): RecyclerView.ViewHolder(binding.root){
+    inner class CalendarViewHolder(val binding: CalendarCelBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
-            binding.cCellDayText.text = dayOfMonth[position]
+            val calendarDate = dayOfMonth[position]
+            val day = calendarDate.day
+            val month = calendarDate.month
 
-            val thisMonthDates = getCurrentMonthDates()
+            binding.cCellDayText.text = day.toString()
 
-            if (dayOfMonth[position] == currentDate.dayOfMonth.toString() &&
-                thisMonthDates.any { it[Calendar.DAY_OF_MONTH] == currentDate.dayOfMonth && it[Calendar.MONTH] == currentDate.monthValue - 1 }) {
-                // Highlight the background for today's date
+            if (day == currentDate.dayOfMonth && month == currentDate.monthValue) {
+                // Highlight the background for today's date in the current month
                 binding.cCellDayText.setBackgroundResource(R.drawable.education_cat_bg)
             } else {
                 // Reset the background for other dates
-                binding.cCellDayText.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
+                binding.cCellDayText.setBackgroundResource(0)
             }
 
-            Log.d("chkDate", "$dayOfMonth $thisMonthDates")
+            Log.d("chkDate", "$dayOfMonth")
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         return CalendarViewHolder(

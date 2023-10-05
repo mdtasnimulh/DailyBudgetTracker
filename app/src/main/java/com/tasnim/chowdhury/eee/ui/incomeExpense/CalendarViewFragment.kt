@@ -61,33 +61,15 @@ class CalendarViewFragment : Fragment() {
 
     private fun setMonthView() {
         binding.cMonthYearText.text = monthYearFromDate(currentDate)
-        val daysInMonth: ArrayList<String> = daysInMonthArray(currentDate)
+        val daysInMonth: ArrayList<CalendarDate> = daysInMonthArray(currentDate)
 
         cAdapter = CalendarAdapter(daysInMonth, currentDate)
         binding.cRV.adapter = cAdapter
         binding.cRV.layoutManager = GridLayoutManager(requireContext(), 7)
     }
 
-    /*private fun daysInMonthArray(date: LocalDate): ArrayList<String> {
-        val daysInMonthArray: ArrayList<String> = arrayListOf()
-        val yearMonth: YearMonth = YearMonth.from(date)
-        val daysInMonth: Int = yearMonth.lengthOfMonth()
-        val firstOfMonth: LocalDate = currentDate.withDayOfMonth(1)
-        val dayOfWeek: Int = firstOfMonth.dayOfWeek.value
-
-        for (i in 1..42){
-            if (i <= dayOfWeek || i > (daysInMonth + dayOfWeek)){
-                daysInMonthArray.add("")
-            }else {
-                daysInMonthArray.add((i - dayOfWeek).toString())
-            }
-        }
-
-        return daysInMonthArray
-    }*/
-
-    private fun daysInMonthArray(date: LocalDate): ArrayList<String> {
-        val daysInMonthArray: ArrayList<String> = arrayListOf()
+    private fun daysInMonthArray(date: LocalDate): ArrayList<CalendarDate> {
+        val daysInMonthArray: ArrayList<CalendarDate> = arrayListOf()
         val yearMonth: YearMonth = YearMonth.from(date)
         val daysInMonth: Int = yearMonth.lengthOfMonth()
         val firstOfMonth: LocalDate = currentDate.withDayOfMonth(1)
@@ -100,12 +82,12 @@ class CalendarViewFragment : Fragment() {
 
         // Add days from the previous month.
         for (i in (daysInPrevMonth - daysFromPrevMonth + 1)..daysInPrevMonth) {
-            daysInMonthArray.add(i.toString())
+            daysInMonthArray.add(CalendarDate(i, prevMonth.monthValue))
         }
 
         // Add days from the current month.
         for (i in 1..daysInMonth) {
-            daysInMonthArray.add(i.toString())
+            daysInMonthArray.add(CalendarDate(i, date.monthValue))
         }
 
         // Calculate the number of days to show from the next month.
@@ -115,13 +97,11 @@ class CalendarViewFragment : Fragment() {
 
         // Add days from the next month.
         for (i in 1..daysFromNextMonth) {
-            daysInMonthArray.add(i.toString())
+            daysInMonthArray.add(CalendarDate(i, nextMonth.monthValue))
         }
 
         return daysInMonthArray
     }
-
-
 
     private fun monthYearFromDate(date: LocalDate): String{
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM, yy")
