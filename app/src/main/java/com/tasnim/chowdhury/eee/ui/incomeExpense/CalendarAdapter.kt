@@ -28,15 +28,22 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
 
             binding.cCellDayText.text = day.toString()
 
-            if (day == currentDate.dayOfMonth && month == currentDate.monthValue) {
+            val isCurrentMonth = month == currentDate.monthValue
+            val isCurrentDate = day == currentDate.dayOfMonth
+            val isCurrentCalendarMonth = month == Calendar.getInstance().get(Calendar.MONTH) + 1
+
+            if (isCurrentMonth && isCurrentDate && isCurrentCalendarMonth) {
                 // Highlight the background for today's date in the current month
-                binding.cCellDayText.setBackgroundResource(R.drawable.education_cat_bg)
+                binding.cCellDayText.setBackgroundResource(R.drawable.current_date_bg)
+                binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
             } else {
                 // Reset the background for other dates
-                binding.cCellDayText.setBackgroundResource(0)
+                binding.cCellDayText.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
+                binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.others_color))
             }
 
             Log.d("chkDate", "$dayOfMonth")
+            Log.d("chkMonth", "$isCurrentMonth $isCurrentDate $isCurrentCalendarMonth")
         }
     }
 
