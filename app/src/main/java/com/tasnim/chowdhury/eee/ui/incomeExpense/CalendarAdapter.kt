@@ -14,6 +14,8 @@ class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate)
 
     val dayOfMonth: ArrayList<String>
 
+    private var todayPosition = -1
+
     init {
         this.dayOfMonth = dayOfMonth
     }
@@ -24,19 +26,16 @@ class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate)
 
             val thisMonthDates = getCurrentMonthDates()
 
+            if (dayOfMonth[position] == currentDate.dayOfMonth.toString() &&
+                thisMonthDates.any { it[Calendar.DAY_OF_MONTH] == currentDate.dayOfMonth && it[Calendar.MONTH] == currentDate.monthValue - 1 }) {
+                // Highlight the background for today's date
+                binding.cCellDayText.setBackgroundResource(R.drawable.education_cat_bg)
+            } else {
+                // Reset the background for other dates
+                binding.cCellDayText.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
+            }
 
             Log.d("chkDate", "$dayOfMonth $thisMonthDates")
-
-            /*val itemDate = LocalDate.of(
-                currentDate.year, currentDate.month, dayOfMonth[position].toInt()
-            )
-            if (itemDate == currentDate) {
-                binding.cCellDayText.setBackgroundResource(R.drawable.current_date_bg)
-                binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.offWhite))
-            } else {
-                binding.cCellDayText.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
-                binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.others_color))
-            }*/
         }
     }
 
@@ -74,6 +73,10 @@ class CalendarAdapter(dayOfMonth: ArrayList<String>, val currentDate: LocalDate)
         }
 
         return dates
+    }
+
+    fun getTodayPosition(): Int {
+        return todayPosition
     }
 
 }

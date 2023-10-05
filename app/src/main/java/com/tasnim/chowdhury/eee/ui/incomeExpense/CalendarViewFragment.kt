@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.tasnim.chowdhury.eee.databinding.FragmentCalendarViewBinding
 import java.time.LocalDate
@@ -42,6 +44,19 @@ class CalendarViewFragment : Fragment() {
         binding.cForwardMonth.setOnClickListener {
             nextMonthAction()
         }
+
+        // Get today's position
+        val todayPosition = cAdapter?.getTodayPosition() ?: -1
+        // Scroll to today's position if it's valid
+        if (todayPosition >= 0) {
+            binding.cRV.scrollToPosition(todayPosition)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        handleBackPressed()
     }
 
     private fun setMonthView() {
@@ -121,6 +136,15 @@ class CalendarViewFragment : Fragment() {
     private fun nextMonthAction(){
         currentDate = currentDate.plusMonths(1)
         setMonthView()
+    }
+
+    private fun handleBackPressed(){
+        val callBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().navigateUp()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
     }
 
 }
