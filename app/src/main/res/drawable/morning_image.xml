@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="400dp"
+    android:height="400dp"
+    android:viewportWidth="400"
+    android:viewportHeight="400">
+  <path
+      android:pathData="M0,0h400v400h-400z">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startX="200"
+          android:startY="400"
+          android:endX="200"
+          android:endY="0"
+          android:type="linear">
+        <item android:offset="0" android:color="#FF1CE4F9"/>
+        <item android:offset="1" android:color="#FF098BDB"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M195.95,186.9m-92.86,0a92.86,92.86 0,1 1,185.72 0a92.86,92.86 0,1 1,-185.72 0"
+      android:fillColor="#f2e111"/>
+  <path
+      android:pathData="M186.67,307.33c-3.85,0 -7,-2.55 -7,-5.67s-3.15,-5.66 -7,-5.66H157c-3.85,0 -7,-2.55 -7,-5.67s3.15,-5.66 7,-5.66h45.33c3.85,0 7,-2.63 7,-5.84s-3.15,-5.83 -7,-5.83H114.67c-3.85,0 -7,2.62 -7,5.83s3.15,5.84 7,5.84h1c3.85,0 7,2.55 7,5.66s-3.15,5.67 -7,5.67h-22c-3.85,0 -7,2.62 -7,5.83s2.92,5.83 6.5,5.83 6.5,2.55 6.5,5.67 3.15,5.67 7,5.67H204c3.85,0 7,-2.63 7,-5.84s-3.15,-5.83 -7,-5.83Z"
+      android:fillColor="#fff"/>
+  <path
+      android:pathData="M277.33,66.66c-3.85,0 -7,-2.25 -7,-5s3.15,-5 7,-5h7.34c3.85,0 7,-2.62 7,-5.83s-3.15,-5.83 -7,-5.83H241c-3.85,0 -7,2.47 -7,5.5s-3.15,5.5 -7,5.5h-7.33c-3.85,0 -7,2.4 -7,5.33s-1.88,5.33 -4.17,5.33 -4.17,2.63 -4.17,5.84 3.15,5.83 7,5.83h79c3.85,0 7,-2.62 7,-5.83s-3.15,-5.84 -7,-5.84Z"
+      android:fillColor="#fff"/>
+  <path
+      android:pathData="M341.33,292c-3.85,0 -7,-2.55 -7,-5.67s-3.15,-5.67 -7,-5.67H283.67c-3.85,0 -7,2.63 -7,5.84s3.15,5.83 7,5.83h1c3.85,0 7,2.55 7,5.67s3.15,5.66 7,5.66h43.66c3.85,0 7,-2.62 7,-5.83s-3.15,-5.83 -7,-5.83Z"
+      android:fillColor="#fff"/>
+  <path
+      android:pathData="M142.67,168.83c0,-3.21 -3.15,-5.83 -7,-5.83h-23c-3.85,0 -7,-2.1 -7,-4.67s3.07,-4.67 6.83,-4.67 6.83,-2.62 6.83,-5.83 -3.15,-5.83 -7,-5.83H56c-3.85,0 -7,2.62 -7,5.83s3.15,5.83 7,5.83H74c3.85,0 7,2.1 7,4.67S77.85,163 74,163H39c-3.85,0 -7,2.32 -7,5.16s-3,5.17 -6.67,5.17 -6.66,2.62 -6.66,5.83 3.15,5.84 7,5.84H61c3.85,0 7,-2.33 7,-5.17s3.15,-5.17 7,-5.17h60.67C139.52,174.66 142.67,172 142.67,168.83Z"
+      android:fillColor="#fff"/>
+</vector>

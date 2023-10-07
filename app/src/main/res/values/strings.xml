@@ -55,6 +55,7 @@
     <string name="calendar_go_to_forward_button">Calendar go to forward button</string>
     <string name="no_transaction_found_message">Oh no!, no transactions found from this date.\n Add new transaction to view transactions here.</string>
     <string name="transaction_s_from_date"><![CDATA[Transaction\'s from Date ->]]></string>
+    <string name="greeting_image">Greeting Image</string>
 
     <string-array name="date_filter">
         <item>This Month</item>

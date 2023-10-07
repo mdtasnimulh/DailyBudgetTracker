@@ -25,6 +25,9 @@ import com.tasnim.chowdhury.eee.ui.incomeExpense.data.viewModel.IncomeExpenseVie
 import com.tasnim.chowdhury.eee.databinding.FragmentMainBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.MainFragmentAdapter
 import java.text.NumberFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.LocalTime
 
 
 class MainFragment : Fragment(){
@@ -55,6 +58,10 @@ class MainFragment : Fragment(){
 
     private var isLayoutMoved = false
     private var isMenuOpen = false
+
+    private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+    private val currentTimeStr = LocalTime.now().format(timeFormatter)
+    private val currentTime = LocalTime.parse(currentTimeStr)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -193,6 +200,38 @@ class MainFragment : Fragment(){
     }
 
     private fun initData() {
+
+        when {
+            currentTime.isAfter(LocalTime.parse("00:00")) && currentTime.isBefore(LocalTime.parse("11:59")) -> {
+                binding.greetingsText.text = "Good Morning"
+                binding.greetingsText.setTextColor(ContextCompat.getColor(requireContext(), R.color.morningBlue))
+                binding.greetingImage.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.morning_image))
+            }
+
+            currentTime.isAfter(LocalTime.parse("12:00")) && currentTime.isBefore(LocalTime.parse("17:59")) -> {
+                binding.greetingsText.text = "Good Afternoon"
+                binding.greetingsText.setTextColor(ContextCompat.getColor(requireContext(), R.color.amberOrange))
+                binding.greetingImage.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.afternoon_image))
+            }
+
+            currentTime.isAfter(LocalTime.parse("18:00")) && currentTime.isBefore(LocalTime.parse("20:29")) -> {
+                binding.greetingsText.text = "Good Evening"
+                binding.greetingsText.setTextColor(ContextCompat.getColor(requireContext(), R.color.orange))
+                binding.greetingImage.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.evening_image))
+            }
+
+            currentTime.isAfter(LocalTime.parse("20:30")) && currentTime.isBefore(LocalTime.parse("23:59")) -> {
+                binding.greetingsText.text = "Day is ending soon"
+                binding.greetingsText.setTextColor(ContextCompat.getColor(requireContext(), R.color.nightBlue))
+                binding.greetingImage.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.night_image))
+            }
+
+            else -> {
+                binding.greetingsText.text = "Have a good day"
+                binding.greetingsText.setTextColor(ContextCompat.getColor(requireContext(), R.color.amberOrange))
+                binding.greetingImage.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.afternoon_image))
+            }
+        }
 
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
