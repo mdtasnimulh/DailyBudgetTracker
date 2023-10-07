@@ -2,10 +2,12 @@ package com.tasnim.chowdhury.eee.ui.incomeExpense
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
+import com.tasnim.chowdhury.eee.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.databinding.CalendarCelBinding
 import java.time.LocalDate
 import java.util.Calendar
@@ -32,6 +34,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
             val year = calendarDate.year
 
             binding.cCellDayText.text = day.toString()
+            binding.cEventDot.visibility = View.GONE
 
             val isCurrentMonth = month == currentDate.monthValue
             val isCurrentDate = day == currentDate.dayOfMonth
@@ -39,12 +42,12 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
 
             if (isCurrentMonth && isCurrentDate && isCurrentCalendarMonth) {
                 // Highlight the background for today's date in the current month
-                binding.cCellDayText.setBackgroundResource(R.drawable.current_date_bg)
+                binding.dateCl.setBackgroundResource(R.drawable.current_date_bg)
                 binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
             } else {
                 if (!isCurrentMonth){
                     // Set the background for dates that showing inside this month but not current month dates
-                    binding.cCellDayText.setBackgroundResource(R.drawable.not_month_date_bg)
+                    binding.dateCl.setBackgroundResource(R.drawable.not_month_date_bg)
                     binding.cCellDayText.setTextColor(
                         ContextCompat.getColor(
                             binding.root.context,
@@ -54,7 +57,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
                 }else {
                     // Set the background for weekend dates
                     if (week == "FRIDAY" || week == "SATURDAY"){
-                        binding.cCellDayText.setBackgroundResource(R.drawable.weekend_date_bg)
+                        binding.dateCl.setBackgroundResource(R.drawable.weekend_date_bg)
                         binding.cCellDayText.setTextColor(
                             ContextCompat.getColor(
                                 binding.root.context,
@@ -63,7 +66,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
                         )
                     }else {
                         // Reset the background for other dates
-                        binding.cCellDayText.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
+                        binding.dateCl.setBackgroundResource(R.drawable.calendar_cell_layout_bg)
                         binding.cCellDayText.setTextColor(
                             ContextCompat.getColor(
                                 binding.root.context,
@@ -79,10 +82,8 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
             // Set the background based on whether it's selected
             if (isSelected) {
                 // Set the background for the selected item and text color of the selected date
-                binding.cCellDayText.setBackgroundResource(R.drawable.selected_date_bg)
+                binding.dateCl.setBackgroundResource(R.drawable.selected_date_bg)
                 binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
-            }else {
-
             }
 
 
