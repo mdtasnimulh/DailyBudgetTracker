@@ -88,7 +88,13 @@ class CalendarViewFragment : Fragment() {
         binding.cRV.adapter = cAdapter
         binding.cRV.layoutManager = GridLayoutManager(requireContext(), 7)
 
-        cAdapter?.dateClick = { dates ->
+        cAdapter?.dateClick = { dates, selectedItemPosition ->
+            // Update the selected item position
+            cAdapter?.selectedItemPosition = selectedItemPosition
+
+            // Notify the adapter that the data has changed (to refresh backgrounds)
+            cAdapter?.notifyDataSetChanged()
+
             val formattedDate = LocalDate.of(dates.year, dates.month, dates.day)
                 .format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
             binding.dateView.text = formattedDate

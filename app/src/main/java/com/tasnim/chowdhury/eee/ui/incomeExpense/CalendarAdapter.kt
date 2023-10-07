@@ -15,7 +15,9 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
     val dayOfMonth: ArrayList<CalendarDate>
 
     private var todayPosition = -1
-    var dateClick:((date: CalendarDate) -> Unit)? = null
+    var dateClick:((date: CalendarDate, selectedItemPosition: Int) -> Unit)? = null
+
+    var selectedItemPosition = RecyclerView.NO_POSITION
 
     init {
         this.dayOfMonth = dayOfMonth
@@ -72,8 +74,25 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
                 }
             }
 
+            // Check if this item is the currently selected item
+            val isSelected = position == selectedItemPosition
+            // Set the background based on whether it's selected
+            if (isSelected) {
+                // Set the background for the selected item and text color of the selected date
+                binding.cCellDayText.setBackgroundResource(R.drawable.selected_date_bg)
+                binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
+            }else {
+
+            }
+
+
             binding.dateCl.setOnClickListener {
-                dateClick?.invoke(calendarDate)
+                // Update the selected item position
+                selectedItemPosition = position
+                // Notify the adapter that the data has changed (to refresh backgrounds)
+                notifyDataSetChanged()
+                // Handle item click here
+                dateClick?.invoke(calendarDate,selectedItemPosition)
             }
         }
     }
