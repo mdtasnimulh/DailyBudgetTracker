@@ -1,6 +1,5 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentCalendarViewBinding
-import com.tasnim.chowdhury.eee.other.currencyType
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.MainFragmentAdapter
 import java.text.SimpleDateFormat
 import java.time.LocalDate
