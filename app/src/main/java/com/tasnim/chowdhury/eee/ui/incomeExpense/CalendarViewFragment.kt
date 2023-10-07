@@ -1,23 +1,38 @@
 package com.tasnim.chowdhury.eee.ui.incomeExpense
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentCalendarViewBinding
+import com.tasnim.chowdhury.eee.other.currencyType
+import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.MainFragmentAdapter
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 class CalendarViewFragment : Fragment() {
 
     private lateinit var binding: FragmentCalendarViewBinding
     private var currentDate = LocalDate.now()
     private var cAdapter: CalendarAdapter? = null
+    private var requiredDate = ""
+
+    private lateinit var viewModel: IncomeExpenseViewModel
+    private lateinit var dateDetailsAdapter: MainFragmentAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +47,10 @@ class CalendarViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         currentDate = LocalDate.now()
+        binding.dateView.text = currentDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
         setMonthView()
 
+        setupAdapter()
         setupClicks()
 
         // Get today's position
@@ -70,6 +87,19 @@ class CalendarViewFragment : Fragment() {
         cAdapter = CalendarAdapter(daysInMonth, currentDate)
         binding.cRV.adapter = cAdapter
         binding.cRV.layoutManager = GridLayoutManager(requireContext(), 7)
+
+        cAdapter?.dateClick = { dates ->
+            val formattedDate = LocalDate.of(dates.year, dates.month, dates.day)
+                .format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
+            binding.dateView.text = formattedDate
+            requiredDate = formattedDate
+            Log.d("chkDate", "$requiredDate ==")
+            initData()
+            binding.dateDetailsRv.requestFocus()
+        }
+
+        requiredDate = currentDate.format(DateTimeFormatter.ofPattern("MMM dd, yyy"))
+        initData()
     }
 
     private fun daysInMonthArray(date: LocalDate): ArrayList<CalendarDate> {
@@ -86,13 +116,13 @@ class CalendarViewFragment : Fragment() {
 
         // Add days from the previous month.
         for (i in (daysInPrevMonth - daysFromPrevMonth + 1)..daysInPrevMonth) {
-            daysInMonthArray.add(CalendarDate(i, prevMonth.monthValue, ""))
+            daysInMonthArray.add(CalendarDate(i, prevMonth.monthValue, prevMonth.year, ""))
         }
 
         // Add days from the current month.
         for (i in 1..daysInMonth) {
             val dayOfWeekName = calculateDayOfWeekName(date.withDayOfMonth(i))
-            daysInMonthArray.add(CalendarDate(i, date.monthValue, dayOfWeekName))
+            daysInMonthArray.add(CalendarDate(i, date.monthValue, date.year, dayOfWeekName))
         }
 
         // Calculate the number of days to show from the next month.
@@ -102,7 +132,7 @@ class CalendarViewFragment : Fragment() {
 
         // Add days from the next month.
         for (i in 1..daysFromNextMonth) {
-            daysInMonthArray.add(CalendarDate(i, nextMonth.monthValue, ""))
+            daysInMonthArray.add(CalendarDate(i, nextMonth.monthValue, nextMonth.year, ""))
         }
 
         return daysInMonthArray
@@ -126,6 +156,49 @@ class CalendarViewFragment : Fragment() {
     private fun nextMonthAction(){
         currentDate = currentDate.plusMonths(1)
         setMonthView()
+    }
+
+    private fun setupAdapter() {
+        dateDetailsAdapter = MainFragmentAdapter(requireContext(), "BudgetDetailsFragment")
+        binding.dateDetailsRv.adapter = dateDetailsAdapter
+        binding.dateDetailsRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.dateDetailsRv.setHasFixedSize(false)
+        binding.dateDetailsRv.itemAnimator = DefaultItemAnimator()
+    }
+
+    private fun initData() {
+
+        val fromDate = requiredDate
+
+        viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
+
+        viewModel.getAllIncomeExpense.observe(viewLifecycleOwner){ incomeExpense ->
+
+            val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.US)
+
+            if (incomeExpense.isNotEmpty()) {
+                val sortedData = incomeExpense.filter { data ->
+                    val transactionDate = Date(data.iEDate?.let { dateFormat.parse(it)?.time } ?: 0L)
+                    val formattedTransactionDate = dateFormat.format(transactionDate) // Format the transactionDate
+
+                    formattedTransactionDate == fromDate
+                }
+
+                dateDetailsAdapter.addIncomeExpense(sortedData)
+
+                if (sortedData.isNotEmpty()){
+                    binding.noTransactionTv.visibility = View.GONE
+                    binding.noTransactionView.visibility = View.GONE
+                    binding.dateDetailsRv.visibility = View.VISIBLE
+                }else {
+                    binding.noTransactionTv.visibility = View.VISIBLE
+                    binding.noTransactionView.visibility = View.VISIBLE
+                    binding.dateDetailsRv.visibility = View.GONE
+                }
+            }
+
+        }
+
     }
 
     private fun handleBackPressed(){

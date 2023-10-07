@@ -15,6 +15,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
     val dayOfMonth: ArrayList<CalendarDate>
 
     private var todayPosition = -1
+    var dateClick:((date: CalendarDate) -> Unit)? = null
 
     init {
         this.dayOfMonth = dayOfMonth
@@ -26,6 +27,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
             val day = calendarDate.day
             val month = calendarDate.month
             val week = calendarDate.dayName
+            val year = calendarDate.year
 
             binding.cCellDayText.text = day.toString()
 
@@ -70,7 +72,9 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
                 }
             }
 
-            Log.d("chkWeek", "$isCurrentMonth, $isCurrentDate, $isCurrentCalendarMonth, $week")
+            binding.dateCl.setOnClickListener {
+                dateClick?.invoke(calendarDate)
+            }
         }
     }
 
