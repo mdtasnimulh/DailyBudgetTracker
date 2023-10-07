@@ -17,12 +17,12 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.tasnim.chowdhury.eee.R
-import com.tasnim.chowdhury.eee.data.model.IncomeExpense
-import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentInsertIEBinding
-import com.tasnim.chowdhury.eee.ui.incomeExpense.CalculatorDialogFragment
-import com.tasnim.chowdhury.eee.ui.incomeExpense.CalculatorDialogFragment.Companion.TAG
-import com.tasnim.chowdhury.eee.ui.incomeExpense.CategoryChooseDialogFragment
+import com.tasnim.chowdhury.eee.ui.incomeExpense.calculator.CalculatorDialogFragment
+import com.tasnim.chowdhury.eee.ui.incomeExpense.calculator.CalculatorDialogFragment.Companion.TAG
+import com.tasnim.chowdhury.eee.ui.categoryDialogs.CategoryChooseDialogFragment
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

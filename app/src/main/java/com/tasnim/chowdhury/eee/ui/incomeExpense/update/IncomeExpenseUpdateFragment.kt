@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentIncomeExpenseUpdateBinding
-import com.tasnim.chowdhury.eee.data.model.IncomeExpense
-import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.viewModel.IncomeExpenseViewModel
 
 class IncomeExpenseUpdateFragment : Fragment() {
 

@@ -1,6 +1,5 @@
 package com.tasnim.chowdhury.eee
 
-import android.content.DialogInterface.OnDismissListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,11 +10,9 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.tasnim.chowdhury.eee.databinding.ActivityMainBinding
-import com.tasnim.chowdhury.eee.ui.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

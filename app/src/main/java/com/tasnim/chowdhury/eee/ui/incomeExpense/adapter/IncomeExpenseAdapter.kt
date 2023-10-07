@@ -9,15 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
-import com.tasnim.chowdhury.eee.data.model.HeaderItem
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.HeaderItem
 import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
-import com.tasnim.chowdhury.eee.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense
 import com.tasnim.chowdhury.eee.databinding.RvHeaderLayoutBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.details.AllTransactionFragmentDirections
 
 class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var clickCallback:((item:IncomeExpense, flag: String)->Unit)? = null
+    var clickCallback:((item: IncomeExpense, flag: String)->Unit)? = null
     var data: MutableList<IncomeExpense> = mutableListOf()
 
     companion object{

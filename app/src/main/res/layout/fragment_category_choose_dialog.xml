@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FEFFF2"
-        tools:context=".ui.incomeExpense.CategoryChooseDialogFragment">
+        tools:context=".ui.categoryDialogs.CategoryChooseDialogFragment">
 
         <TextView
             android:id="@+id/chooseCatTv"

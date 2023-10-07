@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.tasnim.chowdhury.eee.ui.MainFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.home.MainFragment"
         android:label="Home"
         tools:layout="@layout/fragment_main" >
         <action
@@ -49,11 +49,11 @@
             app:destination="@id/mainFragment" />
         <argument
             android:name="currentItem"
-            app:argType="com.tasnim.chowdhury.eee.data.model.IncomeExpense"/>
+            app:argType="com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense"/>
     </fragment>
     <fragment
         android:id="@+id/budgetFragment"
-        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.BudgetFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.budget.BudgetFragment"
         android:label="fragment_budget"
         tools:layout="@layout/fragment_budget" >
         <action
@@ -65,12 +65,12 @@
     </fragment>
     <fragment
         android:id="@+id/stateViewFragment"
-        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.StateFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.stat.StateFragment"
         android:label="fragment_state"
         tools:layout="@layout/fragment_state" />
     <fragment
         android:id="@+id/moreFragment"
-        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.MoreFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.more.MoreFragment"
         android:label="fragment_more"
         tools:layout="@layout/fragment_more" />
     <fragment
@@ -82,7 +82,7 @@
             app:destination="@id/incomeExpenseUpdateFragment" />
         <argument
             android:name="recordDetails"
-            app:argType="com.tasnim.chowdhury.eee.data.model.IncomeExpense"
+            app:argType="com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense"
             app:nullable="true" />
     </fragment>
     <fragment
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/insertBudgetFragment"
-        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.insert.InsertBudgetFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.budget.insert.InsertBudgetFragment"
         android:label="InsertBudgetFragment" >
         <action
             android:id="@+id/action_insertBudgetFragment_to_budgetFragment"
@@ -106,14 +106,14 @@
     </fragment>
     <fragment
         android:id="@+id/budgetDetailsFragment2"
-        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.details.BudgetDetailsFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.budget.details.BudgetDetailsFragment"
         android:label="BudgetDetailsFragment" >
         <action
             android:id="@+id/action_budgetDetailsFragment2_to_budgetFragment"
             app:destination="@id/budgetFragment" />
         <argument
             android:name="budgetDetails"
-            app:argType="com.tasnim.chowdhury.eee.data.model.Budget"
+            app:argType="com.tasnim.chowdhury.eee.ui.budget.data.model.Budget"
             app:nullable="true"/>
         <argument
             android:name="spendAmount"
@@ -121,6 +121,6 @@
     </fragment>
     <fragment
         android:id="@+id/calendarViewFragment"
-        android:name="com.tasnim.chowdhury.eee.ui.incomeExpense.CalendarViewFragment"
+        android:name="com.tasnim.chowdhury.eee.ui.calendar.CalendarViewFragment"
         android:label="CalendarViewFragment" />
 </navigation>

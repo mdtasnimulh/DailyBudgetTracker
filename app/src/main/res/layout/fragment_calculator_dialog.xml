@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FEFFF2"
-        tools:context=".ui.incomeExpense.CalculatorDialogFragment">
+        tools:context=".ui.incomeExpense.calculator.CalculatorDialogFragment">
 
         <TextView
             android:id="@+id/calculateAmountTv"

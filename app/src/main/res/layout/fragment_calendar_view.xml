@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.incomeExpense.CalendarViewFragment">
+        tools:context=".ui.calendar.CalendarViewFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolBar"
@@ -94,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -260,7 +260,7 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Transaction's from Date: "
+                    android:text="@string/transaction_s_from_date"
                     android:textColor="@color/black_medium"
                     android:textSize="14sp"
                     android:gravity="center_vertical"

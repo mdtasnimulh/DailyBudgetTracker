@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.incomeExpense.insert.InsertBudgetFragment">
+        tools:context=".ui.budget.insert.InsertBudgetFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolBar"

@@ -17,7 +17,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.tasnim.chowdhury.eee.R
-import com.tasnim.chowdhury.eee.data.viewModel.IncomeExpenseViewModel
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentRecordDetailsBinding
 
 class RecordDetailsFragment : Fragment() {

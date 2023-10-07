@@ -8,8 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.MainRvLayoutBinding
-import com.tasnim.chowdhury.eee.data.model.IncomeExpense
-import com.tasnim.chowdhury.eee.other.currencyType
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense
+import com.tasnim.chowdhury.eee.ui.utils.currencyType
 
 class MainFragmentAdapter(val context: Context, flag: String): RecyclerView.Adapter<MainFragmentAdapter.MainFragmentViewHolder>() {
 
@@ -21,8 +21,8 @@ class MainFragmentAdapter(val context: Context, flag: String): RecyclerView.Adap
     inner class MainFragmentViewHolder(private val binding: MainRvLayoutBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(incomeExpense: IncomeExpense, position: Int){
             val amountPlus = "$currencyType+${incomeExpense.iEAmount.toString()}"
-            val amountMinus = "${currencyType}-${incomeExpense.iEAmount.toString()}"
-            val amount = "${currencyType}${incomeExpense.iEAmount.toString()}"
+            val amountMinus = "$currencyType-${incomeExpense.iEAmount.toString()}"
+            val amount = "$currencyType${incomeExpense.iEAmount.toString()}"
             binding.iconImgV.setImageResource(incomeExpense.categoryIcon)
             binding.iconImgV.background = ContextCompat.getDrawable(context, incomeExpense.catIconBg)
             binding.titleTv.text = incomeExpense.iETitle
