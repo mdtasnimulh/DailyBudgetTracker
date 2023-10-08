@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.CalendarCelBinding
 import com.tasnim.chowdhury.eee.ui.calendar.data.model.CalendarDate
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
-class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: LocalDate): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
+class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, private val currentDate: LocalDate): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
     val dayOfMonth: ArrayList<CalendarDate>
 
@@ -19,13 +21,15 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
     var dateClick:((date: CalendarDate, selectedItemPosition: Int) -> Unit)? = null
 
     var selectedItemPosition = RecyclerView.NO_POSITION
+    private var incomeExpenseList: MutableList<IncomeExpense> = mutableListOf()
+    private val dateToTransactionCount = mutableMapOf<LocalDate, Int>()
 
     init {
         this.dayOfMonth = dayOfMonth
     }
 
     inner class CalendarViewHolder(val binding: CalendarCelBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(position: Int) {
+        fun bind(position: Int, currentDate: LocalDate) {
             val calendarDate = dayOfMonth[position]
             val day = calendarDate.day
             val month = calendarDate.month
@@ -33,7 +37,17 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
             val year = calendarDate.year
 
             binding.cCellDayText.text = day.toString()
-            binding.cEventDot.visibility = View.GONE
+
+            // Check if the current date has transactions
+            val currentCalendarDate = LocalDate.of(year, month, day)
+            val transactionCount = dateToTransactionCount[currentCalendarDate] ?: 0
+
+            // Set the visibility of cEventDot based on the transaction count
+            if (transactionCount > 0) {
+                binding.cEventDot.visibility = View.VISIBLE
+            } else {
+                binding.cEventDot.visibility = View.GONE
+            }
 
             val isCurrentMonth = month == currentDate.monthValue
             val isCurrentDate = day == currentDate.dayOfMonth
@@ -85,14 +99,13 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
                 binding.cCellDayText.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
             }
 
-
             binding.dateCl.setOnClickListener {
                 // Update the selected item position
                 selectedItemPosition = position
                 // Notify the adapter that the data has changed (to refresh backgrounds)
                 notifyDataSetChanged()
                 // Handle item click here
-                dateClick?.invoke(calendarDate,selectedItemPosition)
+                dateClick?.invoke(calendarDate, selectedItemPosition)
             }
         }
     }
@@ -110,7 +123,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
     }
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(position, currentDate)
     }
 
     fun getCurrentMonthDates(): List<Calendar> {
@@ -136,5 +149,23 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, val currentDate: Loca
     fun getTodayPosition(): Int {
         return todayPosition
     }
+
+    fun setTransactions(incomeExpense: MutableList<IncomeExpense>) {
+        incomeExpenseList.clear()
+        incomeExpenseList.addAll(incomeExpense)
+
+        // Clear the existing mapping
+        dateToTransactionCount.clear()
+
+        // Populate the mapping with the count of transactions for each date
+        incomeExpense.forEach { transaction ->
+            val transactionDate = LocalDate.parse(transaction.iEDate, DateTimeFormatter.ofPattern("MMM dd, yyyy"))
+            dateToTransactionCount[transactionDate] = dateToTransactionCount.getOrDefault(transactionDate, 0) + 1
+        }
+
+        // Notify the adapter that the data has changed
+        notifyDataSetChanged()
+    }
+
 
 }

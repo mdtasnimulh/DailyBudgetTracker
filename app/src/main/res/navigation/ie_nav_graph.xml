@@ -122,5 +122,6 @@
     <fragment
         android:id="@+id/calendarViewFragment"
         android:name="com.tasnim.chowdhury.eee.ui.calendar.CalendarViewFragment"
-        android:label="CalendarViewFragment" />
+        android:label="CalendarViewFragment" >
+    </fragment>
 </navigation>

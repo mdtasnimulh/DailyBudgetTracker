@@ -29,7 +29,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.LocalTime
 
-
 class MainFragment : Fragment(){
 
     private lateinit var binding: FragmentMainBinding
@@ -115,7 +114,10 @@ class MainFragment : Fragment(){
     private fun setupClicks() {
 
         binding.homeExpenseCardLl.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_calendarViewFragment)
+            val bundle = Bundle()
+            bundle.putString("from", "mainFragment")
+            bundle.putSerializable("objectList", incomeExpenseList as ArrayList<IncomeExpense>)
+            findNavController().navigate(R.id.action_mainFragment_to_calendarViewFragment, bundle)
         }
 
         binding.addFloatButton.setOnClickListener {
@@ -126,32 +128,6 @@ class MainFragment : Fragment(){
             findNavController().navigate(R.id.action_mainFragment_to_allTransactionFragment)
         }
 
-        /*binding.toolBarMenuIcon.setOnClickListener {
-            if (!isMenuOpen) {
-                // Open the menu by translating the layout to the right
-                binding.mainFragment.animate()
-                    .translationX(0.75f * binding.mainFragment.width) // 85% of the layout width
-                    //.translationY(150f)// Set your desired top and bottom margin here
-                    .setDuration(600) // Animation duration in milliseconds
-                    .start()
-                val marginParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
-                marginParams.setMargins(0, 150, 0, 150)
-                binding.mainFragment.layoutParams = marginParams
-            } else {
-                // Close the menu by translating the layout back to its original position
-                binding.mainFragment.animate()
-                    .translationX(0f)
-                    //.translationY(0f)
-                    .setDuration(600)
-                    .start()
-                val marginParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
-                marginParams.setMargins(0, 0, 0, 0)
-                binding.mainFragment.layoutParams = marginParams
-            }
-
-            // Toggle the menu state
-            isMenuOpen = !isMenuOpen
-        }*/
         binding.toolBarMenuIcon.setOnClickListener {
             if (!isMenuOpen) {
                 val initialX = 0f
@@ -236,6 +212,8 @@ class MainFragment : Fragment(){
         viewModel = ViewModelProvider(this)[IncomeExpenseViewModel::class.java]
 
         viewModel.getAllIncomeExpense.observe(viewLifecycleOwner) { incomeExpense ->
+
+            incomeExpenseList = incomeExpense
 
             adapter.addLimitedIncomeExpense(incomeExpense)
 

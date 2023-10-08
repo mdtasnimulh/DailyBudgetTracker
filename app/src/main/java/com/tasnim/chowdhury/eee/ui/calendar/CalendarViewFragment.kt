@@ -17,6 +17,7 @@ import com.tasnim.chowdhury.eee.databinding.FragmentCalendarViewBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.MainFragmentAdapter
 import com.tasnim.chowdhury.eee.ui.calendar.adapter.CalendarAdapter
 import com.tasnim.chowdhury.eee.ui.calendar.data.model.CalendarDate
+import com.tasnim.chowdhury.eee.ui.incomeExpense.data.model.IncomeExpense
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.YearMonth
@@ -33,6 +34,7 @@ class CalendarViewFragment : Fragment() {
 
     private lateinit var viewModel: IncomeExpenseViewModel
     private lateinit var dateDetailsAdapter: MainFragmentAdapter
+    private var incomeExpenseList: ArrayList<IncomeExpense>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +48,7 @@ class CalendarViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        incomeExpenseList = arguments?.getSerializable("objectList")as? ArrayList<IncomeExpense>
         currentDate = LocalDate.now()
         binding.dateView.text = currentDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
         setMonthView()
@@ -87,6 +90,7 @@ class CalendarViewFragment : Fragment() {
         cAdapter = CalendarAdapter(daysInMonth, currentDate)
         binding.cRV.adapter = cAdapter
         binding.cRV.layoutManager = GridLayoutManager(requireContext(), 7)
+        incomeExpenseList?.let { cAdapter?.setTransactions(it) }
 
         cAdapter?.dateClick = { dates, selectedItemPosition ->
             // Update the selected item position
