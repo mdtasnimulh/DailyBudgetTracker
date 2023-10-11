@@ -20,6 +20,7 @@
     //-----custom color's gray
     <color name="graphiteGray">#36454F</color>
     <color name="silverGray">#53565A</color>
+    <color name="lightSilver">#888B8F</color>
     <color name="transparentSilver">#BABABC</color>
     <color name="lighterGray">#A5A7A8</color>
     <color name="steelGray">#393D47</color>

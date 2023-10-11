@@ -281,17 +281,114 @@
                     app:layout_constraintBottom_toBottomOf="@+id/allTransactionTv"
                     tools:text="00/00/0000" />
 
+                <LinearLayout
+                    android:id="@+id/cViewIncomeExpenseLl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="48dp"
+                    android:layout_marginTop="8dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cViewIncomeCardLl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/c_income_bg">
+
+                        <TextView
+                            android:id="@+id/incomeCardIncomeTv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Income"
+                            android:gravity="center"
+                            android:textColor="@color/backgroundWhite"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/IncomeValueTv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:text="@string/demo_value_total"
+                            android:textColor="@color/backgroundWhite"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/incomeCardIncomeTv"
+                            app:layout_constraintStart_toStartOf="@+id/incomeCardIncomeTv"
+                            app:layout_constraintTop_toBottomOf="@+id/incomeCardIncomeTv" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cViewExpenseCardLl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/c_expense_bg">
+
+                        <TextView
+                            android:id="@+id/expenseCardExpenseTv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Expense"
+                            android:textColor="@color/backgroundWhite"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"  />
+
+                        <TextView
+                            android:id="@+id/expenseValueTv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:text="@string/demo_value_total"
+                            android:textColor="@color/backgroundWhite"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/expenseCardExpenseTv"
+                            app:layout_constraintStart_toStartOf="@+id/expenseCardExpenseTv"
+                            app:layout_constraintTop_toBottomOf="@+id/expenseCardExpenseTv" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/dateDetailsRv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginHorizontal="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/allTransactionTv"
-                    tools:itemCount="3"
-                    tools:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/cViewIncomeExpenseLl"
+                    tools:itemCount="2"
+                    tools:visibility="visible"
                     tools:listitem="@layout/main_rv_layout" />
 
                 <include
@@ -304,7 +401,7 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/allTransactionTv"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cViewIncomeExpenseLl"/>
 
                 <TextView
                     android:id="@+id/noTransactionTv"

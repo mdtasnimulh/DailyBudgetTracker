@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.ui.incomeExpense.data.viewModel.IncomeExpenseViewModel
 import com.tasnim.chowdhury.eee.databinding.FragmentCalendarViewBinding
 import com.tasnim.chowdhury.eee.ui.incomeExpense.adapter.MainFragmentAdapter
@@ -35,6 +36,9 @@ class CalendarViewFragment : Fragment() {
     private lateinit var viewModel: IncomeExpenseViewModel
     private lateinit var dateDetailsAdapter: MainFragmentAdapter
     private var incomeExpenseList: ArrayList<IncomeExpense>? = null
+
+    private var perDayIncome: Float = 0.0f
+    private var perDayExpense: Float = 0.0f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,9 +94,10 @@ class CalendarViewFragment : Fragment() {
         cAdapter = CalendarAdapter(daysInMonth, currentDate)
         binding.cRV.adapter = cAdapter
         binding.cRV.layoutManager = GridLayoutManager(requireContext(), 7)
-        incomeExpenseList?.let { cAdapter?.setTransactions(it) }
+        incomeExpenseList?.let { cAdapter?.setIncomeTransactions(it)}
+        incomeExpenseList?.let { cAdapter?.setExpenseTransactions(it)}
 
-        cAdapter?.dateClick = { dates, selectedItemPosition ->
+        cAdapter?.dateClick = { dates, selectedItemPosition, perDayIncome, perDayExpense ->
             // Update the selected item position
             cAdapter?.selectedItemPosition = selectedItemPosition
 
@@ -103,13 +108,13 @@ class CalendarViewFragment : Fragment() {
                 .format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
             binding.dateView.text = formattedDate
             requiredDate = formattedDate
-            Log.d("chkDate", "$requiredDate ==")
-            initData()
+
+            initData(perDayIncome, perDayExpense)
             binding.calendarViewCl.requestFocus()
         }
 
         requiredDate = currentDate.format(DateTimeFormatter.ofPattern("MMM dd, yyy"))
-        initData()
+        initData(perDayIncome, perDayExpense)
     }
 
     private fun daysInMonthArray(date: LocalDate): ArrayList<CalendarDate> {
@@ -176,7 +181,7 @@ class CalendarViewFragment : Fragment() {
         binding.dateDetailsRv.itemAnimator = DefaultItemAnimator()
     }
 
-    private fun initData() {
+    private fun initData(perDayIncome: Float, perDayExpense: Float) {
 
         val fromDate = requiredDate
 
@@ -194,6 +199,13 @@ class CalendarViewFragment : Fragment() {
                     formattedTransactionDate == fromDate
                 }
 
+                val currentDayIncome = sortedData.filter { it.iEType == getString(R.string.income) }.sumByDouble { it.iEAmount ?: 0.0 }
+                val currentDayExpense = sortedData.filter { it.iEType == getString(R.string.expense) }.sumByDouble { it.iEAmount ?: 0.0 }
+
+                this.perDayIncome = currentDayIncome.toFloat()
+                this.perDayExpense = currentDayExpense.toFloat()
+
+
                 dateDetailsAdapter.addIncomeExpense(sortedData)
 
                 if (sortedData.isNotEmpty()){
@@ -205,6 +217,11 @@ class CalendarViewFragment : Fragment() {
                     binding.noTransactionView.visibility = View.VISIBLE
                     binding.dateDetailsRv.visibility = View.GONE
                 }
+
+                binding.IncomeValueTv.text = this.perDayIncome.toString()
+                binding.expenseValueTv.text = this.perDayExpense.toString()
+                if (currentDayIncome >= 1) binding.cViewIncomeCardLl.setBackgroundResource(R.drawable.c_income_bg) else binding.cViewIncomeCardLl.setBackgroundResource(R.drawable.c_amount_empty_bg)
+                if (currentDayExpense >= 1) binding.cViewExpenseCardLl.setBackgroundResource(R.drawable.c_expense_bg) else binding.cViewExpenseCardLl.setBackgroundResource(R.drawable.c_amount_empty_bg)
             }
 
         }

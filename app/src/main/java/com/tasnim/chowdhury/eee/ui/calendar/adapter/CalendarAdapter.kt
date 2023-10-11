@@ -18,11 +18,17 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, private val currentDa
     val dayOfMonth: ArrayList<CalendarDate>
 
     private var todayPosition = -1
-    var dateClick:((date: CalendarDate, selectedItemPosition: Int) -> Unit)? = null
+    var dateClick:((date: CalendarDate, selectedItemPosition: Int, perDayIncome: Float, perDayExpense: Float) -> Unit)? = null
 
     var selectedItemPosition = RecyclerView.NO_POSITION
     private var incomeExpenseList: MutableList<IncomeExpense> = mutableListOf()
+    private var incomeList: MutableList<IncomeExpense> = mutableListOf()
+    private var expenseList: MutableList<IncomeExpense> = mutableListOf()
     private val dateToTransactionCount = mutableMapOf<LocalDate, Int>()
+    private val dateToIncomeCount = mutableMapOf<LocalDate, Int>()
+    private val dateToExpenseCount = mutableMapOf<LocalDate, Int>()
+    private var perDayIncome: Float = 0.0f
+    private var perDayExpense: Float = 0.0f
 
     init {
         this.dayOfMonth = dayOfMonth
@@ -40,13 +46,20 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, private val currentDa
 
             // Check if the current date has transactions
             val currentCalendarDate = LocalDate.of(year, month, day)
-            val transactionCount = dateToTransactionCount[currentCalendarDate] ?: 0
+            //val transactionCount = dateToTransactionCount[currentCalendarDate] ?: 0
+            val incomeTransactionCount = dateToIncomeCount[currentCalendarDate] ?: 0
+            val expenseTransactionCount = dateToExpenseCount[currentCalendarDate] ?: 0
 
             // Set the visibility of cEventDot based on the transaction count
-            if (transactionCount > 0) {
-                binding.cEventDot.visibility = View.VISIBLE
+            if (incomeTransactionCount > 0) {
+                binding.cEventDotIncome.visibility = View.VISIBLE
             } else {
-                binding.cEventDot.visibility = View.GONE
+                binding.cEventDotIncome.visibility = View.GONE
+            }
+            if (expenseTransactionCount > 0) {
+                binding.cEventDotExpense.visibility = View.VISIBLE
+            } else {
+                binding.cEventDotExpense.visibility = View.GONE
             }
 
             val isCurrentMonth = month == currentDate.monthValue
@@ -102,10 +115,14 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, private val currentDa
             binding.dateCl.setOnClickListener {
                 // Update the selected item position
                 selectedItemPosition = position
+                // Calculate per-day income and expense for the selected date
+                val selectedDate = LocalDate.of(year, month, day)
+                calculatePerDayIncome(selectedDate)
+                calculatePerDayExpense(selectedDate)
                 // Notify the adapter that the data has changed (to refresh backgrounds)
                 notifyDataSetChanged()
                 // Handle item click here
-                dateClick?.invoke(calendarDate, selectedItemPosition)
+                dateClick?.invoke(calendarDate, selectedItemPosition, perDayIncome, perDayExpense)
             }
         }
     }
@@ -150,7 +167,7 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, private val currentDa
         return todayPosition
     }
 
-    fun setTransactions(incomeExpense: MutableList<IncomeExpense>) {
+    /*fun setTransactions(incomeExpense: MutableList<IncomeExpense>) {
         incomeExpenseList.clear()
         incomeExpenseList.addAll(incomeExpense)
 
@@ -165,7 +182,56 @@ class CalendarAdapter(dayOfMonth: ArrayList<CalendarDate>, private val currentDa
 
         // Notify the adapter that the data has changed
         notifyDataSetChanged()
+    }*/
+
+    fun setIncomeTransactions(income: MutableList<IncomeExpense>) {
+        incomeList.clear()
+        incomeList.addAll(income)
+
+        // Clear the existing mapping
+        dateToIncomeCount.clear()
+
+        // Populate the mapping with the count of income transactions for each date
+        income.filter { it.iEType == "Income" }.forEach { incomeList ->
+            val transactionDate = LocalDate.parse(incomeList.iEDate, DateTimeFormatter.ofPattern("MMM dd, yyyy"))
+            dateToIncomeCount[transactionDate] = dateToIncomeCount.getOrDefault(transactionDate, 0) + 1
+        }
+
+        // Notify the adapter that the data has changed
+        notifyDataSetChanged()
     }
+
+    fun setExpenseTransactions(expense: MutableList<IncomeExpense>) {
+        expenseList.clear()
+        expenseList.addAll(expense)
+
+        // Clear the existing mapping
+        dateToExpenseCount.clear()
+
+        // Populate the mapping with the count of expense transactions for each date
+        expense.filter { it.iEType == "Expense" }.forEach { expenseList ->
+            val transactionDate = LocalDate.parse(expenseList.iEDate, DateTimeFormatter.ofPattern("MMM dd, yyyy"))
+            dateToExpenseCount[transactionDate] = dateToExpenseCount.getOrDefault(transactionDate, 0) + 1
+        }
+
+        // Notify the adapter that the data has changed
+        notifyDataSetChanged()
+    }
+
+    private fun calculatePerDayIncome(selectedDate: LocalDate) {
+        perDayIncome = incomeList
+            .filter { it.iEType == "Income" && LocalDate.parse(it.iEDate, DateTimeFormatter.ofPattern("MMM dd, yyyy")) == selectedDate }
+            .sumOf { it.iEAmount ?: 0.0 }
+            .toFloat()
+    }
+
+    private fun calculatePerDayExpense(selectedDate: LocalDate) {
+        perDayExpense = expenseList
+            .filter { it.iEType == "Expense" && LocalDate.parse(it.iEDate, DateTimeFormatter.ofPattern("MMM dd, yyyy")) == selectedDate }
+            .sumOf { it.iEAmount ?: 0.0 }
+            .toFloat()
+    }
+
 
 
 }
