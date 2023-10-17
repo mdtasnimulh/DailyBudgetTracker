@@ -50,7 +50,6 @@ class StateFragment : Fragment() {
     private var travelBalance: Float = 0.0F
     private var othersBalance: Float = 0.0F
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
