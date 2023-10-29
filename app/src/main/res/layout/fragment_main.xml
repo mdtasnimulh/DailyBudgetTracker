@@ -71,25 +71,6 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addFloatButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="85dp"
-            android:clickable="true"
-            android:contentDescription="@string/addfloatbutton"
-            android:focusable="true"
-            android:background="#00FFFFFF"
-            android:backgroundTint="@color/orange"
-            android:src="@drawable/ic_add_new"
-            app:tint="@color/white"
-            app:backgroundTint="@color/orange"
-            android:outlineSpotShadowColor="@color/orange3"
-            android:outlineAmbientShadowColor="@color/orange3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/homeNestedSv"
             android:layout_width="match_parent"
@@ -487,6 +468,31 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/addFloatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="85dp"
+            android:paddingHorizontal="12dp"
+            android:outlineAmbientShadowColor="@color/orange3"
+            android:outlineSpotShadowColor="@color/orange3"
+            android:backgroundTint="@color/orange"
+            app:strokeColor="#FF8652"
+            app:cornerRadius="5dp"
+            app:icon="@drawable/ic_add_new"
+            app:iconGravity="textEnd"
+            app:iconSize="16dp"
+            app:iconTint="@color/white"
+            app:rippleColor="#26FFFFFF"
+            android:text="New"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
