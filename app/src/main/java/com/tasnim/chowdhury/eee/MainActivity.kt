@@ -10,8 +10,13 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.shape.MaterialShapeDrawable
 import com.tasnim.chowdhury.eee.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,45 +29,46 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigationView.setItemSelected(R.id.mainFragment, true)
-        binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_green)
-        binding.bottomNavigationView.outlineSpotShadowColor = ContextCompat.getColor(this, R.color.backgroundGreen2)
+        binding.bottomNavigationView.selectedItemId = R.id.mainFragment
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainHostFragment) as NavHostFragment
         val navController = navHostFragment.findNavController()
 
+        //binding.bottomNavigationView.setupWithNavController(navController)
+
         binding.bottomNavigationView.setOnItemSelectedListener { menu ->
-            when(menu){
+            when(menu.itemId){
                 R.id.mainFragment -> {
-                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_green)
-                    binding.bottomNavigationView.outlineSpotShadowColor = ContextCompat.getColor(this, R.color.backgroundGreen2)
                     home = true
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.mainFragment)
+                    true
                 }
                 R.id.budgetFragment -> {
-                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_yellow)
-                    binding.bottomNavigationView.outlineSpotShadowColor = ContextCompat.getColor(this, R.color.backgroundYellow2)
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.budgetFragment)
+                    true
                 }
                 R.id.stateViewFragment -> {
-                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_red)
-                    binding.bottomNavigationView.outlineSpotShadowColor = ContextCompat.getColor(this, R.color.backgroundRed2)
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.stateViewFragment)
+                    true
                 }
                 R.id.moreFragment -> {
-                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_blue)
-                    binding.bottomNavigationView.outlineSpotShadowColor = ContextCompat.getColor(this, R.color.backgroundBlue2)
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.moreFragment)
+                    true
+                }
+
+                else -> {
+                    false
                 }
             }
         }
+
 
         onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -91,9 +97,7 @@ class MainActivity : AppCompatActivity() {
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.mainFragment)
                     home = true
-                    binding.bottomNavigationView.setItemSelected(R.id.mainFragment, true)
-                    binding.bottomNavigationView.setBackgroundResource(R.drawable.chip_bar_bg_green)
-                    binding.bottomNavigationView.outlineSpotShadowColor = ContextCompat.getColor(applicationContext, R.color.backgroundGreen2)
+                    binding.bottomNavigationView.selectedItemId = R.id.mainFragment
                 }
             }
         })

@@ -9,7 +9,7 @@
         android:background="#FEFFF2"
         tools:context=".MainActivity">
 
-        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        <!--<com.ismaeldivita.chipnavigation.ChipNavigationBar
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,19 +28,43 @@
             android:background="@drawable/chip_bar_bg_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />-->
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/mainHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:navGraph="@navigation/ie_nav_graph" />
+
+        <LinearLayout
+            android:id="@+id/bottomLl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:menu="@menu/bottom_nav_menu"
+                app:labelVisibilityMode="unlabeled"
+                android:paddingVertical="3dp"
+                android:background="@color/backgroundWhite"
+                app:elevation="6dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"/>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

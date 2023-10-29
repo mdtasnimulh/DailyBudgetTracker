@@ -7,37 +7,21 @@
     <item
         android:id="@+id/mainFragment"
         android:icon="@drawable/ic_home_black_filled"
-        android:title="@string/home"
-        app:cnb_iconTintMode="src_in"
-        app:cnb_iconColor="@color/leafGreen"
-        app:cnb_backgroundColor="@color/backgroundGreen"
-        app:cnb_textColor="@color/leafGreen"/>
+        android:title="@string/home"/>
 
     <item
         android:id="@+id/budgetFragment"
         android:icon="@drawable/ic_budget_black_filled"
-        android:title="@string/budget"
-        app:cnb_iconTintMode="src_in"
-        app:cnb_iconColor="@color/bananaYellow"
-        app:cnb_backgroundColor="@color/backgroundYellow"
-        app:cnb_textColor="@color/bananaYellow"/>
+        android:title="@string/budget"/>
 
     <item
         android:id="@+id/stateViewFragment"
         android:icon="@drawable/ic_chart_black_filled"
-        android:title="@string/stat"
-        app:cnb_iconTintMode="src_in"
-        app:cnb_iconColor="@color/cherryRed"
-        app:cnb_backgroundColor="@color/backgroundRed"
-        app:cnb_textColor="@color/cherryRed"/>
+        android:title="@string/stat"/>
 
     <item
         android:id="@+id/moreFragment"
         android:icon="@drawable/ic_more_black_filled"
-        android:title="@string/more"
-        app:cnb_iconTintMode="src_in"
-        app:cnb_iconColor="@color/lightBlue"
-        app:cnb_backgroundColor="@color/backgroundBlue"
-        app:cnb_textColor="@color/lightBlue"/>
+        android:title="@string/more"/>
 
 </menu>
