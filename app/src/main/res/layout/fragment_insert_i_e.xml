@@ -471,7 +471,7 @@
                     android:background="@drawable/amount_filled_bg"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Save Transaction"
-                    android:textColor="@color/offWhite"
+                    android:textColor="@color/white"
                     android:textSize="17sp"
                     app:backgroundTint="@null"
                     android:outlineAmbientShadowColor="@color/orange3"

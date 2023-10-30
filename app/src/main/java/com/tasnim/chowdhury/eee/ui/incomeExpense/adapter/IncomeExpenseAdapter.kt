@@ -52,15 +52,22 @@ class IncomeExpenseAdapter(val context: Context): RecyclerView.Adapter<RecyclerV
                 "Income" -> {
                     binding.amountTv.text = amountPlus
                     binding.amountTv.setTextColor(Color.parseColor("#31D618"))
-                    binding.mainRvLayout.setBackgroundResource(R.drawable.background_income)
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.income_bg)
+                    binding.mainRvLayout.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.income_color)
+                    binding.mainRvLayout.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.income_color)
                 }
                 "Expense" -> {
                     binding.amountTv.text = amountMinus
                     binding.amountTv.setTextColor(Color.parseColor("#FA1E25"))
-                    binding.mainRvLayout.setBackgroundResource(R.drawable.background_expense)
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.expense_bg)
+                    binding.mainRvLayout.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.expense_color)
+                    binding.mainRvLayout.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.expense_color)
                 }
                 else -> {
                     binding.amountTv.text = amount
+                    binding.mainRvLayout.setBackgroundResource(R.drawable.gray_bg)
+                    binding.mainRvLayout.outlineSpotShadowColor = ContextCompat.getColor(context, R.color.graphiteGray)
+                    binding.mainRvLayout.outlineAmbientShadowColor = ContextCompat.getColor(context, R.color.graphiteGray)
                 }
             }
 
