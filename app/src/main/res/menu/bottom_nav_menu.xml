@@ -6,22 +6,22 @@
 
     <item
         android:id="@+id/mainFragment"
-        android:icon="@drawable/ic_home_black_filled"
+        android:icon="@drawable/home_icon_selector"
         android:title="@string/home"/>
 
     <item
         android:id="@+id/budgetFragment"
-        android:icon="@drawable/ic_budget_black_filled"
+        android:icon="@drawable/budget_icon_selector"
         android:title="@string/budget"/>
 
     <item
         android:id="@+id/stateViewFragment"
-        android:icon="@drawable/ic_chart_black_filled"
+        android:icon="@drawable/stats_icon_selector"
         android:title="@string/stat"/>
 
     <item
         android:id="@+id/moreFragment"
-        android:icon="@drawable/ic_more_black_filled"
+        android:icon="@drawable/more_icon_selector"
         android:title="@string/more"/>
 
 </menu>

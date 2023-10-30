@@ -1,5 +1,6 @@
 package com.tasnim.chowdhury.eee
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bottomNavigationView.selectedItemId = R.id.mainFragment
+        binding.bottomNavigationView.setBackgroundResource(R.drawable.bottom_nav_bg)
+        binding.bottomNavigationView.outlineAmbientShadowColor = Color.parseColor("#FFFC4C02")
+        binding.bottomNavigationView.outlineSpotShadowColor = Color.parseColor("#FFFC4C02")
+        binding.bottomNavigationView.itemIconTintList = null
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainHostFragment) as NavHostFragment
         val navController = navHostFragment.findNavController()
@@ -42,24 +47,36 @@ class MainActivity : AppCompatActivity() {
                     home = true
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.mainFragment)
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.bottom_nav_bg)
+                    binding.bottomNavigationView.outlineAmbientShadowColor = Color.parseColor("#FFFC4C02")
+                    binding.bottomNavigationView.outlineSpotShadowColor = Color.parseColor("#FFFC4C02")
                     true
                 }
                 R.id.budgetFragment -> {
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.budgetFragment)
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.bottom_nav_bg_yellow)
+                    binding.bottomNavigationView.outlineAmbientShadowColor = Color.parseColor("#FFFFA400")
+                    binding.bottomNavigationView.outlineSpotShadowColor = Color.parseColor("#FFFFA400")
                     true
                 }
                 R.id.stateViewFragment -> {
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.stateViewFragment)
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.bottom_nav_bg_blue)
+                    binding.bottomNavigationView.outlineAmbientShadowColor = Color.parseColor("#FF00539C")
+                    binding.bottomNavigationView.outlineSpotShadowColor = Color.parseColor("#FF00539C")
                     true
                 }
                 R.id.moreFragment -> {
                     home = false
                     navController.popBackStack(R.id.ie_nav_graph, false)
                     navController.navigate(R.id.moreFragment)
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.bottom_nav_bg_red)
+                    binding.bottomNavigationView.outlineAmbientShadowColor = Color.parseColor("#FFFA1E25")
+                    binding.bottomNavigationView.outlineSpotShadowColor = Color.parseColor("#FFFA1E25")
                     true
                 }
 
@@ -98,6 +115,9 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.mainFragment)
                     home = true
                     binding.bottomNavigationView.selectedItemId = R.id.mainFragment
+                    binding.bottomNavigationView.setBackgroundResource(R.drawable.bottom_nav_bg)
+                    binding.bottomNavigationView.outlineAmbientShadowColor = Color.parseColor("#FFFC4C02")
+                    binding.bottomNavigationView.outlineSpotShadowColor = Color.parseColor("#FFFC4C02")
                 }
             }
         })
