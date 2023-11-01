@@ -70,9 +70,9 @@ class BudgetFragment : Fragment() {
 
     private fun setupClicks() {
 
-        binding.addBudget.setOnClickListener {
+        /*binding.addBudget.setOnClickListener {
             findNavController().navigate(R.id.action_budgetFragment_to_insertBudgetFragment)
-        }
+        }*/
 
     }
 

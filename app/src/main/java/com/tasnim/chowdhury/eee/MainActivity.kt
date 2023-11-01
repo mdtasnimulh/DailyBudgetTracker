@@ -3,6 +3,7 @@ package com.tasnim.chowdhury.eee
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var home: Boolean = true
+    private var btnVisible: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +88,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (home){
@@ -122,12 +123,45 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        binding.showHideBtn.setOnClickListener {
+            btnVisible = !btnVisible
+            Log.d("chkClick", "$btnVisible")
+            if (btnVisible){
+                binding.addFloatButton.visibility = View.VISIBLE
+            }else{
+                binding.addFloatButton.visibility = View.GONE
+            }
+        }
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.mainFragment || destination.id == R.id.budgetFragment
                 || destination.id == R.id.stateViewFragment || destination.id == R.id.moreFragment){
                 binding.bottomNavigationView.visibility = View.VISIBLE
             }else{
                 binding.bottomNavigationView.visibility = View.GONE
+            }
+
+            if (destination.id == R.id.mainFragment || destination.id == R.id.budgetFragment){
+                /*if (btnVisible){
+                    binding.addFloatButton.visibility = View.VISIBLE
+                }else{
+                    binding.addFloatButton.visibility = View.GONE
+                }*/
+                binding.addFloatButton.visibility = View.VISIBLE
+
+                //binding.showHideBtn.visibility = View.VISIBLE
+                if (destination.id == R.id.mainFragment){
+                    binding.addFloatButton.setOnClickListener {
+                        navController.navigate(R.id.insertIEFragment)
+                    }
+                }else{
+                    binding.addFloatButton.setOnClickListener {
+                        navController.navigate(R.id.insertBudgetFragment)
+                    }
+                }
+            }else{
+                binding.addFloatButton.visibility = View.GONE
+                //binding.showHideBtn.visibility = View.GONE
             }
         }
 

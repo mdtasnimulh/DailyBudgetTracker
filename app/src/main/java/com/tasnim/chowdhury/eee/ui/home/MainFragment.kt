@@ -120,9 +120,9 @@ class MainFragment : Fragment(){
             findNavController().navigate(R.id.action_mainFragment_to_calendarViewFragment, bundle)
         }
 
-        binding.addFloatButton.setOnClickListener {
+        /*binding.addFloatButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_insertIEFragment)
-        }
+        }*/
 
         binding.recentTransactionSeeMore.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_allTransactionFragment)

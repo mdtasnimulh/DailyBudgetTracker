@@ -3,32 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FEFFF2"
         tools:context=".MainActivity">
-
-        <!--<com.ismaeldivita.chipnavigation.ChipNavigationBar
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginHorizontal="8dp"
-            android:layout_gravity="bottom"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingEnd="5dp"
-            android:paddingStart="5dp"
-            android:elevation="6dp"
-            android:outlineSpotShadowColor="#AFFFBD"
-            android:textStyle="bold"
-            app:cnb_radius="7dp"
-            app:cnb_menuResource="@menu/bottom_nav_menu"
-            android:background="@drawable/chip_bar_bg_green"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />-->
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/mainHostFragment"
@@ -42,11 +21,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:navGraph="@navigation/ie_nav_graph" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addFloatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="85dp"
+            android:src="@drawable/ic_add_new"
+            android:tint="@color/white"
+            app:backgroundTint="@color/orange"
+            android:outlineAmbientShadowColor="@color/orange3"
+            android:outlineSpotShadowColor="@color/orange3"
+            app:strokeColor="#FF8652"
+            app:cornerRadius="5dp"
+            app:rippleColor="#26FFFFFF"
+            android:layout_gravity="bottom|end"
+            android:visibility="visible"
+            tools:visibility="visible"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/showHideBtn"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/orange"
+            android:visibility="gone"
+            android:layout_gravity="center|end"/>
+
         <LinearLayout
             android:id="@+id/bottomLl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
             app:backgroundTint="@android:color/transparent"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -60,14 +73,14 @@
                 android:paddingVertical="3dp"
                 android:background="@drawable/bottom_nav_bg"
                 app:elevation="6dp"
-                android:layout_marginHorizontal="32dp"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 android:outlineSpotShadowColor="@color/orange3"
                 android:outlineAmbientShadowColor="@color/orange3"/>
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
