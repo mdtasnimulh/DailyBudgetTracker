@@ -68,4 +68,13 @@
         <item name="cornerSize">35%</item>
     </style>
 
+    <style name="coverRoundImage" parent="">
+        <item name="cornerSizeBottomLeft">10%</item>
+        <item name="cornerSizeBottomRight">10%</item>
+    </style>
+
+    <style name="profileRoundImage" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

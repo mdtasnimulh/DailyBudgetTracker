@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/bottomMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:gravity="center"
+        android:layout_marginVertical="4dp"
+        android:paddingHorizontal="16dp"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:id="@+id/menuOneLl"
+            android:background="@color/backgroundBlue2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/menuOneIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_home_colored"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menuOneTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:visibility="visible"
+                android:text="Home"
+                android:textColor="@color/final_primary_black"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuTwoLl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="12dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/menuTwoIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_home_colored"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menuTwoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:text="Budget"
+                android:textColor="@color/final_primary_black"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuThreeLl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="12dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/menuThreeIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_home_colored"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menuThreeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:text="Reports"
+                android:textColor="@color/final_primary_black"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuFourLl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="12dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/menuFourIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_home_colored"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/menuFourTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:text="More"
+                android:textColor="@color/final_primary_black"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_black"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
