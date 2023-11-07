@@ -58,6 +58,7 @@
     <string name="greeting_image">Greeting Image</string>
     <string name="create">Create</string>
     <string name="edit_cover_photo">Edit Cover Photo</string>
+    <string name="available">Available</string>
 
     <string-array name="date_filter">
         <item>This Month</item>
