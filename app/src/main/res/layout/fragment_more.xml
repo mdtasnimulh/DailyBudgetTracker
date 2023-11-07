@@ -92,7 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:background="@color/final_other_blue"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:paddingBottom="2dp"
                     app:shapeAppearanceOverlay="@style/coverRoundImage"
                     app:layout_constraintEnd_toEndOf="parent"
