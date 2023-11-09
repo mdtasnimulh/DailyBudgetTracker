@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "662191044569",
+    "project_id": "budgetbliss-98766",
+    "storage_bucket": "budgetbliss-98766.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662191044569:android:73041f88751298c32d8bc8",
+        "android_client_info": {
+          "package_name": "com.tasnim.chowdhury.eee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2UyrtOyOqqSqDATJsx9wyoMSyYLKFa_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
