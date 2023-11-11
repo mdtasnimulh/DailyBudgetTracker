@@ -67,6 +67,14 @@
     <string name="user_name">User Name</string>
     <string name="email">Email</string>
     <string name="or">Or</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="mobile_no">Mobile No</string>
+    <string name="gender">Gender</string>
+    <string name="welcome">Welcome</string>
+    <string name="signup_msg"><b>Sign up</b> or <b>log in</b> now to unlock a world of financial possibilities. Your journey to financial freedom starts here!</string>
+    <string name="welcome_description">Ready to take control of your finances and embark on a journey towards financial success? Look no further!</string>
+    <string name="welcome_msg">Welcome to Your Financial Companion!</string>
 
     <string-array name="date_filter">
         <item>This Month</item>
