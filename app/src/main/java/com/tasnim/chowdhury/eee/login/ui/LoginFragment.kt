@@ -20,10 +20,10 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move).apply {
-            duration = 500
+            duration = 400
         }
         sharedElementReturnTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move).apply {
-            duration = 500
+            duration = 400
         }
     }
 
