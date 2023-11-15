@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.FragmentWelcomeBinding
@@ -29,7 +30,9 @@ class WelcomeFragment : Fragment() {
 
     private fun setupClicks() {
         binding.loginBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
+            val extras = FragmentNavigatorExtras(
+                binding.loginBtn to "transition_login")
+            findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment, null, null, extras)
         }
 
         binding.signUpBtn.setOnClickListener {
