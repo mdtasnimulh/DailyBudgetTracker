@@ -131,7 +131,7 @@ class MainFragment : Fragment(){
         binding.toolBarMenuIcon.setOnClickListener {
             if (!isMenuOpen) {
                 val initialX = 0f
-                val finalX = 0.75f * binding.mainFragment.width
+                val finalX = 0.75f * binding.mainMenuLayout.width
                 val initialMargin = 0
                 val finalMargin = 150
                 val duration = 500L
@@ -140,16 +140,23 @@ class MainFragment : Fragment(){
                 animator.duration = duration
                 animator.addUpdateListener { animation ->
                     val animatedValue = animation.animatedValue as Float
-                    val layoutParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
+                    val layoutParams = binding.mainMenuLayout.layoutParams as ViewGroup.MarginLayoutParams
+                    val hoverParams = binding.mainMenuLayoutHove.layoutParams as ViewGroup.MarginLayoutParams
                     layoutParams.setMargins(0, initialMargin + ((finalMargin - initialMargin) * animation.animatedFraction).toInt(), 0, initialMargin + ((finalMargin - initialMargin) * animation.animatedFraction).toInt())
-                    binding.mainFragment.layoutParams = layoutParams
-                    binding.mainFragment.translationX = animatedValue
+                    hoverParams.setMargins(0, initialMargin + ((finalMargin - initialMargin) * animation.animatedFraction).toInt(), 0, initialMargin + ((finalMargin - initialMargin) * animation.animatedFraction).toInt())
+                    binding.mainMenuLayout.layoutParams = layoutParams
+                    binding.mainMenuLayoutHove.layoutParams = hoverParams
+                    binding.mainMenuLayout.translationX = animatedValue
+                    binding.mainMenuLayoutHove.translationX = animatedValue
                     binding.toolBarMenuIcon.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_close))
+
+                    binding.mainMenuLayoutHove.visibility = View.VISIBLE
+                    binding.homeNestedSv.visibility = View.GONE
                 }
 
                 animator.start()
             } else {
-                val initialX = 0.75f * binding.mainFragment.width
+                val initialX = 0.75f * binding.mainMenuLayout.width
                 val finalX = 0f
                 val initialMargin = 150
                 val finalMargin = 0
@@ -159,11 +166,18 @@ class MainFragment : Fragment(){
                 animator.duration = duration
                 animator.addUpdateListener { animation ->
                     val animatedValue = animation.animatedValue as Float
-                    val layoutParams = binding.mainFragment.layoutParams as ViewGroup.MarginLayoutParams
+                    val layoutParams = binding.mainMenuLayout.layoutParams as ViewGroup.MarginLayoutParams
+                    val hoverParams = binding.mainMenuLayoutHove.layoutParams as ViewGroup.MarginLayoutParams
                     layoutParams.setMargins(0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt(), 0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt())
-                    binding.mainFragment.layoutParams = layoutParams
-                    binding.mainFragment.translationX = animatedValue
+                    hoverParams.setMargins(0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt(), 0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt())
+                    binding.mainMenuLayout.layoutParams = layoutParams
+                    binding.mainMenuLayoutHove.layoutParams = hoverParams
+                    binding.mainMenuLayout.translationX = animatedValue
+                    binding.mainMenuLayoutHove.translationX = animatedValue
                     binding.toolBarMenuIcon.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_menu_two))
+
+                    binding.mainMenuLayoutHove.visibility = View.GONE
+                    binding.homeNestedSv.visibility = View.VISIBLE
                 }
 
                 animator.start()
@@ -171,6 +185,35 @@ class MainFragment : Fragment(){
 
             // Toggle the menu state
             isMenuOpen = !isMenuOpen
+        }
+
+        binding.mainMenuLayoutHove.setOnClickListener {
+            isMenuOpen = false
+            val initialX = 0.75f * binding.mainMenuLayout.width
+            val finalX = 0f
+            val initialMargin = 150
+            val finalMargin = 0
+            val duration = 500L
+
+            val animator = ValueAnimator.ofFloat(initialX, finalX)
+            animator.duration = duration
+            animator.addUpdateListener { animation ->
+                val animatedValue = animation.animatedValue as Float
+                val layoutParams = binding.mainMenuLayout.layoutParams as ViewGroup.MarginLayoutParams
+                val hoverParams = binding.mainMenuLayoutHove.layoutParams as ViewGroup.MarginLayoutParams
+                layoutParams.setMargins(0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt(), 0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt())
+                hoverParams.setMargins(0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt(), 0, initialMargin - ((initialMargin - finalMargin) * animation.animatedFraction).toInt())
+                binding.mainMenuLayout.layoutParams = layoutParams
+                binding.mainMenuLayoutHove.layoutParams = hoverParams
+                binding.mainMenuLayout.translationX = animatedValue
+                binding.mainMenuLayoutHove.translationX = animatedValue
+                binding.toolBarMenuIcon.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_menu_two))
+
+                binding.mainMenuLayoutHove.visibility = View.GONE
+                binding.homeNestedSv.visibility = View.VISIBLE
+            }
+
+            animator.start()
         }
 
     }
