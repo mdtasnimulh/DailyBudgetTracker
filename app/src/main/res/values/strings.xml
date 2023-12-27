@@ -75,6 +75,8 @@
     <string name="signup_msg"><b>Sign up</b> or <b>log in</b> now to unlock a world of financial possibilities. Your journey to financial freedom starts here!</string>
     <string name="welcome_description">Ready to take control of your finances and embark on a journey towards financial success? Look no further!</string>
     <string name="welcome_msg">Welcome to Your Financial Companion!</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password</string>
 
     <string-array name="date_filter">
         <item>This Month</item>

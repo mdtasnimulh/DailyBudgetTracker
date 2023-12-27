@@ -2,6 +2,7 @@ package com.tasnim.chowdhury.eee.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.navigation.findNavController
 import com.tasnim.chowdhury.eee.R
 import com.tasnim.chowdhury.eee.databinding.ActivityLoginBinding
@@ -12,6 +13,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
